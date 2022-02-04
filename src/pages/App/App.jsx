@@ -24,6 +24,7 @@ function App() {
       ) : (
         <AuthPage setUser={setUser} />
       )}
+      HELLO
     </main>
   );
 }
