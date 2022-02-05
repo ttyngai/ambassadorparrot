@@ -12,9 +12,27 @@ function App() {
   const [user, setUser] = useState(getUser());
   console.log('the user', user);
 
+  window.SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new window.SpeechRecognition({ profanityFilter: false });
+  // let p = document.createElement('p');
+  recognition.lang = 'zh-yue';
+  recognition.addEventListener('result', (e) => {
+    console.log(e.results[0][0].transcript);
+    console.log(e);
+    speak(e.results[0][0].transcript);
+  });
 
+  function speak(message) {
+    var msg = new SpeechSynthesisUtterance(message);
+    var voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[22];
+    window.speechSynthesis.speak(msg);
+  }
+  function handleSay() {
+    recognition.start();
+  }
 
-  
   return (
     <main className='App'>
       {user ? (
@@ -24,6 +42,8 @@ function App() {
             <Route path='/orders/new' element={<NewOrderPage />} />
             <Route path='/orders' element={<OrderHistoryPage />} />
           </Routes>
+          HELLO THERE
+          <div onClick={handleSay}>SAY</div>
         </>
       ) : (
         <AuthPage setUser={setUser} />
@@ -33,5 +53,3 @@ function App() {
 }
 
 export default App;
-
-

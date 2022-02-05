@@ -64,3 +64,23 @@ function getVoice() {
 // recognition.lang = 'en-GB';
 // recognition.interimResults = false;
 // recognition.maxAlternatives = 1;
+
+//important
+
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new window.SpeechRecognition({ profanityFilter: false });
+// let p = document.createElement('p');
+recognition.addEventListener('result', (e) => {
+  console.log(e.results[0][0].transcript);
+
+  speak(e.results[0][0].transcript);
+});
+recognition.lang = 'zh-yue';
+
+function speak(message) {
+  var msg = new SpeechSynthesisUtterance(message);
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[22];
+  window.speechSynthesis.speak(msg);
+}
