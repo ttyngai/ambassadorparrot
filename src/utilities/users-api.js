@@ -44,3 +44,23 @@ async function sendRequest(url, method = 'GET', payload = null) {
   if (res.ok) return res.json();
   throw new Error('Bad Request');
 }
+
+function getVoice() {
+  const voice = 1;
+  // then fetch using voice variable
+}
+
+// two props, on mousedown, start eventlistener(startresognition), on mouse up stop recognition
+// ontouchstart, on onTouchend
+
+//CODE TO START
+// var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+// var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+// var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+
+// var recognition = new SpeechRecognition();
+// var speechRecognitionList = new SpeechGrammarList();
+// recognition.grammars = speechRecognitionList;
+// recognition.lang = 'en-GB';
+// recognition.interimResults = false;
+// recognition.maxAlternatives = 1;

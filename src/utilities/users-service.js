@@ -44,3 +44,11 @@ export function getUser() {
 //   const dateStr = await usersAPI.checkToken();
 //   return new Date(dateStr);
 // }
+
+// button onclick fuinction CompositionEvent
+// promise resolved into object
+
+
+
+
+

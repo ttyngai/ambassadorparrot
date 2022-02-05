@@ -11,6 +11,10 @@ import NavBar from '../../components/NavBar/NavBar';
 function App() {
   const [user, setUser] = useState(getUser());
   console.log('the user', user);
+
+
+
+  
   return (
     <main className='App'>
       {user ? (
@@ -24,9 +28,10 @@ function App() {
       ) : (
         <AuthPage setUser={setUser} />
       )}
-      HELLO
     </main>
   );
 }
 
 export default App;
+
+
