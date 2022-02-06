@@ -2,9 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-// const cors = require('cors');
-const axios = require('axios');
-// const fetch1 = require('node-fetch');
+
 //Always require and config near the top
 require('dotenv').config();
 
@@ -16,12 +14,7 @@ const app = express();
 // app.use(cors({ origin: '*', methods: ['get'] }));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(axios);
-// app.use(fetch1);
-// app.use(function (req, res, next) {
-//   res.header.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
+
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));

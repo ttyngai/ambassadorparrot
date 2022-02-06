@@ -7,7 +7,7 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import AuthPage from '../AuthPage/AuthPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
-import axios from 'axios';
+import EachSpeech from '../../components/EachSpeech/EachSpeech';
 
 // import { Translate } from '@google-cloud/translate';
 
@@ -15,6 +15,7 @@ import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [speech, setSpeech] = useState([]);
   let result;
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -27,6 +28,7 @@ function App() {
   console.log(recognition);
 
   async function translateAndSpeak(message, targetLanguage) {
+    console.log('message being translated', message);
     const lang = voiceSetting(targetLanguage);
     console.log('lang', lang);
     await fetch(
@@ -41,7 +43,7 @@ function App() {
         //   //   // 'Access-Control-Allow-Origin': '*',
         // },
         body: JSON.stringify({
-          q: message,
+          q: message[message.length - 1],
           target: lang.target,
         }),
       }
@@ -60,10 +62,22 @@ function App() {
       });
   }
   recognition.addEventListener('result', async (e) => {
-    console.log(e.results[e.results.length - 1][0].transcript);
-    console.log(e);
-    result += e.results[e.results.length - 1][0].transcript;
+    console.log('results', e.results);
+    console.log('latest', e.results[e.results.length - 1][0].transcript);
+
+    setSpeech([...speech, concatSpeech(e.results)]);
   });
+
+  function concatSpeech(results) {
+    let concat = '';
+    console.log('at concat', results);
+    for (let i = 0; i < results.length; i++) {
+      concat += results[i][0].transcript;
+    }
+
+    return concat;
+  }
+
   const voiceIndex = {
     en: 0,
     de: 5,
@@ -83,6 +97,16 @@ function App() {
     'zh-HK': 22,
     'zh-TW': 23,
   };
+
+  async function handleSay() {
+    setSpeech(speech);
+    recognition.start();
+  }
+  async function handleStop() {
+    recognition.stop();
+    console.log('speech', speech);
+    translateAndSpeak(speech, 'zh-HK');
+  }
   function voiceSetting(code) {
     let setting = {};
     if (code == 'en') {
@@ -192,17 +216,6 @@ function App() {
   //   'zh-HK': 22,
   //   'zh-TW': 23,
   // };
-
-  async function handleSay() {
-    result = '';
-    recognition.start();
-  }
-  async function handleStop() {
-    recognition.stop();
-
-    translateAndSpeak(result, 'zh-HK');
-  }
-
   return (
     <main className='App'>
       {user ? (
@@ -215,6 +228,9 @@ function App() {
           HELLO THERE
           <div onClick={handleSay}>SAY</div>
           <div onClick={handleStop}>Stop</div>
+          {speech.map((s) => (
+            <EachSpeech speech={s} />
+          ))}
         </>
       ) : (
         <AuthPage setUser={setUser} />
