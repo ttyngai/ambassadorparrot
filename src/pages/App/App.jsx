@@ -15,20 +15,17 @@ import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(getUser());
-  console.log('the user', user);
-
+  let result;
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new window.SpeechRecognition({ profanityFilter: false });
   // let p = document.createElement('p');
-  console.log('the program', recognition);
-  recognition.lang = 'zh';
-  recognition.addEventListener('result', async (e) => {
-    console.log(e.results[0][0].transcript);
-    console.log(e);
-    translateAndSpeak(e.results[0][0].transcript, 'en');
-    // speak(phrase);
-  });
+
+  recognition.lang = 'en';
+  recognition.interimResults = false;
+  recognition.continuous = true;
+  console.log(recognition);
+
   async function translateAndSpeak(message, targetLanguage) {
     const lang = voiceSetting(targetLanguage);
     console.log('lang', lang);
@@ -62,7 +59,11 @@ function App() {
         window.speechSynthesis.speak(msg);
       });
   }
-
+  recognition.addEventListener('result', async (e) => {
+    console.log(e.results[e.results.length - 1][0].transcript);
+    console.log(e);
+    result += e.results[e.results.length - 1][0].transcript;
+  });
   const voiceIndex = {
     en: 0,
     de: 5,
@@ -192,25 +193,14 @@ function App() {
   //   'zh-TW': 23,
   // };
 
-  // .then((data) => {
-  //   console.log('the data', data);
-  //   console.log(data.data.translations[0].translatedText);
-  //   speak(data.data.translations[0].translatedText);
-  // });
-
-  // const translate = new Translate({ project_id: 'the-ridge-340000' });
-
-  // const translate = new Translate({
-
-  //   credentials: CREDENTIALS,
-  //   projectId: CREDENTIALS.project_id,
-
-  // });
-
   async function handleSay() {
+    result = '';
     recognition.start();
-    // let response = await translate.detect(text);
-    // return response[0].language;
+  }
+  async function handleStop() {
+    recognition.stop();
+
+    translateAndSpeak(result, 'zh-HK');
   }
 
   return (
@@ -224,6 +214,7 @@ function App() {
           </Routes>
           HELLO THERE
           <div onClick={handleSay}>SAY</div>
+          <div onClick={handleStop}>Stop</div>
         </>
       ) : (
         <AuthPage setUser={setUser} />
