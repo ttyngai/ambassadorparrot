@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-
+// const cors = require('cors');
+const axios = require('axios');
+// const fetch1 = require('node-fetch');
 //Always require and config near the top
 require('dotenv').config();
 
@@ -11,10 +13,15 @@ require('./config/database');
 
 // Connect to the database
 const app = express();
-
+// app.use(cors({ origin: '*', methods: ['get'] }));
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use(axios);
+// app.use(fetch1);
+// app.use(function (req, res, next) {
+//   res.header.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
@@ -26,6 +33,7 @@ app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
+// app.use('/api/users', require('@google-cloud/translate')).v2;
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
 app.get('/*', function (req, res) {
