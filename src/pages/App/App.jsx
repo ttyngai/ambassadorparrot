@@ -14,23 +14,30 @@ import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 // import { Translate } from '@google-cloud/translate';
 
 // const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
-window.SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+// console.log('everything voices', voices);
 function App() {
   // const [user, setUser] = useState(getUser());
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
+  // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
+  const [voices, setVoices] = useState([]);
+  window.SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  window.speechSynthesis.getVoices();
 
   async function handleStart() {
     const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
 
-    recognition.lang = 'en';
+    recognition.lang = 'ja';
     recognition.interimResults = true;
     recognition.continuous = true;
     let speechCut = [...speech];
-    speechCut = speechCut.slice(-3);
+    if (speech.length >= 6) {
+      speechCut = speechCut.slice(-4);
+    }
     // console.log('cutted', speechCut);
     // setSpeech([speechCut]);
     console.log('the speech', speech);
@@ -53,10 +60,21 @@ function App() {
 
   // console.log('the recognition program', recognition);
   // }
-  function handleStop() {
-    recognition.stop();
-    // console.log('stop the recognition program', recognition);
-    translate(speech, 'zh-HK');
+  async function handleStop() {
+    setTimeout(async function () {
+      recognition.stop();
+      console.log('speech length', speech.length);
+      if (speech.length % 2 != 0) {
+        const speechReturn = await translate(speech, 'en');
+        console.log('return speech', speechReturn);
+
+        let speechCut = [...speech];
+        if (speech.length >= 6) {
+          speechCut = speechCut.slice(-5);
+        }
+        setSpeech([...speechCut, speechReturn]);
+      }
+    }, 1000);
   }
   function concatSpeech(results) {
     let concat = '';
@@ -132,12 +150,10 @@ function App() {
               />
             )}
           </div>
-          <span>
-            {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
-            <span onMouseDown={handleStart} onMouseUp={handleStop}>
-              SAY
-            </span>
-          </span>
+          {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
+          <button onMouseDown={handleStart} onMouseUp={handleStop}>
+            SAY
+          </button>
         </>
       ) : (
         <AuthPage setUser={setUser} />
