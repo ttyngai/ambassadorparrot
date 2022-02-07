@@ -1,7 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getUser } from '../../utilities/users-service';
+import voiceSettings from '../../utilities/voiceSettings';
+import speak from '../../utilities/speak';
 import { Routes, Route } from 'react-router-dom';
 import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import AuthPage from '../AuthPage/AuthPage';
@@ -14,8 +16,10 @@ import EachSpeech from '../../components/EachSpeech/EachSpeech';
 // const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
 function App() {
-  const [user, setUser] = useState(getUser());
+  // const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState({});
   const [speech, setSpeech] = useState([]);
+
   let result;
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,44 +27,10 @@ function App() {
   // let p = document.createElement('p');
 
   recognition.lang = 'en';
-  recognition.interimResults = false;
-  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.continuous = false;
   console.log(recognition);
 
-  async function translateAndSpeak(message, targetLanguage) {
-    console.log('message being translated', message);
-    const lang = voiceSetting(targetLanguage);
-    console.log('lang', lang);
-    await fetch(
-      'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
-      {
-        method: 'POST',
-
-        // headers: {
-        //   Accept: 'application/json',
-        //   'Content-Type': 'application/json',
-        //   // charset: 'UTF-8',
-        //   //   // 'Access-Control-Allow-Origin': '*',
-        // },
-        body: JSON.stringify({
-          q: message[message.length - 1],
-          target: lang.target,
-        }),
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log('the data', data.data.translations[0].translatedText);
-        var msg = new SpeechSynthesisUtterance(
-          data.data.translations[0].translatedText
-        );
-        var voices = window.speechSynthesis.getVoices();
-        msg.voice = voices[lang.voice];
-        window.speechSynthesis.speak(msg);
-      });
-  }
   recognition.addEventListener('result', async (e) => {
     console.log('results', e.results);
     console.log('latest', e.results[e.results.length - 1][0].transcript);
@@ -107,96 +77,38 @@ function App() {
     console.log('speech', speech);
     translateAndSpeak(speech, 'zh-HK');
   }
-  function voiceSetting(code) {
-    let setting = {};
-    if (code == 'en') {
-      setting = {
-        target: 'en',
-        voice: 0,
-      };
-    } else if (code == 'de') {
-      setting = {
-        target: 'de',
-        voice: 5,
-      };
-    } else if (code == 'en-GB') {
-      setting = {
-        target: 'en',
-        voice: 8,
-      };
-    } else if (code == 'es') {
-      setting = {
-        target: 'es',
-        voice: 9,
-      };
-    } else if (code == 'fr') {
-      setting = {
-        target: 'fr',
-        voice: 11,
-      };
-    } else if (code == 'hi') {
-      setting = {
-        target: 'hi',
-        voice: 12,
-      };
-    } else if (code == 'id') {
-      setting = {
-        target: 'id',
-        voice: 13,
-      };
-    } else if (code == 'it') {
-      setting = {
-        target: 'it',
-        voice: 14,
-      };
-    } else if (code == 'ja') {
-      setting = {
-        target: 'ja',
-        voice: 15,
-      };
-    } else if (code == 'ko') {
-      setting = {
-        target: 'ko',
-        voice: 16,
-      };
-    } else if (code == 'nl') {
-      setting = {
-        target: 'nl',
-        voice: 17,
-      };
-    } else if (code == 'pl') {
-      setting = {
-        target: 'pl',
-        voice: 18,
-      };
-    } else if (code == 'pt-BR') {
-      setting = {
-        target: 'pt-BR',
-        voice: 19,
-      };
-    } else if (code == 'ru') {
-      setting = {
-        target: 'ru',
-        voice: 20,
-      };
-    } else if (code == 'zh-CN') {
-      setting = {
-        target: 'zh-CN',
-        voice: 21,
-      };
-    } else if (code == 'zh-HK') {
-      setting = {
-        target: 'zh-CN',
-        voice: 22,
-      };
-    } else if (code == 'zh-TW') {
-      setting = {
-        target: 'zh-TW',
-        voice: 23,
-      };
-    }
-    return setting;
+
+  async function translateAndSpeak(message, targetLanguage) {
+    console.log('message being translated', message);
+    const lang = voiceSettings(targetLanguage);
+
+    console.log('lang', lang);
+    await fetch(
+      'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
+      {
+        method: 'POST',
+
+        // headers: {
+        //   Accept: 'application/json',
+        //   'Content-Type': 'application/json',
+        //   // charset: 'UTF-8',
+        //   //   // 'Access-Control-Allow-Origin': '*',
+        // },
+        body: JSON.stringify({
+          q: message[message.length - 1],
+          target: lang.target,
+        }),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(async (data) => {
+        console.log('the data', data.data.translations[0].translatedText);
+        speak(data, lang);
+      });
   }
+
   // const voiceIndex = {
   //   'en-US': 0,
   //   'de-DE': 5,
@@ -228,8 +140,8 @@ function App() {
           HELLO THERE
           <div onClick={handleSay}>SAY</div>
           <div onClick={handleStop}>Stop</div>
-          {speech.map((s) => (
-            <EachSpeech speech={s} />
+          {speech.map((s, idx) => (
+            <EachSpeech speech={s} key={idx} />
           ))}
         </>
       ) : (
