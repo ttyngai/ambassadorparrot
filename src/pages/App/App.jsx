@@ -19,39 +19,35 @@ function App() {
   // const [user, setUser] = useState(getUser());
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
-  let recognition;
-  let result;
+  const [recognition, setRecognition] = useState('');
 
   async function initSpeech() {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognition = new window.SpeechRecognition({});
+    const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
 
     recognition.lang = 'en';
     recognition.interimResults = true;
     recognition.continuous = true;
     console.log(recognition);
-  }
-  initSpeech();
-
-  function handleStart() {
-    setSpeech(speech);
-    recognition.addEventListener('result', async (e) => {
+    recognition.onresult = async (e) => {
       console.log('results; ', e.results);
       console.log('latest: ', e.results[e.results.length - 1][0].transcript);
       console.log('the speech', speech);
       setSpeech([...speech, concatSpeech(e.results)]);
-    });
+    };
+    setRecognition(recognition);
+  }
+  // initSpeech();
+  function handleStart() {
+    setSpeech(speech);
+    console.log('the recognition program', recognition);
     recognition.start();
   }
   function handleStop() {
-    recognition.removeEventListener('result', initSpeech());
-    recognition.abort();
     recognition.stop();
-    console.log('stoppedit');
-    console.log('recognition');
-    console.log('speech', speech);
+    console.log('stop the recognition program', recognition);
     translate(speech, 'zh-HK');
   }
   function concatSpeech(results) {
@@ -129,6 +125,7 @@ function App() {
             )}
           </div>
           <span>
+            <span onClick={initSpeech}>Init</span>&nbsp;&nbsp;
             <span onClick={handleStart}>SAY</span>&nbsp;&nbsp;
             <span onClick={handleStop}>STOP</span>
           </span>
