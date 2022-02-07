@@ -1,5 +1,12 @@
-.speechBox {
-  border: 1px solid white;
+.eachSpeech {
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: white;
   text-align: left;
-  max-width: 300px;
+  max-width: 490px;
+  padding: 5px;
+  margin: 5px;
+}
+.emptySpeech {
+  color: grey;
 }

@@ -15,6 +15,7 @@ export function logOut() {
 
 export async function login(credentials) {
   const token = await usersAPI.login(credentials);
+
   localStorage.setItem('token', token);
   return getUser();
 }
@@ -47,8 +48,3 @@ export function getUser() {
 
 // button onclick fuinction CompositionEvent
 // promise resolved into object
-
-
-
-
-

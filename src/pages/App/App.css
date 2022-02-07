@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.speechContainer {
+  color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  max-width: 500px;
+  margin: auto;
+  padding: 5px;
+  /* align-items: center; */
+}
