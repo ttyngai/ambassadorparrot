@@ -10,5 +10,8 @@ export default function EachSpeech({ speech, className, length, index }) {
     nameOfClass = `eachSpeech `;
   }
 
+  if (index % 2 != 0) {
+    nameOfClass += ` response`;
+  }
   return <p className={nameOfClass}>{speech}</p>;
 }

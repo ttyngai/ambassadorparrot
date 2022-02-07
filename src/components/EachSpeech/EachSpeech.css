@@ -10,3 +10,7 @@
 .emptySpeech {
   color: grey;
 }
+
+.response {
+  text-align: right;
+}

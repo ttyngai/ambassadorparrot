@@ -31,7 +31,7 @@ function App() {
     const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
 
-    recognition.lang = 'ja';
+    recognition.lang = 'en';
     recognition.interimResults = true;
     recognition.continuous = true;
     let speechCut = [...speech];
@@ -65,7 +65,7 @@ function App() {
       recognition.stop();
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
-        const speechReturn = await translate(speech, 'en');
+        const speechReturn = await translate(speech, 'zh-HK');
         console.log('return speech', speechReturn);
 
         let speechCut = [...speech];
