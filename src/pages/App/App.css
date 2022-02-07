@@ -42,7 +42,9 @@
   border: 1px solid grey;
   border-radius: 5px;
   max-width: 500px;
+  height: 200px;
   margin: auto;
   padding: 5px;
   /* align-items: center; */
+  overflow: hidden;
 }

@@ -14,45 +14,53 @@ import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 // import { Translate } from '@google-cloud/translate';
 
 // const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
-
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 function App() {
   // const [user, setUser] = useState(getUser());
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
 
-  async function initSpeech() {
-    window.SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+  async function handleStart() {
     const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
 
     recognition.lang = 'en';
     recognition.interimResults = true;
     recognition.continuous = true;
-    console.log(recognition);
+    let speechCut = [...speech];
+    speechCut = speechCut.slice(-3);
+    // console.log('cutted', speechCut);
+    // setSpeech([speechCut]);
+    console.log('the speech', speech);
+    // console.log(recognition);
     recognition.onresult = async (e) => {
-      console.log('results; ', e.results);
-      console.log('latest: ', e.results[e.results.length - 1][0].transcript);
-      console.log('the speech', speech);
-      setSpeech([...speech, concatSpeech(e.results)]);
+      // console.log('results; ', e.results);
+      // console.log('latest: ', e.results[e.results.length - 1][0].transcript);
+      setSpeech([...speechCut, concatSpeech(e.results)]);
     };
     setRecognition(recognition);
-  }
-  // initSpeech();
-  function handleStart() {
-    setSpeech(speech);
-    console.log('the recognition program', recognition);
+
+    // console.log('state', speech);
     recognition.start();
   }
+  // initSpeech();
+  // function handleStart() {
+  //   initSpeech();
+
+  // setSpeech(speech);
+
+  // console.log('the recognition program', recognition);
+  // }
   function handleStop() {
     recognition.stop();
-    console.log('stop the recognition program', recognition);
+    // console.log('stop the recognition program', recognition);
     translate(speech, 'zh-HK');
   }
   function concatSpeech(results) {
     let concat = '';
-    console.log('at concat', results);
+    // console.log('at concat', results);
     for (let i = 0; i < results.length; i++) {
       concat += results[i][0].transcript;
     }
@@ -125,9 +133,10 @@ function App() {
             )}
           </div>
           <span>
-            <span onClick={initSpeech}>Init</span>&nbsp;&nbsp;
-            <span onClick={handleStart}>SAY</span>&nbsp;&nbsp;
-            <span onClick={handleStop}>STOP</span>
+            {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
+            <span onMouseDown={handleStart} onMouseUp={handleStop}>
+              SAY
+            </span>
           </span>
         </>
       ) : (
