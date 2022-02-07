@@ -1,16 +1,19 @@
 .eachSpeech {
-  border: 1px solid grey;
-  border-radius: 5px;
-  color: white;
+  /* border-radius: 5px; */
+  color: grey;
   text-align: left;
-  max-width: 490px;
+  max-width: 480px;
   padding: 5px;
   margin: 5px;
 }
 .emptySpeech {
   color: grey;
 }
+.focus {
+  color: white;
+}
 
 .response {
   text-align: right;
+  border-bottom: 1px solid grey;
 }

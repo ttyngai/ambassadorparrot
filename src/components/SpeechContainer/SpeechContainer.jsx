@@ -1,13 +1,8 @@
 import './SpeechContainer.css';
 import EachSpeech from '../EachSpeech/EachSpeech';
 
-export default function SpeechContainer({ speech, className, index, length }) {
+export default function SpeechContainer({ speech, empty, index, length }) {
   return (
-    <EachSpeech
-      speech={speech}
-      className={className}
-      index={index}
-      length={length}
-    />
+    <EachSpeech speech={speech} empty={empty} index={index} length={length} />
   );
 }

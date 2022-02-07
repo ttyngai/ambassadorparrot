@@ -5,11 +5,10 @@ import { getUser } from '../../utilities/users-service';
 
 import translate from '../../utilities/translate';
 import { Routes, Route } from 'react-router-dom';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
+import TranslatePage from '../TranslatePage/TranslatePage';
 import AuthPage from '../AuthPage/AuthPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
-import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 
 // import { Translate } from '@google-cloud/translate';
 
@@ -22,7 +21,9 @@ function App() {
   const [speech, setSpeech] = useState([]);
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
-  const [voices, setVoices] = useState([]);
+  const [inputLanguage, setInputLanguage] = useState('');
+  const [outputLanguage, setOutputLanguage] = useState('');
+
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   window.speechSynthesis.getVoices();
@@ -129,31 +130,18 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path='/orders/new' element={<NewOrderPage />} />
+            <Route
+              path='/orders/new'
+              element={
+                <TranslatePage
+                  speech={speech}
+                  handleStart={handleStart}
+                  handleStop={handleStop}
+                />
+              }
+            />
             <Route path='/orders' element={<OrderHistoryPage />} />
           </Routes>
-          HELLO THERE
-          <div className='speechContainer'>
-            {speech.length > 0 ? (
-              speech.map((s, idx) => (
-                <SpeechContainer
-                  speech={s}
-                  key={idx}
-                  length={speech.length}
-                  index={idx}
-                />
-              ))
-            ) : (
-              <SpeechContainer
-                speech={'Hold speak to start'}
-                className={'emptySpeech'}
-              />
-            )}
-          </div>
-          {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
-          <button onMouseDown={handleStart} onMouseUp={handleStop}>
-            SAY
-          </button>
         </>
       ) : (
         <AuthPage setUser={setUser} />
