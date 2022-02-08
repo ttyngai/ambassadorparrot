@@ -1,5 +1,5 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
-import Select from 'react-select';
+
 import './TranslatePage.css';
 
 const settingCodes = [
@@ -66,7 +66,8 @@ export default function TranslatePage({
             </option>
           ))}
         </select>
-        &nbsp;
+        <br />
+        <br />
         {speech.length > 0 ? (
           speech.map((s, idx) => (
             <SpeechContainer

@@ -21,6 +21,7 @@ function App() {
   const [speech, setSpeech] = useState([]);
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
+
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
 
@@ -37,6 +38,7 @@ function App() {
     recognition.interimResults = true;
     recognition.continuous = true;
     let speechCut = [...speech];
+
     if (speech.length >= 10) {
       speechCut = speechCut.slice(-8);
     }
@@ -63,8 +65,6 @@ function App() {
   // console.log('the recognition program', recognition);
   // }
   async function handleStop() {
-    await recognition.stop();
-
     setTimeout(async function () {
       await setRecognition('');
       console.log('speech length', speech.length);
