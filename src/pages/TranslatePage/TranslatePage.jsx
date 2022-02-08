@@ -3,7 +3,7 @@ import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 export default function TranslatePage({ speech, handleStart, handleStop }) {
   return (
     <>
-      HELLO THERE
+      &nbsp;
       <div className='speechContainer'>
         {speech.length > 0 ? (
           speech.map((s, idx) => (

@@ -39,7 +39,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0d1117;
   color: white;
-  padding: 2vmin;
+  /* padding: 2vmin; */
   height: 100vh;
 }
 

@@ -1,3 +1,4 @@
+import './NavBar.css';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
@@ -8,7 +9,7 @@ function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav>
+    <nav className='navBackground'>
       <span>Welcome, {user.name}</span>&nbsp;|&nbsp;
       <Link to='/orders/new'>Translate</Link>&nbsp;|&nbsp;
       <Link to='/orders'>Order History</Link>&nbsp;|&nbsp;

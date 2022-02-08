@@ -36,8 +36,8 @@ function App() {
     recognition.interimResults = true;
     recognition.continuous = true;
     let speechCut = [...speech];
-    if (speech.length >= 6) {
-      speechCut = speechCut.slice(-4);
+    if (speech.length >= 8) {
+      speechCut = speechCut.slice(-6);
     }
     // console.log('cutted', speechCut);
     // setSpeech([speechCut]);
@@ -70,8 +70,8 @@ function App() {
         console.log('return speech', speechReturn);
 
         let speechCut = [...speech];
-        if (speech.length >= 6) {
-          speechCut = speechCut.slice(-5);
+        if (speech.length >= 8) {
+          speechCut = speechCut.slice(-7);
         }
         setSpeech([...speechCut, speechReturn]);
       }
