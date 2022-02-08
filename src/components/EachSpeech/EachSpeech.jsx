@@ -6,7 +6,8 @@ export default function EachSpeech({ speech, empty, length, index }) {
     nameOfClass += ` emptySpeech`;
   }
 
-  if ((index >= 0 && length <= 8) || (index >= 2 && length > 8)) {
+  // to darken old dialogues(Not used)
+  if ((index >= 0 && length <= 8) || (index >= 0 && length > 8)) {
     nameOfClass += ` focus`;
   }
 

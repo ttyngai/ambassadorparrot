@@ -10,19 +10,19 @@ function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBackground'>
-      <span className='title'>PARROT 🦜</span> &nbsp;
+      <span className='title'>PARROT 🦜</span> <br />
+      <br />
       <Link className='navButton' to='/orders/new'>
         Translate
       </Link>
-      &nbsp;
+      &nbsp;&nbsp;
       <Link className='navButton' to='/orders'>
         Favourites
       </Link>
-      &nbsp;
+      &nbsp;&nbsp;
       <Link className='navButton' onClick={handlelogOut} to=''>
         Log Out
       </Link>
-      &nbsp;
       {/* <span>LoggedIn: {user.name}</span> */}
     </nav>
   );
