@@ -1,0 +1,12 @@
+.languageSelect {
+  background-color: black;
+  background: black;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  width: 150px;
+  padding: 5px;
+  /* -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none; */
+}

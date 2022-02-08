@@ -22,7 +22,7 @@ function App() {
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('ko');
+  const [outputLanguage, setOutputLanguage] = useState('zh-HK');
 
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -79,7 +79,7 @@ function App() {
         }
         setSpeech([...speechCut, speechReturn]);
       }
-    }, 2000);
+    }, 1000);
   }
   function concatSpeech(results) {
     let concat = '';

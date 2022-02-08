@@ -1,20 +1,21 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 import Select from 'react-select';
+import './TranslatePage.css';
 
 const settingCodes = [
-  { value: 'en', label: 'en' },
-  { value: 'en-GB', label: 'en-GB' },
-  { value: 'es', label: 'es' },
-  { value: 'fr', label: 'fr' },
-  { value: 'hi', label: 'hi' },
-  { value: 'id', label: 'id' },
-  { value: 'it', label: 'it' },
-  { value: 'ja', label: 'ja' },
-  { value: 'ko', label: 'ko' },
-  { value: 'nl', label: 'nl' },
-  { value: 'pl', label: 'pl' },
-  { value: 'pt-BR', label: 'pt-BR' },
-  { value: 'ru', label: 'ru' },
+  { value: 'en', label: 'English(NA)' },
+  { value: 'en-GB', label: 'English(Britain)' },
+  { value: 'es', label: 'Español' },
+  { value: 'fr', label: 'Français' },
+  { value: 'hi', label: 'हिन्दी' },
+  { value: 'id', label: 'Bahasa Indonesia' },
+  { value: 'it', label: 'Italiano' },
+  { value: 'ja', label: '日本語' },
+  { value: 'ko', label: '한국어' },
+  { value: 'nl', label: 'Nederlands' },
+  { value: 'pl', label: 'Polski' },
+  { value: 'pt-BR', label: 'Português' },
+  { value: 'ru', label: 'Pусский язык' },
   { value: 'zh-CN', label: '中文(中國)' },
   { value: 'zh-HK', label: '中文(香港)' },
   { value: 'zh-TW', label: '中文(台灣)' },
@@ -30,31 +31,42 @@ export default function TranslatePage({
   setOutputLanguage,
 }) {
   function settingInputCode(option) {
-    setInputLanguage(option.value);
-    console.log(inputLanguage);
+    console.log(option.target.value);
+    setInputLanguage(option.target.value);
   }
   function settingOutputCode(option) {
-    setOutputLanguage(option.value);
-    console.log(outputLanguage);
+    console.log(option.target.value);
+    setOutputLanguage(option.target.value);
   }
 
   return (
     <>
       &nbsp;
       <div className='speechContainer'>
-        <form action=''>
-          <Select
-            options={settingCodes}
-            onChange={settingInputCode}
-            value={inputLanguage.value}
-          />
-          <Select
-            options={settingCodes}
-            onChange={settingOutputCode}
-            value={outputLanguage.value}
-          />
-        </form>
-        {/* {inputLanguage.toUpperCase()} ➡ {outputLanguage.toUpperCase()} */}
+        <select
+          className='languageSelect'
+          onChange={settingInputCode}
+          value={inputLanguage}
+        >
+          {settingCodes.map((option, idx) => (
+            <option key={idx} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        &nbsp;&nbsp;➡ &nbsp;
+        <select
+          className='languageSelect'
+          onChange={settingOutputCode}
+          value={outputLanguage}
+        >
+          {settingCodes.map((option, idx) => (
+            <option key={idx} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        &nbsp;
         {speech.length > 0 ? (
           speech.map((s, idx) => (
             <SpeechContainer
@@ -72,7 +84,7 @@ export default function TranslatePage({
       <div>
         {' '}
         <button onMouseDown={handleStart} onMouseUp={handleStop}>
-          SAY
+          SPEAK
         </button>
         {/* <form>
           <input type='text' />
