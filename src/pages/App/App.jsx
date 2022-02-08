@@ -21,7 +21,7 @@ function App() {
   const [speech, setSpeech] = useState([]);
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
-
+  const [buttonState, setButtonState] = useState('');
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
 
@@ -65,8 +65,10 @@ function App() {
   // console.log('the recognition program', recognition);
   // }
   async function handleStop() {
+    console.log('handstop, speech', speech);
     setTimeout(async function () {
-      await setRecognition('');
+      // await setRecognition('');
+      await recognition.stop();
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
         console.log('outputlanguage', outputLanguage);

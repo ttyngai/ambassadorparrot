@@ -10,10 +10,16 @@ function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBackground'>
-      <span>Welcome, {user.name}</span>&nbsp;|&nbsp;
-      <Link to='/orders/new'>Translate</Link>&nbsp;|&nbsp;
-      <Link to='/orders'>Order History</Link>&nbsp;|&nbsp;
-      <Link onClick={handlelogOut} to=''>
+      <span>Welcome, {user.name}</span>&nbsp;
+      <Link className='navButton' to='/orders/new'>
+        Translate
+      </Link>
+      &nbsp;
+      <Link className='navButton' to='/orders'>
+        Favourites
+      </Link>
+      &nbsp;
+      <Link className='navButton' onClick={handlelogOut} to=''>
         Log Out
       </Link>
     </nav>

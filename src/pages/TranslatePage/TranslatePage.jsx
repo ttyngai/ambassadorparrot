@@ -38,6 +38,16 @@ export default function TranslatePage({
     console.log(option.target.value);
     setOutputLanguage(option.target.value);
   }
+  function runMouseUp() {
+    document.addEventListener(
+      'mouseup',
+      () => {
+        console.log('mouse up');
+        handleStop();
+      },
+      { once: true }
+    );
+  }
 
   return (
     <>
