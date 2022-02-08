@@ -16,23 +16,24 @@ import NavBar from '../../components/NavBar/NavBar';
 
 // console.log('everything voices', voices);
 function App() {
-  // const [user, setUser] = useState(getUser());
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
-  const [buttonState, setButtonState] = useState('');
+  const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
 
-  window.SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-  window.speechSynthesis.getVoices();
+  useEffect(function () {
+    window.SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    window.speechSynthesis.getVoices();
+  }, []);
 
   async function handleStart() {
+    setButtonState(false);
     const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
-
     recognition.lang = inputLanguage;
     console.log('input language', inputLanguage);
     recognition.interimResults = true;
@@ -81,7 +82,8 @@ function App() {
         }
         setSpeech([...speechCut, speechReturn]);
       }
-    }, 1000);
+      setButtonState(true);
+    }, 3000);
   }
   function concatSpeech(results) {
     let concat = '';
@@ -147,6 +149,7 @@ function App() {
                   setOutputLanguage={setOutputLanguage}
                   inputLanguage={inputLanguage}
                   outputLanguage={outputLanguage}
+                  buttonState={buttonState}
                 />
               }
             />

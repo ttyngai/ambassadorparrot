@@ -1,5 +1,5 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
-
+import { useEffect } from 'react';
 import './TranslatePage.css';
 
 const settingCodes = [
@@ -29,6 +29,7 @@ export default function TranslatePage({
   setInputLanguage,
   outputLanguage,
   setOutputLanguage,
+  buttonState,
 }) {
   function settingInputCode(option) {
     console.log(option.target.value);
@@ -38,7 +39,8 @@ export default function TranslatePage({
     console.log(option.target.value);
     setOutputLanguage(option.target.value);
   }
-  function runMouseUp() {
+  // need fix
+  useEffect(function () {
     document.addEventListener(
       'mouseup',
       () => {
@@ -47,7 +49,7 @@ export default function TranslatePage({
       },
       { once: true }
     );
-  }
+  }, []);
 
   return (
     <>
@@ -94,8 +96,12 @@ export default function TranslatePage({
       {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
       <div>
         {' '}
-        <button onMouseDown={handleStart} onMouseUp={handleStop}>
-          SPEAK
+        <button
+          // onMouseDown={handleStart}
+          onClick={buttonState ? handleStart : handleStop}
+          // onMouseUp={handleStop}
+        >
+          {buttonState ? 'START' : 'STOP'}
         </button>
         {/* <form>
           <input type='text' />
