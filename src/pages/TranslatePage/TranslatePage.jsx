@@ -97,11 +97,12 @@ export default function TranslatePage({
       <div>
         {' '}
         <button
+          className='speakButton'
           // onMouseDown={handleStart}
           onClick={buttonState ? handleStart : handleStop}
           // onMouseUp={handleStop}
         >
-          {buttonState ? 'START' : 'STOP'}
+          {buttonState ? '🎙️' : 'STOP'}
         </button>
         {/* <form>
           <input type='text' />

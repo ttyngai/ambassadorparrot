@@ -67,9 +67,11 @@ function App() {
   // }
   async function handleStop() {
     console.log('handstop, speech', speech);
+    await recognition.stop();
+    setButtonState(true);
     setTimeout(async function () {
       // await setRecognition('');
-      await recognition.stop();
+
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
         console.log('outputlanguage', outputLanguage);
@@ -82,8 +84,7 @@ function App() {
         }
         setSpeech([...speechCut, speechReturn]);
       }
-      setButtonState(true);
-    }, 3000);
+    }, 1000);
   }
   function concatSpeech(results) {
     let concat = '';
