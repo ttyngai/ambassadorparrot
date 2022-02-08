@@ -10,7 +10,7 @@ function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBackground'>
-      <span>Welcome, {user.name}</span>&nbsp;
+      <span className='title'>PARROT</span> &nbsp;
       <Link className='navButton' to='/orders/new'>
         Translate
       </Link>
@@ -22,6 +22,8 @@ function NavBar({ user, setUser }) {
       <Link className='navButton' onClick={handlelogOut} to=''>
         Log Out
       </Link>
+      &nbsp;
+      <span>Account: {user.name}</span>
     </nav>
   );
 }

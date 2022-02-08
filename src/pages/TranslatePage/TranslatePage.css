@@ -10,3 +10,17 @@
   -webkit-appearance: none;
   appearance: none; */
 }
+
+.speakButton {
+  /* border: 1px solid white; */
+  /* border-radius: 50px; */
+  border: none;
+  padding: 10px;
+  font-size: 10vmin;
+  background-color: transparent;
+  color: rgb(153, 31, 31);
+  margin-top: -50px;
+}
+.recordingStop {
+  font-size: 12vmin;
+}

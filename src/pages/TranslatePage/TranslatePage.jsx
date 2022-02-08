@@ -39,17 +39,17 @@ export default function TranslatePage({
     console.log(option.target.value);
     setOutputLanguage(option.target.value);
   }
-  // need fix
-  useEffect(function () {
-    document.addEventListener(
-      'mouseup',
-      () => {
-        console.log('mouse up');
-        handleStop();
-      },
-      { once: true }
-    );
-  }, []);
+  // // need fix
+  // useEffect(function () {
+  //   document.addEventListener(
+  //     'mouseup',
+  //     () => {
+  //       console.log('mouse up');
+  //       handleStop();
+  //     },
+  //     { once: true }
+  //   );
+  // }, []);
 
   return (
     <>
@@ -102,7 +102,7 @@ export default function TranslatePage({
           onClick={buttonState ? handleStart : handleStop}
           // onMouseUp={handleStop}
         >
-          {buttonState ? '🎙️' : 'STOP'}
+          {buttonState ? '🎙️' : <div className='recordingStop'>▢</div>}
         </button>
         {/* <form>
           <input type='text' />
