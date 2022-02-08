@@ -10,7 +10,7 @@ function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBackground'>
-      <span className='title'>PARROT</span> &nbsp;
+      <span className='title'>PARROT 🦜</span> &nbsp;
       <Link className='navButton' to='/orders/new'>
         Translate
       </Link>
@@ -23,7 +23,7 @@ function NavBar({ user, setUser }) {
         Log Out
       </Link>
       &nbsp;
-      <span>Account: {user.name}</span>
+      {/* <span>LoggedIn: {user.name}</span> */}
     </nav>
   );
 }

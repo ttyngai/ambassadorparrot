@@ -68,10 +68,10 @@ function App() {
   async function handleStop() {
     console.log('handstop, speech', speech);
     await recognition.stop();
-    setButtonState(true);
+    setButtonState('loading');
     setTimeout(async function () {
+      setButtonState(true);
       // await setRecognition('');
-
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
         console.log('outputlanguage', outputLanguage);
@@ -84,7 +84,7 @@ function App() {
         }
         setSpeech([...speechCut, speechReturn]);
       }
-    }, 1000);
+    }, 1500);
   }
   function concatSpeech(results) {
     let concat = '';
@@ -92,47 +92,9 @@ function App() {
     for (let i = 0; i < results.length; i++) {
       concat += results[i][0].transcript;
     }
-
     return concat;
   }
-  // const voiceIndex = {
-  //   'en-US': 0,
-  //   'de-DE': 5,
-  //   'en-GB': 8,
-  //   'es-ES': 9,
-  //   'fr-FR': 11,
-  //   'hi-IN': 12,
-  //   'id-ID': 13,
-  //   'it-IT': 14,
-  //   'ja-JP': 15,
-  //   'ko-KR': 16,
-  //   'nl-NL': 17,
-  //   'pl-PL': 18,
-  //   'pt-BR': 19,
-  //   'ru-RU': 20,
-  //   'zh-CN': 21,
-  //   'zh-HK': 22,
-  //   'zh-TW': 23,
-  // };
-  // const voiceIndex = {
-  //   en: 0,
-  //   de: 5,
-  //   'en-GB': 8,
-  //   es: 9,
-  //   fr: 11,
-  //   hi: 12,
-  //   id: 13,
-  //   it: 14,
-  //   ja: 15,
-  //   ko: 16,
-  //   nl: 17,
-  //   pl: 18,
-  //   'pt-BR': 19,
-  //   ru: 20,
-  //   'zh-CN': 21,
-  //   'zh-HK': 22,
-  //   'zh-TW': 23,
-  // };
+
   return (
     <main className='App'>
       {user ? (

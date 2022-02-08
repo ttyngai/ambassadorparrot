@@ -18,9 +18,40 @@
   padding: 10px;
   font-size: 10vmin;
   background-color: transparent;
-  color: rgb(153, 31, 31);
+  color: rgb(170, 7, 7);
   margin-top: -50px;
 }
 .recordingStop {
   font-size: 12vmin;
+  animation: pulse 0.5s linear infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+.loading {
+  font-size: 10vmin;
+  animation: loading 1s linear infinite;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(-359deg);
+  }
 }
