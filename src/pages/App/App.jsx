@@ -22,7 +22,7 @@ function App() {
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('ja');
+  const [outputLanguage, setOutputLanguage] = useState('ko');
 
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -33,8 +33,9 @@ function App() {
     // let p = document.createElement('p');
 
     recognition.lang = inputLanguage;
+    console.log('input language', inputLanguage);
     recognition.interimResults = true;
-    recognition.continuous = false;
+    recognition.continuous = true;
     let speechCut = [...speech];
     if (speech.length >= 10) {
       speechCut = speechCut.slice(-8);
@@ -50,7 +51,7 @@ function App() {
     };
     setRecognition(recognition);
 
-    // console.log('state', speech);
+    console.log('recognition.lang', recognition.lang);
     recognition.start();
   }
   // initSpeech();
@@ -62,10 +63,13 @@ function App() {
   // console.log('the recognition program', recognition);
   // }
   async function handleStop() {
+    await recognition.stop();
+
     setTimeout(async function () {
-      recognition.stop();
+      await setRecognition('');
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
+        console.log('outputlanguage', outputLanguage);
         const speechReturn = await translate(speech, outputLanguage);
         console.log('return speech', speechReturn);
 
@@ -75,7 +79,7 @@ function App() {
         }
         setSpeech([...speechCut, speechReturn]);
       }
-    }, 1000);
+    }, 2000);
   }
   function concatSpeech(results) {
     let concat = '';
@@ -137,6 +141,10 @@ function App() {
                   speech={speech}
                   handleStart={handleStart}
                   handleStop={handleStop}
+                  setInputLanguage={setInputLanguage}
+                  setOutputLanguage={setOutputLanguage}
+                  inputLanguage={inputLanguage}
+                  outputLanguage={outputLanguage}
                 />
               }
             />

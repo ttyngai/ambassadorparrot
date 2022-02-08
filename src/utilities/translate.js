@@ -26,7 +26,8 @@ export default async function translate(message, targetLanguage) {
       return response;
     })
     .then(async (data) => {
-      console.log('the data', data.data.translations[0].translatedText);
+      //   console.log('the data', data.data.translations[0].translatedText);
+      console.log('the data', data);
       translated = data.data.translations[0].translatedText;
       speak(data, lang);
       return data.data.translations[0].translatedText;

@@ -39,8 +39,8 @@
 
 .speechContainer {
   color: white;
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
   border-radius: 25px;
   max-width: 500px;
   height: 480px;
