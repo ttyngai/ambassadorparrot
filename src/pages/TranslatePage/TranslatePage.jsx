@@ -1,6 +1,7 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 import { useEffect } from 'react';
 import './TranslatePage.css';
+import Logo from '../../images/whiteMicrophone.png';
 
 export default function TranslatePage({
   speech,
@@ -60,22 +61,24 @@ export default function TranslatePage({
       {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
       <div>
         {' '}
-        <button
+        <div
           className='speakButton'
           // onMouseDown={handleStart}
-          onClick={buttonState ? handleStart : handleStop}
+
           // onMouseUp={handleStop}
         >
           {buttonState ? (
             buttonState == 'loading' ? (
               <div className='loading'>🦜</div>
             ) : (
-              '🎙️'
+              <img src={Logo} className='microphone' onClick={handleStart} />
             )
           ) : (
-            <div className='recordingStop'>▢</div>
+            <div className='recordingStop' onClick={handleStop}>
+              ▢
+            </div>
           )}
-        </button>
+        </div>
         {/* <form>
           <input type='text' />
           <button type='submit'>Submit</button>

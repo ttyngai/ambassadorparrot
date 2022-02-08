@@ -10,7 +10,7 @@ function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBackground'>
-      <span className='title'>PARROT 🦜</span> <br />
+      <span className='title'>PARROT 🦜</span>
       <br />
       <Link className='navButton' to='/orders/new'>
         Translate
