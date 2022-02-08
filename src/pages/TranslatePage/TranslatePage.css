@@ -67,7 +67,7 @@
 
 .dialogue {
   overflow: scroll;
-  height: 400px;
+  height: 60vh;
 }
 
 ::-webkit-scrollbar {
