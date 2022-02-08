@@ -19,9 +19,16 @@ export default function TranslatePage({ speech, handleStart, handleStop }) {
         )}
       </div>
       {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
-      <button onMouseDown={handleStart} onMouseUp={handleStop}>
-        SAY
-      </button>
+      <div>
+        {' '}
+        <button onMouseDown={handleStart} onMouseUp={handleStop}>
+          SAY
+        </button>
+        {/* <form>
+          <input type='text' />
+          <button type='submit'>Submit</button>
+        </form> */}
+      </div>
     </>
   );
 }

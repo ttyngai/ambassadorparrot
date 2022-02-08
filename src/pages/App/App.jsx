@@ -21,8 +21,8 @@ function App() {
   const [speech, setSpeech] = useState([]);
   // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
-  const [inputLanguage, setInputLanguage] = useState('');
-  const [outputLanguage, setOutputLanguage] = useState('');
+  const [inputLanguage, setInputLanguage] = useState('en');
+  const [outputLanguage, setOutputLanguage] = useState('ja');
 
   window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -32,12 +32,12 @@ function App() {
     const recognition = new window.SpeechRecognition({});
     // let p = document.createElement('p');
 
-    recognition.lang = 'en';
+    recognition.lang = inputLanguage;
     recognition.interimResults = true;
-    recognition.continuous = true;
+    recognition.continuous = false;
     let speechCut = [...speech];
-    if (speech.length >= 8) {
-      speechCut = speechCut.slice(-6);
+    if (speech.length >= 10) {
+      speechCut = speechCut.slice(-8);
     }
     // console.log('cutted', speechCut);
     // setSpeech([speechCut]);
@@ -66,12 +66,12 @@ function App() {
       recognition.stop();
       console.log('speech length', speech.length);
       if (speech.length % 2 != 0) {
-        const speechReturn = await translate(speech, 'zh-HK');
+        const speechReturn = await translate(speech, outputLanguage);
         console.log('return speech', speechReturn);
 
         let speechCut = [...speech];
-        if (speech.length >= 8) {
-          speechCut = speechCut.slice(-7);
+        if (speech.length >= 10) {
+          speechCut = speechCut.slice(-9);
         }
         setSpeech([...speechCut, speechReturn]);
       }

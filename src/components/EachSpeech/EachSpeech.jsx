@@ -6,7 +6,7 @@ export default function EachSpeech({ speech, empty, length, index }) {
     nameOfClass += ` emptySpeech`;
   }
 
-  if (length - 1 == index || (length - 2 == index && index % 2 == 0)) {
+  if ((index >= 0 && length <= 8) || (index >= 2 && length > 8)) {
     nameOfClass += ` focus`;
   }
 
