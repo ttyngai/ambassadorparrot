@@ -112,7 +112,22 @@ function App() {
                 />
               }
             />
-            <Route path='/orders' element={<FavouritePage />} />
+            <Route
+              path='/orders'
+              element={
+                <FavouritePage
+                  speech={speech}
+                  handleStart={handleStart}
+                  handleStop={handleStop}
+                  setInputLanguage={setInputLanguage}
+                  setOutputLanguage={setOutputLanguage}
+                  inputLanguage={inputLanguage}
+                  outputLanguage={outputLanguage}
+                  buttonState={buttonState}
+                  settingCodes={settingCodes}
+                />
+              }
+            />
           </Routes>
         </>
       ) : (

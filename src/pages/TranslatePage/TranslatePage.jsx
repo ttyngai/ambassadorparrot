@@ -58,15 +58,9 @@ export default function TranslatePage({
           )}
         </div>
       </div>
-      {/* <span onClick={initSpeech}>Init</span>&nbsp;&nbsp; */}
-      <div>
-        {' '}
-        <div
-          className='speakButton'
-          // onMouseDown={handleStart}
 
-          // onMouseUp={handleStop}
-        >
+      <div>
+        <div className='speakButton'>
           {buttonState ? (
             buttonState == 'loading' ? (
               <div className='loading'>🦜</div>
@@ -79,10 +73,6 @@ export default function TranslatePage({
             </div>
           )}
         </div>
-        {/* <form>
-          <input type='text' />
-          <button type='submit'>Submit</button>
-        </form> */}
       </div>
     </>
   );

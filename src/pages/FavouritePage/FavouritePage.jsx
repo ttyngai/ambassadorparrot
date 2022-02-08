@@ -1,18 +1,44 @@
 import { useParams } from 'react-router-dom';
 // import * as userService from '../../utilities/users-service';
 
-function OrderHistoryPage() {
-  // async function handleCheckToken() {
-  //   const expDate = await userService.checkToken();
-  //   console.log(expDate);
-  // }
-
+function FavouritePage({
+  speech,
+  handleStart,
+  handleStop,
+  inputLanguage,
+  setInputLanguage,
+  outputLanguage,
+  setOutputLanguage,
+  buttonState,
+  settingCodes,
+}) {
   return (
     <>
-      <h1>Order History Page</h1>
-      {/* <button onClick={handleCheckToken}>Check When My Login Expires</button> */}
+      <select
+        className='languageSelect'
+        onChange={(evt) => setInputLanguage(evt.target.value)}
+        value={inputLanguage}
+      >
+        {settingCodes.map((option, idx) => (
+          <option key={idx} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      &nbsp;&nbsp;➡ &nbsp;
+      <select
+        className='languageSelect'
+        onChange={(evt) => setOutputLanguage(evt.target.value)}
+        value={outputLanguage}
+      >
+        {settingCodes.map((option, idx) => (
+          <option key={idx} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </>
   );
 }
 
-export default OrderHistoryPage;
+export default FavouritePage;

@@ -4,7 +4,8 @@
   border-radius: 5px;
   color: white;
   font-size: 15px;
-  width: 150px;
+  width: 39vw;
+  max-width: 150px;
   padding: 5px;
   /* -moz-appearance: none;
   -webkit-appearance: none;
@@ -48,7 +49,7 @@
 .loading {
   margin-top: -13px;
   font-size: 60px;
-  animation: loading 0.5s linear infinite;
+  animation: loading 0.35s linear infinite;
 }
 @keyframes loading {
   0% {
