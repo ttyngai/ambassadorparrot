@@ -98,7 +98,7 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route
-              path='/orders/new'
+              path='/translate'
               element={
                 <TranslatePage
                   speech={speech}
@@ -114,7 +114,7 @@ function App() {
               }
             />
             <Route
-              path='/orders'
+              path='/favourites'
               element={
                 <FavouritePage
                   speech={speech}

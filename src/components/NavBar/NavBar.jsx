@@ -12,12 +12,12 @@ function NavBar({ user, setUser }) {
     <nav className='navBackground'>
       <span className='title'>&nbsp;&nbsp;PARROT&nbsp;🦜</span>
       <br />
-      <Link className='navButton' to='/orders/new'>
+      <Link className='navButton' to='/translate'>
         Translate
       </Link>
       &nbsp;&nbsp;
       {user ? (
-        <Link className='navButton' to='/orders'>
+        <Link className='navButton' to='/favourites'>
           Favourites
         </Link>
       ) : (
