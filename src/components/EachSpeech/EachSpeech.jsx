@@ -22,16 +22,18 @@ export default function EachSpeech({
   if (index % 2 != 0 && !empty) {
     nameOfClass += ` response`;
   }
-  console.log('inputlang', inputLanguage);
-  let languageCode = settingCodes.find(function (c) {
-    console.log(c);
-    return c.value == inputLanguage;
-  }).flagCode;
 
-  console.log('returned code', languageCode);
+  let languageCode = settingCodes.find(function (c) {
+    // console.log(c);
+    return c.value == inputLanguage;
+  });
+  // console.log(inputLanguage);
+  // console.log(settingCodes);
+  // console.log(languageCode);
+  // console.log(speech);
   return (
     <p className={nameOfClass}>
-      {speech}&nbsp;&nbsp;
+      {speech.text}&nbsp;&nbsp;
       {/* https://danalloway.github.io/react-country-flag/ */}
       <ReactCountryFlag
         // countryCode={flagCode}

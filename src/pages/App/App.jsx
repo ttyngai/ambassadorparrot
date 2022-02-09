@@ -60,7 +60,7 @@ function App() {
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = async (e) => {
-      setSpeech([...speech, concatSpeech(e.results)]);
+      setSpeech([...speech, concatSpeech(e.results, inputLanguage)]);
     };
     setRecognition(recognition);
     recognition.start();
@@ -71,19 +71,21 @@ function App() {
     setButtonState('loading');
     setTimeout(async function () {
       setButtonState(true);
-
+      // console.log('speeech before translate', speech);
       if (speech.length % 2 != 0) {
         const speechReturn = await translate(speech, outputLanguage);
-        setSpeech([...speech, speechReturn]);
+        let speechObj = { text: speechReturn, language: outputLanguage };
+        setSpeech([...speech, speechObj]);
       }
     }, 1500);
   }
-  function concatSpeech(results) {
-    let concat = '';
-    // console.log('at concat', results);
+  function concatSpeech(results, inputLanguage) {
+    let concat = { text: '' };
+
     for (let i = 0; i < results.length; i++) {
-      concat += results[i][0].transcript;
+      concat.text += results[i][0].transcript;
     }
+    concat.language = inputLanguage;
     return concat;
   }
 

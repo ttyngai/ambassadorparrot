@@ -15,13 +15,17 @@ export default function TranslatePage({
   settingCodes,
   flagCode,
 }) {
+  function handleSetInputLanguage(e) {
+    console.log('intercept set language', e);
+    setInputLanguage(e);
+  }
   return (
     <>
       <br />
       <div className='speechContainer'>
         <select
           className='languageSelect'
-          onChange={(evt) => setInputLanguage(evt.target.value)}
+          onChange={(evt) => handleSetInputLanguage(evt.target.value)}
           value={inputLanguage}
         >
           {settingCodes.map((option, idx) => (
@@ -45,7 +49,7 @@ export default function TranslatePage({
         <br />
         <br />
         <div className='dialogue' id='dialogue'>
-          {speech.length > 0 ? (
+          {speech[0] ? (
             speech.map((s, idx) => (
               <SpeechContainer
                 speech={s}
@@ -59,9 +63,10 @@ export default function TranslatePage({
             ))
           ) : (
             <SpeechContainer
-              speech={'Hold speak to start'}
+              speech={{ text: 'Hold speak to start' }}
               empty={true}
               flagCode={flagCode}
+              settingCodes={settingCodes}
             />
           )}
         </div>
