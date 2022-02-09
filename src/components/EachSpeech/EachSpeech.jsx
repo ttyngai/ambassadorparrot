@@ -29,7 +29,6 @@ export default function EachSpeech({
     }
   });
 
-  console.log(flagCode);
   return (
     <p className={nameOfClass}>
       {speech.text}&nbsp;&nbsp;

@@ -81,10 +81,11 @@ function App() {
   }
   function concatSpeech(results, inputLanguage) {
     let concat = { text: '' };
-
     for (let i = 0; i < results.length; i++) {
       concat.text += results[i][0].transcript;
     }
+    console.log(concat.text[0].toUpperCase());
+    concat.text = concat.text[0].toUpperCase() + concat.text.slice(1);
     concat.language = inputLanguage;
     return concat;
   }
