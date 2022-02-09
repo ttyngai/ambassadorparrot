@@ -29,11 +29,13 @@ export default async function translate(speech, targetLanguage, mostRecent) {
       return response;
     })
     .then(async (data) => {
-      translated = data.data.translations[0].translatedText;
+      //replace &#39; in italian with proper '
+      translated = data.data.translations[0].translatedText.replace(
+        `&#39;`,
+        "'"
+      );
       speak(data.data.translations[0].translatedText, lang);
-
       return data.data.translations[0].translatedText;
     });
-
   return translated;
 }
