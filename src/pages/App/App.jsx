@@ -75,6 +75,7 @@ function App() {
     concat.inputText =
       concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
     concat.inputLanguage = inputLanguage;
+    concat.time = new Date();
     return concat;
   }
 
@@ -84,14 +85,17 @@ function App() {
     setTimeout(async function () {
       setButtonState(true);
       // console.log('speeech before translate', speech);
+      let fullSpeech;
+      let lastSpeech;
       if (speech.length % 2 != 0) {
         const speechReturn = await translate(speech, outputLanguage);
-        let speechObj = {
-          outputText: speechReturn,
-          outputLanguage: outputLanguage,
-        };
-        setSpeech([...speech, speechObj]);
+        fullSpeech = [...speech];
+        lastSpeech = fullSpeech.pop();
+
+        lastSpeech.outputText = speechReturn;
+        lastSpeech.outputLanguage = outputLanguage;
       }
+      setSpeech([...fullSpeech, lastSpeech]);
     }, 1500);
   }
 

@@ -31,6 +31,8 @@ export default function EachSpeech({
 
   return (
     <p className={nameOfClass}>
+      {speech.time && index % 2 == 0 ? speech.time.toLocaleString() : ''}
+      <br />
       {speech.inputText}
       {speech.outputText}&nbsp;&nbsp;
       <ReactCountryFlag
