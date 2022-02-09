@@ -1,5 +1,6 @@
 import './EachSpeech.css';
 import speak from '../../utilities/speak';
+import * as speechesAPI from '../../utilities/speeches-api';
 import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 
@@ -27,15 +28,17 @@ export default function EachSpeech({
       preOutputFlagCode = c.flagCode;
     }
   });
-  console.log('output', outputLanguage);
-  console.log(preOutputFlagCode);
+
   function handleSayAgain() {
     const lang = voiceSettings(speech.outputLanguage);
     speak(speech.outputText, lang);
   }
 
-  function handleSaveSpeech() {
+  async function handleSaveSpeech() {
     console.log('Saving: ', speech);
+
+    const saved = await speechesAPI.create(speech);
+    console.log('check saved', saved);
   }
   return (
     <div className='eachSpeech'>
