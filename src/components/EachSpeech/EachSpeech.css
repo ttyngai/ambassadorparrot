@@ -3,15 +3,13 @@
   padding: 15px;
   margin: 5px;
   text-align: left;
+  z-index: 1;
 }
 .eachSpeech:hover {
   background-color: rgba(255, 255, 0, 0.075);
   cursor: pointer;
 }
-.emptyPrompt {
-  color: grey;
-  border: none;
-}
+
 .input {
   display: flex;
   flex-direction: row;
@@ -36,6 +34,8 @@
   font-size: 25px;
   float: right;
   color: grey;
+  margin-right: 4px;
+  z-index: 2;
 }
 .starButton:hover {
   transform: scale(1.2);

@@ -66,12 +66,7 @@ export default function TranslatePage({
                 />
               ))
             ) : (
-              <SpeechContainer
-                speech={{ inputText: 'Press button to start' }}
-                empty={true}
-                flagCode={flagCode}
-                languageCodes={languageCodes}
-              />
+              <div className='emptyPrompt'>Press button to start</div>
             )}
           </div>
         </div>

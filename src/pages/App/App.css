@@ -44,11 +44,9 @@
   border-radius: 25px;
   width: 97vw;
   max-width: 600px;
-  /* height: 520px; */
   height: 80vh;
   min-height: 420px;
   margin: auto;
   padding: 15px;
-  /* align-items: center; */
   overflow: hidden;
 }

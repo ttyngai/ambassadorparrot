@@ -71,6 +71,11 @@
   mask-image: linear-gradient(180deg, #000 95%, transparent);
 }
 
+.emptyPrompt {
+  padding-top: 20px;
+  font-size: 20px;
+  color: grey;
+}
 ::-webkit-scrollbar {
   width: 2px;
   height: 0px;
