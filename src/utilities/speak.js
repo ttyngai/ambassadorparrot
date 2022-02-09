@@ -1,7 +1,6 @@
-export default function speak(data, lang) {
-  var msg = new SpeechSynthesisUtterance(
-    data.data.translations[0].translatedText
-  );
+export default function speak(text, lang) {
+  console.log('within speak', text, lang);
+  var msg = new SpeechSynthesisUtterance(text);
   var voices = window.speechSynthesis.getVoices();
   msg.voice = voices[lang.voice];
   window.speechSynthesis.speak(msg);

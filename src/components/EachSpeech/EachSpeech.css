@@ -1,19 +1,29 @@
 .eachSpeech {
-  /* border-radius: 5px; */
-  color: grey;
-  text-align: left;
-  max-width: 580px;
+  color: white;
+  /* text-align: left; */
+  /* max-width: 580px; */
   padding: 5px;
   margin: 5px;
   border-bottom: 1px solid grey;
 }
+.eachSpeech:hover {
+  background-color: rgba(255, 255, 0, 0.075);
+  cursor: pointer;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border: none; */
+}
 .emptySpeech {
   color: grey;
+  border: none;
 }
-.focus {
-  color: white;
+.input {
+  text-align: left;
 }
-
-.response {
+.output {
   text-align: right;
+}
+.speechDate {
+  font-size: 10px;
+  color: grey;
 }

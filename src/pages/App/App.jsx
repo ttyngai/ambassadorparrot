@@ -1,8 +1,6 @@
-// import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
 import { getUser } from '../../utilities/users-service';
-
 import translate from '../../utilities/translate';
 import { Routes, Route } from 'react-router-dom';
 import TranslatePage from '../TranslatePage/TranslatePage';
@@ -10,22 +8,16 @@ import AuthPage from '../AuthPage/AuthPage';
 import FavouritePage from '../FavouritePage/FavouritePage';
 import NavBar from '../../components/NavBar/NavBar';
 
-// import { Translate } from '@google-cloud/translate';
-
-// const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
-
-// console.log('everything voices', voices);
 function App() {
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
-  // const [translatedSpeech, setTranslatedSpeech] = useState([]);
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
   const languageCodes = [
-    { value: 'en', label: 'English(NA)', flagCode: 'US' },
-    { value: 'en-GB', label: 'English(Britain)', flagCode: 'GB' },
+    { value: 'en', label: 'English(US)', flagCode: 'US' },
+    { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
     { value: 'es', label: 'Español', flagCode: 'ES' },
     { value: 'fr', label: 'Français', flagCode: 'FR' },
     { value: 'hi', label: 'हिन्दी', flagCode: 'IN' },
@@ -65,10 +57,12 @@ function App() {
       for (let i = 0; i < e.results.length; i++) {
         concat.inputText += e.results[i][0].transcript;
       }
+      // Uppercase
       concat.inputText =
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
       concat.inputLanguage = inputLanguage;
       concat.time = new Date();
+      concat.new = true;
       setSpeech([...speech, concat]);
     };
     // Include called function as state, for invoking later after state change
@@ -81,15 +75,17 @@ function App() {
     setButtonState('loading');
     setTimeout(async function () {
       setButtonState(true);
-      // console.log('speeech before translate', speech);
-      let fullSpeech, lastSpeech;
-      const speechReturn = await translate(speech, outputLanguage);
-      fullSpeech = [...speech];
-      lastSpeech = fullSpeech.pop();
-      lastSpeech.outputText = speechReturn;
-      lastSpeech.outputLanguage = outputLanguage;
-
-      setSpeech([...fullSpeech, lastSpeech]);
+      if (speech[speech.length - 1].new) {
+        console.log('have not said');
+        let fullSpeech, lastSpeech;
+        const speechReturn = await translate(speech, outputLanguage, 'recent');
+        fullSpeech = [...speech];
+        lastSpeech = fullSpeech.pop();
+        lastSpeech.outputText = speechReturn;
+        lastSpeech.outputLanguage = outputLanguage;
+        lastSpeech.new = false;
+        setSpeech([...fullSpeech, lastSpeech]);
+      }
     }, 1500);
   }
 
