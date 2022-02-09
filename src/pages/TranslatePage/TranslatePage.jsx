@@ -67,7 +67,7 @@ export default function TranslatePage({
               ))
             ) : (
               <SpeechContainer
-                speech={{ inputText: 'Hold speak to start' }}
+                speech={{ inputText: 'Press button to start' }}
                 empty={true}
                 flagCode={flagCode}
                 languageCodes={languageCodes}

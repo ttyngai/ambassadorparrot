@@ -44,11 +44,11 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
       </div>
       <div className='output'>
         {speech.outputText ? (
-          <div className='textBubble outputTextBubble'>
-            {speech.outputText ? speech.outputText : ' . . .'}
-          </div>
+          <div className='textBubble outputTextBubble'>{speech.outputText}</div>
         ) : (
-          ''
+          <div className='textBubble outputTextBubble outputTextBlink'>
+            . . .{' '}
+          </div>
         )}
         &nbsp;&nbsp;
         <flag className='flag'>

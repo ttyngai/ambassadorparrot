@@ -51,3 +51,21 @@
   color: white;
   background-color: #468cf7;
 }
+.outputTextBlink {
+  animation: blink infinite 1s linear;
+}
+
+@keyframes blink {
+  0% {
+    transform: scale(1);
+    opacity: 50%;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 100%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 50%;
+  }
+}
