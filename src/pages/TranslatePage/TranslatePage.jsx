@@ -46,29 +46,29 @@ export default function TranslatePage({
             </option>
           ))}
         </select>
-        <br />
-        <br />
-        <div className='dialogue' id='dialogue'>
-          {speech[0] ? (
-            speech.map((s, idx) => (
+        <div className='dialogueBottom'>
+          <div className='dialogue' id='dialogue'>
+            {speech[0] ? (
+              speech.map((s, idx) => (
+                <SpeechContainer
+                  speech={s}
+                  key={idx}
+                  length={speech.length}
+                  index={idx}
+                  flagCode={flagCode}
+                  inputLanguage={inputLanguage}
+                  languageCodes={languageCodes}
+                />
+              ))
+            ) : (
               <SpeechContainer
-                speech={s}
-                key={idx}
-                length={speech.length}
-                index={idx}
+                speech={{ inputText: 'Hold speak to start' }}
+                empty={true}
                 flagCode={flagCode}
-                inputLanguage={inputLanguage}
                 languageCodes={languageCodes}
               />
-            ))
-          ) : (
-            <SpeechContainer
-              speech={{ inputText: 'Hold speak to start' }}
-              empty={true}
-              flagCode={flagCode}
-              languageCodes={languageCodes}
-            />
-          )}
+            )}
+          </div>
         </div>
       </div>
 
