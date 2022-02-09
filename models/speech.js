@@ -15,7 +15,7 @@ const speechSchema = new Schema(
     },
     outputLanguage: { type: String, required: true },
     timeCreated: { type: Date, required: true },
-    isFavourite: { type: Boolean, default: false },
+    isStarred: { type: Boolean, default: false },
   },
   {
     timestamps: true,

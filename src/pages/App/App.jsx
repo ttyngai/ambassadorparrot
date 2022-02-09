@@ -7,6 +7,7 @@ import TranslatePage from '../TranslatePage/TranslatePage';
 import AuthPage from '../AuthPage/AuthPage';
 import FavouritePage from '../FavouritePage/FavouritePage';
 import NavBar from '../../components/NavBar/NavBar';
+import * as speechesAPI from '../../utilities/speeches-api';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -86,8 +87,9 @@ function App() {
         lastSpeech.outputLanguage = outputLanguage;
         lastSpeech.user = user;
         delete lastSpeech.new;
-        setSpeech([...fullSpeech, lastSpeech]);
-        console.log(speech);
+        const newSpeechObj = await speechesAPI.create(lastSpeech);
+
+        setSpeech([...fullSpeech, newSpeechObj]);
       }
     }, 1500);
   }
@@ -103,6 +105,7 @@ function App() {
               element={
                 <TranslatePage
                   speech={speech}
+                  setSpeech={setSpeech}
                   handleStart={handleStart}
                   handleStop={handleStop}
                   setInputLanguage={setInputLanguage}
@@ -119,6 +122,7 @@ function App() {
               element={
                 <FavouritePage
                   speech={speech}
+                  setSpeech={setSpeech}
                   handleStart={handleStart}
                   handleStop={handleStop}
                   setInputLanguage={setInputLanguage}

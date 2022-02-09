@@ -5,7 +5,9 @@ import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 
 export default function EachSpeech({
+  eachSpeech,
   speech,
+  setSpeech,
   empty,
   languageCodes,
   outputLanguage,
@@ -18,10 +20,10 @@ export default function EachSpeech({
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
   languageCodes.forEach(function (c) {
-    if (speech && c.value == speech.inputLanguage) {
+    if (eachSpeech && c.value == eachSpeech.inputLanguage) {
       inputFlagCode = c.flagCode;
     }
-    if (speech && c.value == speech.outputLanguage) {
+    if (eachSpeech && c.value == eachSpeech.outputLanguage) {
       outputFlagCode = c.flagCode;
     }
     if (c.value == outputLanguage) {
@@ -30,25 +32,35 @@ export default function EachSpeech({
   });
 
   function handleSayAgain() {
-    const lang = voiceSettings(speech.outputLanguage);
-    speak(speech.outputText, lang);
+    const lang = voiceSettings(eachSpeech.outputLanguage);
+    speak(eachSpeech.outputText, lang);
   }
-
   async function handleSaveSpeech() {
-    console.log('Saving: ', speech);
+    const starredSpeech = await speechesAPI.star(eachSpeech);
 
-    const saved = await speechesAPI.create(speech);
-    console.log('check saved', saved);
+    let speechCopy = [...speech];
+    let starredSpeechArray = speechCopy.map(function (s) {
+      if (s._id == starredSpeech._id) {
+        s.isStarred = !s.isStarred;
+      }
+      return s;
+    });
+    setSpeech(starredSpeechArray);
   }
   return (
     <div className='eachSpeech'>
       {/* <div className='speakerButton'>🔈</div> */}
-      <div className='starButton' onClick={handleSaveSpeech}>
+      <div
+        className={
+          eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
+        }
+        onClick={handleSaveSpeech}
+      >
         {' '}
         ★
       </div>
       <div className='speechDate'>
-        {speech.timeCreated ? speech.timeCreated.toLocaleString() : ''}
+        {eachSpeech.timeCreated ? eachSpeech.timeCreated.toLocaleString() : ''}
       </div>
       <div onClick={handleSayAgain}>
         <div className='input'>
@@ -66,13 +78,13 @@ export default function EachSpeech({
           </div>
           &nbsp;&nbsp;
           <div className={empty ? 'emptyPrompt' : 'textBubble inputTextBubble'}>
-            {speech.inputText}
+            {eachSpeech.inputText}
           </div>
         </div>
         <div className='output'>
-          {speech.outputText ? (
+          {eachSpeech.outputText ? (
             <div className='textBubble outputTextBubble'>
-              {speech.outputText}
+              {eachSpeech.outputText}
             </div>
           ) : (
             <div className='textBubble outputTextBubble outputTextBlink'>
@@ -83,7 +95,7 @@ export default function EachSpeech({
           <div>
             <ReactCountryFlag
               countryCode={
-                speech.outputText ? outputFlagCode : preOutputFlagCode
+                eachSpeech.outputText ? outputFlagCode : preOutputFlagCode
               }
               svg
               cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'

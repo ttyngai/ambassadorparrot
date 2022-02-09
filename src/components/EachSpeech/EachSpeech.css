@@ -43,6 +43,10 @@
   color: yellow;
 }
 
+.buttonStarred {
+  color: yellow;
+}
+
 .textBubble {
   border: 1px solid transparent;
   border-radius: 15px;

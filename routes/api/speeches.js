@@ -4,6 +4,8 @@ const speechCtrl = require('../../controllers/api/speeches');
 
 // POST /api/orders/cart/items/:id
 router.post('/new', speechCtrl.create);
+// POST /api/orders/cart/items/:id
+router.put('/star', speechCtrl.star);
 
 // router.get('/getOrders', speechCtrl.getOrders);
 // // GET /api/orders/cart

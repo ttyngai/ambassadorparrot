@@ -5,6 +5,7 @@ import loadingLogo from '../../images/loading.png';
 
 export default function TranslatePage({
   speech,
+  setSpeech,
   handleStart,
   handleStop,
   inputLanguage,
@@ -55,7 +56,9 @@ export default function TranslatePage({
             {speech[0] ? (
               speech.map((s, idx) => (
                 <SpeechContainer
-                  speech={s}
+                  eachSpeech={s}
+                  speech={speech}
+                  setSpeech={setSpeech}
                   key={idx}
                   length={speech.length}
                   index={idx}
