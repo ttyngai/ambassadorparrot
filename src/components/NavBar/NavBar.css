@@ -1,5 +1,4 @@
 .navBackground {
-  /* background-color: black; */
   width: 100vw;
   padding-top: 25px;
   margin-bottom: -30px;
@@ -12,6 +11,10 @@
   border-right: 1px solid grey;
   border-radius: 5px;
   color: white;
+}
+.navButton:hover {
+  background-color: rgba(255, 255, 0, 0.075);
+  cursor: pointer;
 }
 
 .title {

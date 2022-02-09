@@ -35,30 +35,34 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
     <div className={nameOfClass} onClick={handleSayAgain}>
       <div className='input'>
         <div className='speechDate'>
-          {speech.time ? speech.time.toLocaleString() : ''}
+          {/* {speech.timeCreated ? speech.timeCreated.toLocaleString() : ''} */}
         </div>
-        <span>
-          <span className='flag'>
-            <ReactCountryFlag
-              countryCode={inputFlagCode}
-              svg
-              cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
-            />
-          </span>
-          &nbsp;&nbsp;{speech.inputText}
-        </span>
+        <flag className='flag'>
+          <ReactCountryFlag
+            countryCode={inputFlagCode}
+            svg
+            cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+          />
+        </flag>
+        &nbsp;&nbsp;
+        <div className='textBubble inputTextBubble'>{speech.inputText}</div>
       </div>
       <div className='output'>
-        <span>
-          {speech.outputText}&nbsp;&nbsp;
-          <span className='flag'>
-            <ReactCountryFlag
-              countryCode={outputFlagCode}
-              svg
-              cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
-            />
-          </span>
-        </span>
+        {speech.outputText ? (
+          <div className='textBubble outputTextBubble'>
+            {speech.outputText ? speech.outputText : ' . . .'}
+          </div>
+        ) : (
+          ''
+        )}
+        &nbsp;&nbsp;
+        <flag className='flag'>
+          <ReactCountryFlag
+            countryCode={outputFlagCode}
+            svg
+            cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+          />
+        </flag>
       </div>
     </div>
   );

@@ -1,25 +1,29 @@
 .eachSpeech {
   color: white;
-  /* text-align: left; */
-  /* max-width: 580px; */
-  padding: 5px;
+  padding: 20px;
   margin: 5px;
-  border-bottom: 1px solid grey;
+  text-align: left;
 }
 .eachSpeech:hover {
   background-color: rgba(255, 255, 0, 0.075);
   cursor: pointer;
-  /* border: none; */
 }
 .emptySpeech {
   color: grey;
   border: none;
 }
 .input {
+  display: flex;
+  flex-direction: row;
   text-align: left;
 }
 .output {
+  display: flex;
+  flex-direction: row;
+  align-self: right;
   text-align: right;
+  justify-content: end;
+  padding-top: 5px;
 }
 .speechDate {
   font-size: 10px;
@@ -28,4 +32,21 @@
 .flag {
   font-size: 25px;
   border-radius: 20px;
+}
+
+.textBubble {
+  border: 1px solid transparent;
+  border-radius: 15px;
+  padding: 4px 13px;
+}
+
+.inputTextBubble {
+  text-align: left;
+  color: black;
+  background-color: #e9e9eb;
+}
+.outputTextBubble {
+  text-align: right;
+  color: white;
+  background-color: #468cf7;
 }
