@@ -5,6 +5,7 @@
   max-width: 580px;
   padding: 5px;
   margin: 5px;
+  border-bottom: 1px solid grey;
 }
 .emptySpeech {
   color: grey;
@@ -15,5 +16,4 @@
 
 .response {
   text-align: right;
-  border-bottom: 1px solid grey;
 }

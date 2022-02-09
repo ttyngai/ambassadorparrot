@@ -18,10 +18,6 @@ export default function EachSpeech({
     nameOfClass += ` focus`;
   }
 
-  if (index % 2 != 0 && !empty) {
-    nameOfClass += ` response`;
-  }
-
   let flagCode;
   languageCodes.forEach(function (c) {
     if (speech && c.value == speech.language) {
@@ -31,7 +27,7 @@ export default function EachSpeech({
 
   return (
     <p className={nameOfClass}>
-      {speech.time && index % 2 == 0 ? speech.time.toLocaleString() : ''}
+      {speech.time ? speech.time.toLocaleString() : ''}
       <br />
       {speech.inputText}
       {speech.outputText}&nbsp;&nbsp;

@@ -53,30 +53,27 @@ function App() {
       document.getElementById('dialogue').scrollHeight;
   });
 
-  async function handleStart() {
+  function handleStart() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition({});
     recognition.lang = inputLanguage;
     recognition.interimResults = true;
     recognition.continuous = true;
-    recognition.onresult = async (e) => {
-      setSpeech([...speech, concatSpeech(e.results, inputLanguage)]);
+    recognition.onresult = (e) => {
+      // Real time update of spoken phrase
+      let concat = { inputText: '' };
+      for (let i = 0; i < e.results.length; i++) {
+        concat.inputText += e.results[i][0].transcript;
+      }
+      concat.inputText =
+        concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
+      concat.inputLanguage = inputLanguage;
+      concat.time = new Date();
+      setSpeech([...speech, concat]);
     };
+    // Include called function as state, for invoking later after state change
     setRecognition(recognition);
     recognition.start();
-  }
-  // Real time update of speech
-  function concatSpeech(results, inputLanguage) {
-    let concat = { inputText: '' };
-    for (let i = 0; i < results.length; i++) {
-      concat.inputText += results[i][0].transcript;
-    }
-    console.log(concat.inputText[0].toUpperCase());
-    concat.inputText =
-      concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
-    concat.inputLanguage = inputLanguage;
-    concat.time = new Date();
-    return concat;
   }
 
   async function handleStop() {
@@ -85,16 +82,13 @@ function App() {
     setTimeout(async function () {
       setButtonState(true);
       // console.log('speeech before translate', speech);
-      let fullSpeech;
-      let lastSpeech;
-      if (speech.length % 2 != 0) {
-        const speechReturn = await translate(speech, outputLanguage);
-        fullSpeech = [...speech];
-        lastSpeech = fullSpeech.pop();
+      let fullSpeech, lastSpeech;
+      const speechReturn = await translate(speech, outputLanguage);
+      fullSpeech = [...speech];
+      lastSpeech = fullSpeech.pop();
+      lastSpeech.outputText = speechReturn;
+      lastSpeech.outputLanguage = outputLanguage;
 
-        lastSpeech.outputText = speechReturn;
-        lastSpeech.outputLanguage = outputLanguage;
-      }
       setSpeech([...fullSpeech, lastSpeech]);
     }, 1500);
   }
