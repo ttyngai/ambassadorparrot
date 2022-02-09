@@ -34,17 +34,13 @@
   font-size: 25px;
   float: right;
   color: grey;
-  margin-right: 2px;
-  margin-top: 15px;
+  margin-right: 7px;
+  margin-top: 18px;
   z-index: 2;
 }
 .starButton:hover {
   transform: scale(1.2);
   color: yellow;
-}
-.flag {
-  font-size: 25px;
-  border-radius: 20px;
 }
 
 .textBubble {

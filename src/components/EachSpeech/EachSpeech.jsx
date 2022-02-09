@@ -45,6 +45,11 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
               countryCode={inputFlagCode}
               svg
               cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+              style={{
+                verticalAlign: 'middle',
+                borderRadius: '20px',
+                fontSize: '35px',
+              }}
             />
           </div>
           &nbsp;&nbsp;
@@ -59,15 +64,20 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
             </div>
           ) : (
             <div className='textBubble outputTextBubble outputTextBlink'>
-              . . .{' '}
+              . . .
             </div>
           )}
           &nbsp;&nbsp;
-          <div className='flag'>
+          <div>
             <ReactCountryFlag
               countryCode={outputFlagCode}
               svg
               cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+              style={{
+                verticalAlign: 'middle',
+                borderRadius: '20px',
+                fontSize: '35px',
+              }}
             />
           </div>
         </div>
