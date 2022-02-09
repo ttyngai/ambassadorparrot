@@ -7,14 +7,9 @@
   width: 39vw;
   max-width: 150px;
   padding: 5px;
-  /* -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none; */
 }
 
 .speakButton {
-  /* border: 1px solid white; */
-  /* border-radius: 50px; */
   border: none;
   padding: 10px;
   font-size: 50px;

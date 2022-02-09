@@ -1,6 +1,14 @@
 import './EachSpeech.css';
+import ReactCountryFlag from 'react-country-flag';
 
-export default function EachSpeech({ speech, empty, length, index }) {
+export default function EachSpeech({
+  speech,
+  empty,
+  length,
+  index,
+  inputLanguage,
+  settingCodes,
+}) {
   let nameOfClass = 'eachSpeech';
   if (empty == true) {
     nameOfClass += ` emptySpeech`;
@@ -14,5 +22,23 @@ export default function EachSpeech({ speech, empty, length, index }) {
   if (index % 2 != 0 && !empty) {
     nameOfClass += ` response`;
   }
-  return <p className={nameOfClass}>{speech}</p>;
+  console.log('inputlang', inputLanguage);
+  let languageCode = settingCodes.find(function (c) {
+    console.log(c);
+    return c.value == inputLanguage;
+  }).flagCode;
+
+  console.log('returned code', languageCode);
+  return (
+    <p className={nameOfClass}>
+      {speech}&nbsp;&nbsp;
+      {/* https://danalloway.github.io/react-country-flag/ */}
+      <ReactCountryFlag
+        // countryCode={flagCode}
+        countryCode={languageCode}
+        svg
+        cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+      />
+    </p>
+  );
 }

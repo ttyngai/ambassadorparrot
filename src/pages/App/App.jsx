@@ -24,23 +24,24 @@ function App() {
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
   const settingCodes = [
-    { value: 'en', label: 'English(NA)' },
-    { value: 'en-GB', label: 'English(Britain)' },
-    { value: 'es', label: 'Español' },
-    { value: 'fr', label: 'Français' },
-    { value: 'hi', label: 'हिन्दी' },
-    { value: 'id', label: 'Bahasa Indonesia' },
-    { value: 'it', label: 'Italiano' },
-    { value: 'ja', label: '日本語' },
-    { value: 'ko', label: '한국어' },
-    { value: 'nl', label: 'Nederlands' },
-    { value: 'pl', label: 'Polski' },
-    { value: 'pt-BR', label: 'Português' },
-    { value: 'ru', label: 'Pусский язык' },
-    { value: 'zh-CN', label: '中文(中國)' },
-    { value: 'zh-HK', label: '中文(香港)' },
-    { value: 'zh-TW', label: '中文(台灣)' },
+    { value: 'en', label: 'English(NA)', flagCode: 'US' },
+    { value: 'en-GB', label: 'English(Britain)', flagCode: 'GB' },
+    { value: 'es', label: 'Español', flagCode: 'ES' },
+    { value: 'fr', label: 'Français', flagCode: 'FR' },
+    { value: 'hi', label: 'हिन्दी', flagCode: 'IN' },
+    { value: 'id', label: 'Bahasa Indonesia', flagCode: 'ID' },
+    { value: 'it', label: 'Italiano', flagCode: 'IT' },
+    { value: 'ja', label: '日本語', flagCode: 'JP' },
+    { value: 'ko', label: '한국어', flagCode: 'KR' },
+    { value: 'nl', label: 'Nederlands', flagCode: 'NL' },
+    { value: 'pl', label: 'Polski', flagCode: 'PL' },
+    { value: 'pt-BR', label: 'Português', flagCode: 'PT' },
+    { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
+    { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
+    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
+    { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
+
   useEffect(function () {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -55,17 +56,13 @@ function App() {
   async function handleStart() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition({});
-
     recognition.lang = inputLanguage;
-
     recognition.interimResults = true;
     recognition.continuous = true;
-
     recognition.onresult = async (e) => {
       setSpeech([...speech, concatSpeech(e.results)]);
     };
     setRecognition(recognition);
-
     recognition.start();
   }
 

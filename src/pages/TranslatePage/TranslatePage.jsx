@@ -13,6 +13,7 @@ export default function TranslatePage({
   setOutputLanguage,
   buttonState,
   settingCodes,
+  flagCode,
 }) {
   return (
     <>
@@ -51,10 +52,17 @@ export default function TranslatePage({
                 key={idx}
                 length={speech.length}
                 index={idx}
+                flagCode={flagCode}
+                inputLanguage={inputLanguage}
+                settingCodes={settingCodes}
               />
             ))
           ) : (
-            <SpeechContainer speech={'Hold speak to start'} empty={true} />
+            <SpeechContainer
+              speech={'Hold speak to start'}
+              empty={true}
+              flagCode={flagCode}
+            />
           )}
         </div>
       </div>
