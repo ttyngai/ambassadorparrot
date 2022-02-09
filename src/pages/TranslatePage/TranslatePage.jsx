@@ -15,9 +15,8 @@ export default function TranslatePage({
   languageCodes,
   flagCode,
 }) {
-  function handleSetInputLanguage(e) {
-    console.log('intercept set language', e);
-    setInputLanguage(e);
+  function handleSetInputLanguage(input) {
+    setInputLanguage(input);
   }
   return (
     <>

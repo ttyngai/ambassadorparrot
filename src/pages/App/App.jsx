@@ -78,15 +78,16 @@ function App() {
     setTimeout(async function () {
       setButtonState(true);
       if (speech[speech.length - 1].new) {
-        console.log('have not said');
         let fullSpeech, lastSpeech;
         const speechReturn = await translate(speech, outputLanguage, 'recent');
         fullSpeech = [...speech];
         lastSpeech = fullSpeech.pop();
         lastSpeech.outputText = speechReturn;
         lastSpeech.outputLanguage = outputLanguage;
-        lastSpeech.new = false;
+        lastSpeech.user = user;
+        delete lastSpeech.new;
         setSpeech([...fullSpeech, lastSpeech]);
+        console.log(speech);
       }
     }, 1500);
   }

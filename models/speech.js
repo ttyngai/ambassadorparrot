@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const speechSchema = new Schema(
   {
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     inputText: { type: String, required: true },
     inputLanguage: {
       type: String,

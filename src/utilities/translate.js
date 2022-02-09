@@ -5,7 +5,6 @@ export default async function translate(speech, targetLanguage, mostRecent) {
   if (mostRecent == 'recent') {
     targetSpeech = speech[speech.length - 1].inputText;
   }
-  console.log('say', targetSpeech);
   let translated;
   const lang = voiceSettings(targetLanguage);
   await fetch(
