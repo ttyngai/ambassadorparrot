@@ -63,6 +63,7 @@
 .dialogue {
   overflow: scroll;
   height: 60vh;
+  mask-image: linear-gradient(0deg, #000 80%, transparent);
 }
 
 ::-webkit-scrollbar {

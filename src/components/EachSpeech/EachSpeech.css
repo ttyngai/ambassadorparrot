@@ -23,7 +23,7 @@
   align-self: right;
   text-align: right;
   justify-content: end;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .speechDate {
   font-size: 10px;
@@ -38,6 +38,7 @@
   border: 1px solid transparent;
   border-radius: 15px;
   padding: 4px 13px;
+  max-width: 70%;
 }
 
 .inputTextBubble {
