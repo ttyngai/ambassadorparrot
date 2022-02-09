@@ -6,7 +6,6 @@ export default function EachSpeech({
   empty,
   length,
   index,
-  inputLanguage,
   settingCodes,
 }) {
   let nameOfClass = 'eachSpeech';
@@ -23,21 +22,19 @@ export default function EachSpeech({
     nameOfClass += ` response`;
   }
 
-  let languageCode = settingCodes.find(function (c) {
-    // console.log(c);
-    return c.value == inputLanguage;
+  let flagCode;
+  settingCodes.forEach(function (c) {
+    if (speech && c.value == speech.language) {
+      flagCode = c.flagCode;
+    }
   });
-  // console.log(inputLanguage);
-  // console.log(settingCodes);
-  // console.log(languageCode);
-  // console.log(speech);
+
+  console.log(flagCode);
   return (
     <p className={nameOfClass}>
       {speech.text}&nbsp;&nbsp;
-      {/* https://danalloway.github.io/react-country-flag/ */}
       <ReactCountryFlag
-        // countryCode={flagCode}
-        countryCode={languageCode}
+        countryCode={flagCode}
         svg
         cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
       />
