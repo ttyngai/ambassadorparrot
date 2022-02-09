@@ -1,22 +1,3 @@
-const settingCodes = [
-  'en',
-  'en-GB',
-  'es',
-  'fr',
-  'hi',
-  'id',
-  'it',
-  'ja',
-  'ko',
-  'nl',
-  'pl',
-  'pt-BR',
-  'ru',
-  'zh-CN',
-  'zh-HK',
-  'zh-TW',
-];
-
 export default function voiceSettings(code) {
   let setting = {};
   if (code == 'en') {
