@@ -19,9 +19,9 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     options.headers.Authorization = `Bearer ${token}`;
   }
 
-  console.log('token', token);
-  console.log('options', options);
-  console.log('url', url);
+  console.log('token: ', token);
+  console.log('options: ', options);
+  console.log('url: ', url);
   const res = await fetch(url, options);
   // res.ok will be false if the status code set to 4xx in the controller action
   console.log('res ok?', res);
