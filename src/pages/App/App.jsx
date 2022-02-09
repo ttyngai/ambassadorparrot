@@ -65,6 +65,18 @@ function App() {
     setRecognition(recognition);
     recognition.start();
   }
+  // Real time update of speech
+  function concatSpeech(results, inputLanguage) {
+    let concat = { inputText: '' };
+    for (let i = 0; i < results.length; i++) {
+      concat.inputText += results[i][0].transcript;
+    }
+    console.log(concat.inputText[0].toUpperCase());
+    concat.inputText =
+      concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
+    concat.inputLanguage = inputLanguage;
+    return concat;
+  }
 
   async function handleStop() {
     await recognition.stop();
@@ -74,20 +86,13 @@ function App() {
       // console.log('speeech before translate', speech);
       if (speech.length % 2 != 0) {
         const speechReturn = await translate(speech, outputLanguage);
-        let speechObj = { text: speechReturn, language: outputLanguage };
+        let speechObj = {
+          outputText: speechReturn,
+          outputLanguage: outputLanguage,
+        };
         setSpeech([...speech, speechObj]);
       }
     }, 1500);
-  }
-  function concatSpeech(results, inputLanguage) {
-    let concat = { text: '' };
-    for (let i = 0; i < results.length; i++) {
-      concat.text += results[i][0].transcript;
-    }
-    console.log(concat.text[0].toUpperCase());
-    concat.text = concat.text[0].toUpperCase() + concat.text.slice(1);
-    concat.language = inputLanguage;
-    return concat;
   }
 
   return (

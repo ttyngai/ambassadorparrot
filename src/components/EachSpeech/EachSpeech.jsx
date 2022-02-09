@@ -31,7 +31,8 @@ export default function EachSpeech({
 
   return (
     <p className={nameOfClass}>
-      {speech.text}&nbsp;&nbsp;
+      {speech.inputText}
+      {speech.outputText}&nbsp;&nbsp;
       <ReactCountryFlag
         countryCode={flagCode}
         svg

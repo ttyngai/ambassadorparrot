@@ -16,7 +16,7 @@ export default async function translate(message, targetLanguage) {
       //   //   // 'Access-Control-Allow-Origin': '*',
       // },
       body: JSON.stringify({
-        q: message[message.length - 1].text,
+        q: message[message.length - 1].inputText,
         target: lang.target,
       }),
     }

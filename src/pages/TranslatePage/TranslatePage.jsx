@@ -1,5 +1,4 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
-import { useEffect } from 'react';
 import './TranslatePage.css';
 import Logo from '../../images/whiteMicrophone.png';
 
