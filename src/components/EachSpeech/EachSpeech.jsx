@@ -6,7 +6,7 @@ export default function EachSpeech({
   empty,
   length,
   index,
-  settingCodes,
+  languageCodes,
 }) {
   let nameOfClass = 'eachSpeech';
   if (empty == true) {
@@ -14,7 +14,7 @@ export default function EachSpeech({
   }
 
   // to darken old dialogues(Not used)
-  if ((index >= 0 && length <= 8) || (index >= 0 && length > 8)) {
+  if (length >= 0) {
     nameOfClass += ` focus`;
   }
 
@@ -23,7 +23,7 @@ export default function EachSpeech({
   }
 
   let flagCode;
-  settingCodes.forEach(function (c) {
+  languageCodes.forEach(function (c) {
     if (speech && c.value == speech.language) {
       flagCode = c.flagCode;
     }

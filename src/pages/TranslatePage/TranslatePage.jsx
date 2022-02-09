@@ -12,7 +12,7 @@ export default function TranslatePage({
   outputLanguage,
   setOutputLanguage,
   buttonState,
-  settingCodes,
+  languageCodes,
   flagCode,
 }) {
   function handleSetInputLanguage(e) {
@@ -28,7 +28,7 @@ export default function TranslatePage({
           onChange={(evt) => handleSetInputLanguage(evt.target.value)}
           value={inputLanguage}
         >
-          {settingCodes.map((option, idx) => (
+          {languageCodes.map((option, idx) => (
             <option key={idx} value={option.value}>
               {option.label}
             </option>
@@ -40,7 +40,7 @@ export default function TranslatePage({
           onChange={(evt) => setOutputLanguage(evt.target.value)}
           value={outputLanguage}
         >
-          {settingCodes.map((option, idx) => (
+          {languageCodes.map((option, idx) => (
             <option key={idx} value={option.value}>
               {option.label}
             </option>
@@ -58,7 +58,7 @@ export default function TranslatePage({
                 index={idx}
                 flagCode={flagCode}
                 inputLanguage={inputLanguage}
-                settingCodes={settingCodes}
+                languageCodes={languageCodes}
               />
             ))
           ) : (
@@ -66,7 +66,7 @@ export default function TranslatePage({
               speech={{ text: 'Hold speak to start' }}
               empty={true}
               flagCode={flagCode}
-              settingCodes={settingCodes}
+              languageCodes={languageCodes}
             />
           )}
         </div>

@@ -23,7 +23,7 @@ function App() {
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
-  const settingCodes = [
+  const languageCodes = [
     { value: 'en', label: 'English(NA)', flagCode: 'US' },
     { value: 'en-GB', label: 'English(Britain)', flagCode: 'GB' },
     { value: 'es', label: 'Español', flagCode: 'ES' },
@@ -108,7 +108,7 @@ function App() {
                   inputLanguage={inputLanguage}
                   outputLanguage={outputLanguage}
                   buttonState={buttonState}
-                  settingCodes={settingCodes}
+                  languageCodes={languageCodes}
                 />
               }
             />
@@ -124,7 +124,7 @@ function App() {
                   inputLanguage={inputLanguage}
                   outputLanguage={outputLanguage}
                   buttonState={buttonState}
-                  settingCodes={settingCodes}
+                  languageCodes={languageCodes}
                 />
               }
             />

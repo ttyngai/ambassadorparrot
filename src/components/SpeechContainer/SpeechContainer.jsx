@@ -8,7 +8,7 @@ export default function SpeechContainer({
   length,
   flagCode,
   inputLanguage,
-  settingCodes,
+  languageCodes,
 }) {
   return (
     <EachSpeech
@@ -18,7 +18,7 @@ export default function SpeechContainer({
       length={length}
       flagCode={flagCode}
       inputLanguage={inputLanguage}
-      settingCodes={settingCodes}
+      languageCodes={languageCodes}
     />
   );
 }

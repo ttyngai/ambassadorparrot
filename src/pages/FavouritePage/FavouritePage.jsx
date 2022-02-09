@@ -10,7 +10,7 @@ function FavouritePage({
   outputLanguage,
   setOutputLanguage,
   buttonState,
-  settingCodes,
+  languageCodes,
 }) {
   return (
     <>
@@ -19,7 +19,7 @@ function FavouritePage({
         onChange={(evt) => setInputLanguage(evt.target.value)}
         value={inputLanguage}
       >
-        {settingCodes.map((option, idx) => (
+        {languageCodes.map((option, idx) => (
           <option key={idx} value={option.value}>
             {option.label}
           </option>
@@ -31,7 +31,7 @@ function FavouritePage({
         onChange={(evt) => setOutputLanguage(evt.target.value)}
         value={outputLanguage}
       >
-        {settingCodes.map((option, idx) => (
+        {languageCodes.map((option, idx) => (
           <option key={idx} value={option.value}>
             {option.label}
           </option>
