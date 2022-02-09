@@ -3,14 +3,19 @@ import speak from '../../utilities/speak';
 import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 
-export default function EachSpeech({ speech, empty, languageCodes }) {
+export default function EachSpeech({
+  speech,
+  empty,
+  languageCodes,
+  outputLanguage,
+}) {
   // to darken old dialogues(Not used)
   // if (length >= 0) {
   //   nameOfClass += ` focus`;
   // }
 
   // Decode object for it's flagCode
-  let inputFlagCode, outputFlagCode;
+  let inputFlagCode, outputFlagCode, preOutputFlagCode;
   languageCodes.forEach(function (c) {
     if (speech && c.value == speech.inputLanguage) {
       inputFlagCode = c.flagCode;
@@ -18,8 +23,12 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
     if (speech && c.value == speech.outputLanguage) {
       outputFlagCode = c.flagCode;
     }
+    if (c.value == outputLanguage) {
+      preOutputFlagCode = c.flagCode;
+    }
   });
-
+  console.log('output', outputLanguage);
+  console.log(preOutputFlagCode);
   function handleSayAgain() {
     const lang = voiceSettings(speech.outputLanguage);
     speak(speech.outputText, lang);
@@ -70,7 +79,9 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
           &nbsp;&nbsp;
           <div>
             <ReactCountryFlag
-              countryCode={outputFlagCode}
+              countryCode={
+                speech.outputText ? outputFlagCode : preOutputFlagCode
+              }
               svg
               cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
               style={{

@@ -8,6 +8,7 @@ export default function SpeechContainer({
   length,
   flagCode,
   inputLanguage,
+  outputLanguage,
   languageCodes,
 }) {
   return (
@@ -18,6 +19,7 @@ export default function SpeechContainer({
       length={length}
       flagCode={flagCode}
       inputLanguage={inputLanguage}
+      outputLanguage={outputLanguage}
       languageCodes={languageCodes}
     />
   );

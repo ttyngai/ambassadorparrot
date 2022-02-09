@@ -62,6 +62,7 @@ export default function TranslatePage({
                   index={idx}
                   flagCode={flagCode}
                   inputLanguage={inputLanguage}
+                  outputLanguage={outputLanguage}
                   languageCodes={languageCodes}
                 />
               ))
