@@ -9,8 +9,6 @@
 .eachSpeech:hover {
   background-color: rgba(255, 255, 0, 0.075);
   cursor: pointer;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   /* border: none; */
 }
 .emptySpeech {
@@ -26,4 +24,8 @@
 .speechDate {
   font-size: 10px;
   color: grey;
+}
+.flag {
+  font-size: 25px;
+  border-radius: 20px;
 }

@@ -38,22 +38,26 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
           {speech.time ? speech.time.toLocaleString() : ''}
         </div>
         <span>
-          {speech.inputText}&nbsp;&nbsp;
-          <ReactCountryFlag
-            countryCode={inputFlagCode}
-            svg
-            cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
-          />
+          <span className='flag'>
+            <ReactCountryFlag
+              countryCode={inputFlagCode}
+              svg
+              cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+            />
+          </span>
+          &nbsp;&nbsp;{speech.inputText}
         </span>
       </div>
       <div className='output'>
         <span>
           {speech.outputText}&nbsp;&nbsp;
-          <ReactCountryFlag
-            countryCode={outputFlagCode}
-            svg
-            cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
-          />
+          <span className='flag'>
+            <ReactCountryFlag
+              countryCode={outputFlagCode}
+              svg
+              cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+            />
+          </span>
         </span>
       </div>
     </div>

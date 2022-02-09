@@ -34,7 +34,7 @@
   }
 
   50% {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.2, 1.2);
   }
 
   100% {
@@ -43,20 +43,20 @@
 }
 .loading {
   margin-top: -13px;
-  font-size: 60px;
-  animation: loading 0.35s linear infinite;
+  max-height: 45px;
+  animation: loading 0.5s linear infinite;
 }
 @keyframes loading {
   0% {
-    transform: scaleX(1);
+    transform: rotate(0deg);
   }
 
   50% {
-    transform: scaleX(-1);
+    transform: rotate(180deg);
   }
 
   100% {
-    transform: scaleX(1);
+    transform: rotate(359deg);
   }
 }
 

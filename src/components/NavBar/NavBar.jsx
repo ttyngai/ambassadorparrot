@@ -16,9 +16,13 @@ function NavBar({ user, setUser }) {
         Translate
       </Link>
       &nbsp;&nbsp;
-      <Link className='navButton' to='/orders'>
-        Favourites
-      </Link>
+      {user ? (
+        <Link className='navButton' to='/orders'>
+          Favourites
+        </Link>
+      ) : (
+        ''
+      )}
       &nbsp;&nbsp;
       <Link className='navButton' onClick={handlelogOut} to=''>
         Log Out

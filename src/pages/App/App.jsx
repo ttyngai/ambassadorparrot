@@ -41,8 +41,10 @@ function App() {
   }, []);
 
   useEffect(function () {
-    document.getElementById('dialogue').scrollTop =
-      document.getElementById('dialogue').scrollHeight;
+    if (document.getElementById('dialogue')) {
+      document.getElementById('dialogue').scrollTop =
+        document.getElementById('dialogue').scrollHeight;
+    }
   });
 
   function handleStart() {
@@ -61,7 +63,7 @@ function App() {
       concat.inputText =
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
       concat.inputLanguage = inputLanguage;
-      concat.time = new Date();
+      concat.timeCreated = new Date();
       concat.new = true;
       setSpeech([...speech, concat]);
     };

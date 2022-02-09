@@ -1,6 +1,7 @@
 import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
 import './TranslatePage.css';
-import Logo from '../../images/whiteMicrophone.png';
+import microphoneLogo from '../../images/whiteMicrophone.png';
+import loadingLogo from '../../images/loading.png';
 
 export default function TranslatePage({
   speech,
@@ -75,9 +76,17 @@ export default function TranslatePage({
         <div className='speakButton'>
           {buttonState ? (
             buttonState == 'loading' ? (
-              <div className='loading'>🦜</div>
+              <img
+                src={loadingLogo}
+                className='loading'
+                onClick={handleStart}
+              />
             ) : (
-              <img src={Logo} className='microphone' onClick={handleStart} />
+              <img
+                src={microphoneLogo}
+                className='microphone'
+                onClick={handleStart}
+              />
             )
           ) : (
             <div className='recordingStop' onClick={handleStop}>
