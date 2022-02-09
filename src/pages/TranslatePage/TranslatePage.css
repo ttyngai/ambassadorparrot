@@ -63,9 +63,11 @@
 .dialogue {
   overflow: scroll;
   height: 70vh;
+}
+.dialogueFadeTop {
   mask-image: linear-gradient(0deg, #000 75%, transparent);
 }
-.dialogueBottom {
+.dialogueFadeBottom {
   mask-image: linear-gradient(180deg, #000 95%, transparent);
 }
 

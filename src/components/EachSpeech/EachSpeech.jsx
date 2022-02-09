@@ -4,13 +4,6 @@ import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 
 export default function EachSpeech({ speech, empty, languageCodes }) {
-  let nameOfClass;
-  if (empty == true) {
-    nameOfClass = ` emptySpeech`;
-  } else {
-    nameOfClass = 'eachSpeech';
-  }
-
   // to darken old dialogues(Not used)
   // if (length >= 0) {
   //   nameOfClass += ` focus`;
@@ -32,7 +25,7 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
     speak(speech.outputText, lang);
   }
   return (
-    <div className={nameOfClass} onClick={handleSayAgain}>
+    <div className='eachSpeech' onClick={handleSayAgain}>
       <div className='input'>
         <div className='speechDate'>
           {/* {speech.timeCreated ? speech.timeCreated.toLocaleString() : ''} */}
@@ -45,7 +38,9 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
           />
         </flag>
         &nbsp;&nbsp;
-        <div className='textBubble inputTextBubble'>{speech.inputText}</div>
+        <div className={empty ? 'emptyPrompt' : 'textBubble inputTextBubble'}>
+          {speech.inputText}
+        </div>
       </div>
       <div className='output'>
         {speech.outputText ? (

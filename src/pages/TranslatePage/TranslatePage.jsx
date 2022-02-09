@@ -46,8 +46,13 @@ export default function TranslatePage({
             </option>
           ))}
         </select>
-        <div className='dialogueBottom'>
-          <div className='dialogue' id='dialogue'>
+        <div className='dialogueFadeBottom'>
+          <div
+            className={
+              speech.length > 4 ? 'dialogue dialogueFadeTop' : 'dialogue'
+            }
+            id='dialogue'
+          >
             {speech[0] ? (
               speech.map((s, idx) => (
                 <SpeechContainer
