@@ -1,6 +1,6 @@
 .eachSpeech {
   color: white;
-  padding: 20px;
+  padding: 15px;
   margin: 5px;
   text-align: left;
 }
@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: row;
   text-align: left;
+  padding-top: 5px;
 }
 .output {
   display: flex;
@@ -23,11 +24,22 @@
   align-self: right;
   text-align: right;
   justify-content: end;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .speechDate {
+  text-align: left;
   font-size: 10px;
   color: grey;
+}
+
+.starButton {
+  font-size: 25px;
+  float: right;
+  color: grey;
+}
+.starButton:hover {
+  transform: scale(1.2);
+  color: yellow;
 }
 .flag {
   font-size: 25px;

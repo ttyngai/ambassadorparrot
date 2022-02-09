@@ -26,10 +26,13 @@ export default function EachSpeech({ speech, empty, languageCodes }) {
   }
   return (
     <div className='eachSpeech' onClick={handleSayAgain}>
+      {/* <div className='speakerButton'>🔈</div> */}
+      <div className='starButton'> ★</div>
+      <div className='speechDate'>
+        {speech.timeCreated ? speech.timeCreated.toLocaleString() : ''}
+      </div>
+
       <div className='input'>
-        <div className='speechDate'>
-          {/* {speech.timeCreated ? speech.timeCreated.toLocaleString() : ''} */}
-        </div>
         <flag className='flag'>
           <ReactCountryFlag
             countryCode={inputFlagCode}
