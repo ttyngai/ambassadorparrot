@@ -34,24 +34,24 @@
 .starButton {
   font-size: 25px;
   float: right;
-  color: rgba(255, 255, 0, 0.11);
+  color: rgba(255, 255, 0, 0.24);
   margin-right: 4px;
   /* margin-top: 2px; */
   z-index: 2;
 }
-.starButton:hover {
+/* .starButton:hover {
   transform: scale(1.2);
   color: yellow;
-}
+} */
 
 .buttonStarred {
   color: yellow;
 }
 
 .deleteButton {
+  color: rgba(255, 0, 0, 0.144);
   font-size: 22px;
   float: right;
-  color: rgba(255, 0, 0, 0.144);
   margin-right: 4px;
   margin-top: 3px;
   z-index: 2;
