@@ -12,12 +12,12 @@ function NavBar({ user, setUser }) {
     <nav className='navBackground'>
       <span className='title'>&nbsp;&nbsp;PARROT&nbsp;🦜</span>
       <br />
-      <Link className='navButton' to='/translate'>
+      <Link className='navButton' to='/'>
         Translate
       </Link>
       &nbsp;&nbsp;
       {user ? (
-        <Link className='navButton' onClick={handlelogOut} to=''>
+        <Link className='navButton' onClick={handlelogOut} to='/'>
           Log Out
         </Link>
       ) : (

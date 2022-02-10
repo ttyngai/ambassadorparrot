@@ -126,9 +126,10 @@ function App() {
     <main className='App'>
       <>
         <NavBar user={user} setUser={setUser} />
+
         <Routes>
           <Route
-            path='/translate'
+            path='/'
             element={
               <TranslatePage
                 user={user}
@@ -146,8 +147,7 @@ function App() {
               />
             }
           />
-
-          <Route path='/login' element={<AuthPage setUser={setUser} />} />
+          <Route path='/login' element={<AuthPage setUser={setUser} />} />)
         </Routes>
       </>
     </main>

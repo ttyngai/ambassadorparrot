@@ -1,85 +1,83 @@
 import { Component } from 'react';
+import { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
+import { useNavigate } from 'react-router-dom';
 
-class SignUpForm extends Component {
-  state = {
+export default function SignUpForm({ setUser }) {
+  const [form, setForm] = useState({
     name: '',
     email: '',
     password: '',
     confirm: '',
     error: '',
-  };
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-      error: '',
-    });
-  };
+  function handleChange(evt) {
+    setForm({ ...form, [evt.target.name]: evt.target.value });
+    setError('/');
+  }
 
-  handleSubmit = async (evt) => {
+  let handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const formData = { ...this.state };
+      const formData = { ...form };
       delete formData.error;
       delete formData.confirm;
-
+      console.log('formData here', formData);
       const user = await signUp(formData);
-      this.props.setUser(user);
-      //   console.log('uwer here', user);
+      console.log('and here', user);
+      setUser(user);
+      navigate('/');
     } catch {
-      // An Error occurred..
-      this.setState({ error: 'Sign Up Failed - Try Again' });
+      setForm({ error: 'Sign Up Failed - Try Again' });
     }
   };
+  const disable = form.password !== form.confirm;
 
-  render() {
-    const disable = this.state.password !== this.state.confirm;
-    return (
-      <div>
-        <div className='form-container'>
-          <form autoComplete='off' onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input
-              type='text'
-              name='name'
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Email</label>
-            <input
-              type='email'
-              name='email'
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Password</label>
-            <input
-              type='password'
-              name='password'
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Confirm</label>
-            <input
-              type='password'
-              name='confirm'
-              value={this.state.confirm}
-              onChange={this.handleChange}
-              required
-            />
-            <button type='submit' disabled={disable}>
-              SIGN UP
-            </button>
-          </form>
-        </div>
-        <p className='error-message'>&nbsp;{this.state.error}</p>
+  return (
+    <div>
+      <div className='form-container'>
+        <form autoComplete='off' onSubmit={handleSubmit}>
+          <label>Name</label>
+          <input
+            type='text'
+            name='name'
+            value={form.name}
+            onChange={(evt) => handleChange(evt)}
+            required
+          />
+          <label>Email</label>
+          <input
+            type='email'
+            name='email'
+            value={form.email}
+            onChange={(evt) => handleChange(evt)}
+            required
+          />
+          <label>Password</label>
+          <input
+            type='password'
+            name='password'
+            value={form.password}
+            onChange={(evt) => handleChange(evt)}
+            required
+          />
+          <label>Confirm</label>
+          <input
+            type='password'
+            name='confirm'
+            value={form.confirm}
+            onChange={(evt) => handleChange(evt)}
+            required
+          />
+          <button type='submit' disabled={disable}>
+            SIGN UP
+          </button>
+        </form>
       </div>
-    );
-  }
+      <p className='error-message'>&nbsp;{form.error}</p>
+    </div>
+  );
 }
-
-export default SignUpForm;
