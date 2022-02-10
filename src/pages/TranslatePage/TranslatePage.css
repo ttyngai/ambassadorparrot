@@ -17,11 +17,16 @@
   color: rgb(207, 9, 9);
   margin-top: -35px;
 }
+
 .microphone {
   color: white;
   height: 50px;
   cursor: pointer;
 }
+.microphone:hover {
+  transform: scale(1.1);
+}
+
 .recordingStop {
   margin-top: -18px;
   font-size: 60px;

@@ -104,11 +104,7 @@ export default function TranslatePage({
         <div className='speakButton'>
           {buttonState ? (
             buttonState == 'loading' ? (
-              <img
-                src={loadingLogo}
-                className='loading'
-                onClick={handleStart}
-              />
+              <img src={loadingLogo} className='loading' />
             ) : (
               <img
                 src={microphoneLogo}
