@@ -20,10 +20,10 @@
 .output {
   display: flex;
   flex-direction: row;
-  align-self: right;
-  text-align: right;
+
   justify-content: end;
   padding-top: 5px;
+  -webkit-justify-content: flex-end;
 }
 .speechDate {
   text-align: left;

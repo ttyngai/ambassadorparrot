@@ -72,13 +72,10 @@
 }
 
 .deleteAllButton {
-  /* display: inline-block; */
-  /* position: absolute; */
   font-size: 20px;
-  /* float: right; */
+
   color: rgba(255, 0, 0, 0.425);
-  /* margin-right: 4px;
-  margin-top: 3px; */
+
   z-index: 2;
 }
 .deleteAllButton:hover {
@@ -87,7 +84,7 @@
 
 .dialogue {
   overflow: scroll;
-  height: calc(100vh - 215px);
+  height: calc(90vh - 215px);
 }
 .dialogueFadeTop {
   mask-image: linear-gradient(0deg, #000 90%, transparent);
