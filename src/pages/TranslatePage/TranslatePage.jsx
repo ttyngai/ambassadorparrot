@@ -41,63 +41,60 @@ export default function TranslatePage({
 
   return (
     <>
-      <br />
-      <div className='speechContainer'>
-        <span className='selectorContainer'>
-          <select
-            className='languageSelect'
-            onChange={(evt) => handleSetInputLanguage(evt.target.value)}
-            value={inputLanguage}
-          >
-            {languageCodes.map((option, idx) => (
-              <option key={idx} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <span className='swapArrow' onClick={handleLanguageSwap}>
-            ⇆
-          </span>
-          <select
-            className='languageSelect'
-            onChange={(evt) => setOutputLanguage(evt.target.value)}
-            value={outputLanguage}
-          >
-            {languageCodes.map((option, idx) => (
-              <option key={idx} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          {/* <span className='deleteAllButton'>✖</span> */}
+      <span className='selectorContainer'>
+        <select
+          className='languageSelect'
+          onChange={(evt) => handleSetInputLanguage(evt.target.value)}
+          value={inputLanguage}
+        >
+          {languageCodes.map((option, idx) => (
+            <option key={idx} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <span className='swapArrow' onClick={handleLanguageSwap}>
+          ⇆
         </span>
-        <div className='dialogueFadeBottom'>
-          <div
-            className={
-              speech.length > 2 ? 'dialogue dialogueFadeTop' : 'dialogue'
-            }
-            id='dialogue'
-          >
-            {speech[0] ? (
-              speech.map((s, idx) => (
-                <EachSpeech
-                  user={user}
-                  eachSpeech={s}
-                  speech={speech}
-                  setSpeech={setSpeech}
-                  key={idx}
-                  length={speech.length}
-                  index={idx}
-                  flagCode={flagCode}
-                  inputLanguage={inputLanguage}
-                  outputLanguage={outputLanguage}
-                  languageCodes={languageCodes}
-                />
-              ))
-            ) : (
-              <div className='emptyPrompt'>Press button to start</div>
-            )}
-          </div>
+        <select
+          className='languageSelect'
+          onChange={(evt) => setOutputLanguage(evt.target.value)}
+          value={outputLanguage}
+        >
+          {languageCodes.map((option, idx) => (
+            <option key={idx} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        {/* <span className='deleteAllButton'>✖</span> */}
+      </span>
+      <div className='dialogueFadeBottom'>
+        <div
+          className={
+            speech.length > 2 ? 'dialogue dialogueFadeTop' : 'dialogue'
+          }
+          id='dialogue'
+        >
+          {speech[0] ? (
+            speech.map((s, idx) => (
+              <EachSpeech
+                user={user}
+                eachSpeech={s}
+                speech={speech}
+                setSpeech={setSpeech}
+                key={idx}
+                length={speech.length}
+                index={idx}
+                flagCode={flagCode}
+                inputLanguage={inputLanguage}
+                outputLanguage={outputLanguage}
+                languageCodes={languageCodes}
+              />
+            ))
+          ) : (
+            <div className='emptyPrompt'>Press button to start</div>
+          )}
         </div>
       </div>
 

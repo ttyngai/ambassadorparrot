@@ -3,7 +3,7 @@
   padding: 3px 10px 15px 10px;
   margin: 5px;
   text-align: left;
-  z-index: 1;
+  /* z-index: 1; */
   border-radius: 5px;
 }
 .eachSpeech:hover {
@@ -21,7 +21,6 @@
 .output {
   display: flex;
   flex-direction: row;
-
   justify-content: end;
   padding-top: 5px;
   -webkit-justify-content: flex-end;
