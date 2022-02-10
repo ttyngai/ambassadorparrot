@@ -41,10 +41,10 @@
   color: white;
   border-left: 2px solid grey;
   border-right: 2px solid grey;
-  border-radius: 40px;
-  width: 97vw;
-  max-width: 600px;
-  height: 80vh;
+  border-radius: 30px;
+  width: 98vw;
+  max-width: 800px;
+  height: calc(100vh - 150px);
   min-height: 420px;
   margin: auto;
   padding: 15px;

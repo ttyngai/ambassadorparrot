@@ -15,7 +15,7 @@
   font-size: 50px;
   background-color: transparent;
   color: rgb(207, 9, 9);
-  margin-top: -30px;
+  margin-top: -35px;
 }
 .microphone {
   color: white;
@@ -42,7 +42,7 @@
   }
 }
 .loading {
-  margin-top: -13px;
+  margin-top: -50px;
   max-height: 45px;
   animation: loading 0.5s linear infinite;
 }
@@ -68,7 +68,7 @@
 
 .dialogue {
   overflow: scroll;
-  height: calc(80vh - 75px);
+  height: calc(100vh - 215px);
 }
 .dialogueFadeTop {
   mask-image: linear-gradient(0deg, #000 90%, transparent);
