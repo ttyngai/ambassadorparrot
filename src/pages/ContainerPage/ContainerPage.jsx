@@ -109,7 +109,9 @@ export default function TranslatePage({
             ) : (
               <img
                 src={microphoneLogo}
-                className='microphone'
+                className={
+                  speech[0] ? 'microphone' : 'microphone  microphoneEmpty'
+                }
                 onClick={handleStart}
               />
             )

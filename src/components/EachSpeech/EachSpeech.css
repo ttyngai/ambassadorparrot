@@ -17,6 +17,7 @@
   text-align: left;
   padding-top: 5px;
 }
+
 .output {
   display: flex;
   flex-direction: row;
@@ -24,6 +25,7 @@
   padding-top: 5px;
   -webkit-justify-content: flex-end;
 }
+
 .speechDate {
   text-align: left;
   font-size: 10px;
@@ -35,23 +37,8 @@
   font-size: 19px;
   float: right;
   padding: 5px 4px;
-  /* margin-right: 6px; */
-  /* margin-top: 2px; */
   z-index: 2;
 }
-/* .starButton:hover {
-  animation: starHover linear 0.1s forwards;
-}
-
-@keyframes starHover {
-  0% {
-    color: rgba(255, 255, 0, 0.24);
-  }
-
-  100% {
-    color: yellow;
-  }
-} */
 
 .buttonStarred {
   color: yellow;
@@ -62,19 +49,8 @@
   font-size: 18px;
   float: right;
   padding: 8px 4px;
-  /* margin-right: 6px;
-  margin-top: 3px; */
   z-index: 2;
 }
-
-/* .deleteButton:hover {
-  transform: scale(1.2);
-  color: red;
-}
-.deleteButton:active {
-  transform: scale(1.2);
-  color: red;
-} */
 
 .textBubble {
   border: 1px solid transparent;

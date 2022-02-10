@@ -4,6 +4,7 @@
   margin-bottom: -30px;
   z-index: 1;
 }
+
 .navButton {
   padding: 2px 15px;
   text-decoration: none;
@@ -12,6 +13,7 @@
   border-radius: 5px;
   color: white;
 }
+
 .navButton:hover {
   background-color: rgba(255, 255, 0, 0.075);
   cursor: pointer;

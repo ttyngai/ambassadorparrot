@@ -95,7 +95,7 @@ body {
 
 p.error-message {
   font-size: 15px;
-  color: var(--orange);
+  color: #468cf7;
   text-align: center;
   margin: 0;
   /* position: fixed; */
@@ -126,7 +126,7 @@ input {
 }
 
 input:focus {
-  border-color: var(--orange);
+  border-color: #468cf7;
 }
 
 button,
@@ -135,7 +135,7 @@ a.button {
   margin: auto;
   padding: 5px;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: #468cf7;
   font-size: 15px;
   font-weight: bold;
   text-decoration: none;
