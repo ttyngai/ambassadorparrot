@@ -4,6 +4,7 @@
   margin: 5px;
   text-align: left;
   z-index: 1;
+  border-radius: 5px;
 }
 .eachSpeech:hover {
   transform: scale(1.005);
@@ -33,9 +34,9 @@
 
 .starButton {
   color: rgba(255, 255, 0, 0.24);
-  font-size: 25px;
+  font-size: 19px;
   float: right;
-  margin-right: 4px;
+  margin-right: 6px;
   /* margin-top: 2px; */
   z-index: 2;
 }
@@ -59,21 +60,21 @@
 
 .deleteButton {
   color: rgba(231, 0, 0, 0.548);
-  font-size: 22px;
+  font-size: 18px;
   float: right;
-  margin-right: 4px;
+  margin-right: 6px;
   margin-top: 3px;
   z-index: 2;
 }
 
-.deleteButton:hover {
+/* .deleteButton:hover {
   transform: scale(1.2);
   color: red;
 }
 .deleteButton:active {
   transform: scale(1.2);
   color: red;
-}
+} */
 
 .textBubble {
   border: 1px solid transparent;
