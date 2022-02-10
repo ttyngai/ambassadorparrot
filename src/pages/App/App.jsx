@@ -105,6 +105,16 @@ function App() {
     setOutputLanguage(tempInputLanguage);
   }
 
+  useEffect(function () {
+    async function initSpeeches() {
+      console.log('lets get');
+      const speeches = await speechesAPI.getSpeech();
+      console.log('speeches got in jsx', speeches);
+    }
+
+    initSpeeches();
+  }, []);
+
   return (
     <main className='App'>
       <>

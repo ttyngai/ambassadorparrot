@@ -8,3 +8,7 @@ export function create(speech) {
 export function star(speech) {
   return sendRequest(`${BASE_URL}/star`, 'PUT', speech);
 }
+
+export function getSpeech() {
+  return sendRequest(`${BASE_URL}/getSpeeches`);
+}

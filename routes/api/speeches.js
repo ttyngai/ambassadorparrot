@@ -6,7 +6,7 @@ const speechCtrl = require('../../controllers/api/speeches');
 router.post('/new', speechCtrl.create);
 // POST /api/orders/cart/items/:id
 router.put('/star', speechCtrl.star);
-
+router.get('/getSpeeches', speechCtrl.getSpeech);
 // router.get('/getOrders', speechCtrl.getOrders);
 // // GET /api/orders/cart
 // router.get('/cart', speechCtrl.cart);

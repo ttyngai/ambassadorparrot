@@ -3,6 +3,7 @@ const Speech = require('../../models/speech');
 module.exports = {
   create,
   star,
+  getSpeech,
 };
 
 async function create(req, res) {
@@ -15,6 +16,12 @@ async function star(req, res) {
   let speechStarring = await Speech.findById(req.body._id);
   speechStarring.isStarred = !speechStarring.isStarred;
   speechStarring.save();
-
   res.json(speechStarring);
+}
+
+async function getSpeech(req, res) {
+  console.log('in controller');
+  const speeches = Speech.find({ user: req.user });
+  console.log('finding the speech in mongo', speeches);
+  res.json(speeches);
 }
