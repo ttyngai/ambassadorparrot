@@ -71,6 +71,20 @@
   color: grey;
 }
 
+.deleteAllButton {
+  /* display: inline-block; */
+  /* position: absolute; */
+  font-size: 20px;
+  /* float: right; */
+  color: rgba(255, 0, 0, 0.425);
+  /* margin-right: 4px;
+  margin-top: 3px; */
+  z-index: 2;
+}
+.deleteAllButton:hover {
+  color: red;
+}
+
 .dialogue {
   overflow: scroll;
   height: calc(100vh - 215px);
