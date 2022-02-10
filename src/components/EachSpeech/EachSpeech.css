@@ -6,6 +6,7 @@
   z-index: 1;
 }
 .eachSpeech:hover {
+  transform: scale(1.01);
   background-color: rgba(255, 255, 0, 0.075);
   cursor: pointer;
 }

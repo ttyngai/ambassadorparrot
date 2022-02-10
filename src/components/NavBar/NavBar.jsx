@@ -17,15 +17,9 @@ function NavBar({ user, setUser }) {
       </Link>
       &nbsp;&nbsp;
       {user ? (
-        <span>
-          <Link className='navButton' to='/favourites'>
-            Favourites
-          </Link>
-          &nbsp;&nbsp;
-          <Link className='navButton' onClick={handlelogOut} to=''>
-            Log Out
-          </Link>
-        </span>
+        <Link className='navButton' onClick={handlelogOut} to=''>
+          Log Out
+        </Link>
       ) : (
         <Link className='navButton' to='/login'>
           Login · Signup
