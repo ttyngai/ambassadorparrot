@@ -62,8 +62,10 @@ function App() {
       concat.new = true;
       setSpeech([...speech, concat]);
       if (document.getElementById('dialogue')) {
-        document.getElementById('dialogue').scrollTop =
-          document.getElementById('dialogue').scrollHeight;
+        document.getElementById('dialogue').scrollTo({
+          top: document.getElementById('dialogue').scrollHeight,
+          behavior: 'smooth',
+        });
       }
     };
     // Include the called function as a state, for invoking later even after state change
@@ -94,8 +96,10 @@ function App() {
         setSpeech([...fullSpeech, newSpeechObj]);
       }
       if (document.getElementById('dialogue')) {
-        document.getElementById('dialogue').scrollTop =
-          document.getElementById('dialogue').scrollHeight;
+        document.getElementById('dialogue').scrollTo({
+          top: document.getElementById('dialogue').scrollHeight,
+          behavior: 'smooth',
+        });
       }
     }, 1500);
   }

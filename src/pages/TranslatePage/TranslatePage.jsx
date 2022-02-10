@@ -28,8 +28,15 @@ export default function TranslatePage({
       const speeches = await speechesAPI.getSpeech();
       setSpeech(speeches);
     }
-
     initSpeeches();
+    setTimeout(function () {
+      if (document.getElementById('dialogue')) {
+        document.getElementById('dialogue').scrollTo({
+          top: document.getElementById('dialogue').scrollHeight,
+          behavior: 'smooth',
+        });
+      }
+    }, 1000);
   }, []);
 
   return (

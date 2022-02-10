@@ -32,7 +32,7 @@ export default function EachSpeech({
     speak(eachSpeech.outputText, lang);
   }
 
-  async function handleSaveSpeech() {
+  async function handleStarSpeech() {
     const starredSpeech = await speechesAPI.star(eachSpeech);
     let speechCopy = [...speech];
     let starredSpeechArray = speechCopy.map(function (s) {
@@ -51,7 +51,7 @@ export default function EachSpeech({
           className={
             eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
           }
-          onClick={handleSaveSpeech}
+          onClick={handleStarSpeech}
         >
           ★
         </div>
