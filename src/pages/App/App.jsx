@@ -85,10 +85,19 @@ function App() {
         lastSpeech.user = user;
         delete lastSpeech.new;
         const newSpeechObj = await speechesAPI.create(lastSpeech);
-
         setSpeech([...fullSpeech, newSpeechObj]);
       }
+      if (document.getElementById('dialogue')) {
+        document.getElementById('dialogue').scrollTop =
+          document.getElementById('dialogue').scrollHeight;
+      }
     }, 1500);
+  }
+
+  function handleLanguageSwap() {
+    let tempInputLanguage = inputLanguage;
+    setInputLanguage(outputLanguage);
+    setOutputLanguage(tempInputLanguage);
   }
 
   return (
@@ -111,6 +120,7 @@ function App() {
                   outputLanguage={outputLanguage}
                   buttonState={buttonState}
                   languageCodes={languageCodes}
+                  handleLanguageSwap={handleLanguageSwap}
                 />
               }
             />

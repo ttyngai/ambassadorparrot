@@ -12,6 +12,7 @@ export default function TranslatePage({
   setInputLanguage,
   outputLanguage,
   setOutputLanguage,
+  handleLanguageSwap,
   buttonState,
   languageCodes,
   flagCode,
@@ -34,7 +35,9 @@ export default function TranslatePage({
             </option>
           ))}
         </select>
-        &nbsp;&nbsp;➡ &nbsp;
+        <span className='swapArrow' onClick={handleLanguageSwap}>
+          &nbsp;&nbsp;⇆&nbsp;&nbsp;
+        </span>
         <select
           className='languageSelect'
           onChange={(evt) => setOutputLanguage(evt.target.value)}
