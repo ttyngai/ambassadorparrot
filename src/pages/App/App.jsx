@@ -41,6 +41,7 @@ function App() {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     window.speechSynthesis.getVoices();
+    // FOr iOS first time activation
     let hasEnabledVoice = false;
     document.addEventListener('click', () => {
       if (hasEnabledVoice) {
