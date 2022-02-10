@@ -33,9 +33,9 @@
 .starButton {
   font-size: 25px;
   float: right;
-  color: rgba(255, 255, 0, 0.226);
-  margin-right: 3px;
-  margin-top: 12px;
+  color: rgba(255, 255, 0, 0.11);
+  margin-right: 4px;
+  /* margin-top: 2px; */
   z-index: 2;
 }
 .starButton:hover {
@@ -44,7 +44,6 @@
 }
 
 .buttonStarred {
-  transform: scale(1.1);
   color: yellow;
 }
 
@@ -52,8 +51,8 @@
   font-size: 22px;
   float: right;
   color: rgba(255, 0, 0, 0.342);
-  margin-right: 3px;
-  margin-top: 15px;
+  margin-right: 4px;
+  margin-top: 3px;
   z-index: 2;
 }
 
