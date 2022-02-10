@@ -65,10 +65,7 @@ export default function EachSpeech({
           </span>
 
           {eachSpeech.isStarred ? (
-            <span
-              className='starButton buttonStarred'
-              onClick={handleStarSpeech}
-            >
+            <span className='buttonStarred' onClick={handleStarSpeech}>
               ★
             </span>
           ) : (
