@@ -35,6 +35,7 @@ function App() {
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
 
+  // Startup of recognition/voice modules
   useEffect(function () {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -43,7 +44,7 @@ function App() {
 
   function handleStart() {
     setButtonState(false);
-    const recognition = new window.SpeechRecognition({});
+    const recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
     recognition.interimResults = true;
     recognition.continuous = true;
@@ -53,7 +54,7 @@ function App() {
       for (let i = 0; i < e.results.length; i++) {
         concat.inputText += e.results[i][0].transcript;
       }
-      // Uppercase
+      // Uppercase First letter
       concat.inputText =
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
       concat.inputLanguage = inputLanguage;
@@ -65,7 +66,7 @@ function App() {
           document.getElementById('dialogue').scrollHeight;
       }
     };
-    // Include called function as state, for invoking later after state change
+    // Include the called function as a state, for invoking later even after state change
     setRecognition(recognition);
     recognition.start();
   }
@@ -104,16 +105,6 @@ function App() {
     setInputLanguage(outputLanguage);
     setOutputLanguage(tempInputLanguage);
   }
-
-  useEffect(function () {
-    async function initSpeeches() {
-      console.log('lets get');
-      const speeches = await speechesAPI.getSpeech();
-      console.log('speeches got in jsx', speeches);
-    }
-
-    initSpeeches();
-  }, []);
 
   return (
     <main className='App'>

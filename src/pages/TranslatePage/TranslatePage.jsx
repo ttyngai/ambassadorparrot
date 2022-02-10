@@ -1,8 +1,9 @@
-import SpeechContainer from '../../components/SpeechContainer/SpeechContainer';
+import EachSpeech from '../../components/EachSpeech/EachSpeech';
+import { useState, useEffect } from 'react';
 import './TranslatePage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
-
+import * as speechesAPI from '../../utilities/speeches-api';
 export default function TranslatePage({
   user,
   speech,
@@ -21,6 +22,16 @@ export default function TranslatePage({
   function handleSetInputLanguage(input) {
     setInputLanguage(input);
   }
+
+  useEffect(function () {
+    async function initSpeeches() {
+      const speeches = await speechesAPI.getSpeech();
+      setSpeech(speeches);
+    }
+
+    initSpeeches();
+  }, []);
+
   return (
     <>
       <br />
@@ -53,13 +64,13 @@ export default function TranslatePage({
         <div className='dialogueFadeBottom'>
           <div
             className={
-              speech.length > 4 ? 'dialogue dialogueFadeTop' : 'dialogue'
+              speech.length > 2 ? 'dialogue dialogueFadeTop' : 'dialogue'
             }
             id='dialogue'
           >
             {speech[0] ? (
               speech.map((s, idx) => (
-                <SpeechContainer
+                <EachSpeech
                   user={user}
                   eachSpeech={s}
                   speech={speech}

@@ -20,8 +20,6 @@ async function star(req, res) {
 }
 
 async function getSpeech(req, res) {
-  console.log('in controller');
-  const speeches = Speech.find({ user: req.user });
-  console.log('finding the speech in mongo', speeches);
+  let speeches = await Speech.find({ user: req.user });
   res.json(speeches);
 }
