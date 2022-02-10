@@ -41,13 +41,6 @@ function App() {
     window.speechSynthesis.getVoices();
   }, []);
 
-  useEffect(function () {
-    if (document.getElementById('dialogue')) {
-      document.getElementById('dialogue').scrollTop =
-        document.getElementById('dialogue').scrollHeight;
-    }
-  });
-
   function handleStart() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition({});
@@ -67,6 +60,10 @@ function App() {
       concat.timeCreated = new Date();
       concat.new = true;
       setSpeech([...speech, concat]);
+      if (document.getElementById('dialogue')) {
+        document.getElementById('dialogue').scrollTop =
+          document.getElementById('dialogue').scrollHeight;
+      }
     };
     // Include called function as state, for invoking later after state change
     setRecognition(recognition);

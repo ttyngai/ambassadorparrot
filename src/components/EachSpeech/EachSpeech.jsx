@@ -12,13 +12,6 @@ export default function EachSpeech({
   languageCodes,
   outputLanguage,
 }) {
-  // to darken old dialogues(Not used)
-  // if (length >= 0) {
-  //   nameOfClass += ` focus`;
-  // }
-
-  // const [dateTime, setDateTime] = useState('');
-
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
   languageCodes.forEach(function (c) {
@@ -40,7 +33,6 @@ export default function EachSpeech({
 
   async function handleSaveSpeech() {
     const starredSpeech = await speechesAPI.star(eachSpeech);
-
     let speechCopy = [...speech];
     let starredSpeechArray = speechCopy.map(function (s) {
       if (s._id == starredSpeech._id) {
@@ -59,7 +51,6 @@ export default function EachSpeech({
         }
         onClick={handleSaveSpeech}
       >
-        {' '}
         ★
       </div>
       <div className='speechDate'>
