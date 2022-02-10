@@ -17,16 +17,21 @@ function NavBar({ user, setUser }) {
       </Link>
       &nbsp;&nbsp;
       {user ? (
-        <Link className='navButton' to='/favourites'>
-          Favourites
-        </Link>
+        <span>
+          <Link className='navButton' to='/favourites'>
+            Favourites
+          </Link>
+          &nbsp;&nbsp;
+          <Link className='navButton' onClick={handlelogOut} to=''>
+            Log Out
+          </Link>
+        </span>
       ) : (
-        ''
+        <Link className='navButton' to='/login'>
+          Login · Signup
+        </Link>
       )}
       &nbsp;&nbsp;
-      <Link className='navButton' onClick={handlelogOut} to=''>
-        Log Out
-      </Link>
       {/* <span>LoggedIn: {user.name}</span> */}
     </nav>
   );

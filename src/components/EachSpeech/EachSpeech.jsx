@@ -5,6 +5,7 @@ import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 import { useState, useEffect } from 'react';
 export default function EachSpeech({
+  user,
   eachSpeech,
   speech,
   setSpeech,
@@ -45,14 +46,18 @@ export default function EachSpeech({
 
   return (
     <div className='eachSpeech'>
-      <div
-        className={
-          eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
-        }
-        onClick={handleSaveSpeech}
-      >
-        ★
-      </div>
+      {user && eachSpeech._id ? (
+        <div
+          className={
+            eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
+          }
+          onClick={handleSaveSpeech}
+        >
+          ★
+        </div>
+      ) : (
+        ''
+      )}
       <div className='speechDate'>
         {typeof eachSpeech.timeCreated == 'string'
           ? new Date(eachSpeech.timeCreated).toLocaleString()

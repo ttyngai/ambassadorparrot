@@ -15,7 +15,6 @@ export function logOut() {
 
 export async function login(credentials) {
   const token = await usersAPI.login(credentials);
-
   localStorage.setItem('token', token);
   return getUser();
 }

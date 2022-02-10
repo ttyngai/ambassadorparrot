@@ -2,6 +2,7 @@ import './SpeechContainer.css';
 import EachSpeech from '../EachSpeech/EachSpeech';
 
 export default function SpeechContainer({
+  user,
   eachSpeech,
   speech,
   setSpeech,
@@ -11,11 +12,11 @@ export default function SpeechContainer({
   flagCode,
   inputLanguage,
   outputLanguage,
-
   languageCodes,
 }) {
   return (
     <EachSpeech
+      user={user}
       eachSpeech={eachSpeech}
       speech={speech}
       setSpeech={setSpeech}

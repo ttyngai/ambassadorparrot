@@ -84,7 +84,12 @@ function App() {
         lastSpeech.outputLanguage = outputLanguage;
         lastSpeech.user = user;
         delete lastSpeech.new;
-        const newSpeechObj = await speechesAPI.create(lastSpeech);
+        let newSpeechObj;
+        if (user) {
+          newSpeechObj = await speechesAPI.create(lastSpeech);
+        } else {
+          newSpeechObj = lastSpeech;
+        }
         setSpeech([...fullSpeech, newSpeechObj]);
       }
       if (document.getElementById('dialogue')) {
@@ -102,50 +107,48 @@ function App() {
 
   return (
     <main className='App'>
-      {user ? (
-        <>
-          <NavBar user={user} setUser={setUser} />
-          <Routes>
-            <Route
-              path='/translate'
-              element={
-                <TranslatePage
-                  speech={speech}
-                  setSpeech={setSpeech}
-                  handleStart={handleStart}
-                  handleStop={handleStop}
-                  setInputLanguage={setInputLanguage}
-                  setOutputLanguage={setOutputLanguage}
-                  inputLanguage={inputLanguage}
-                  outputLanguage={outputLanguage}
-                  buttonState={buttonState}
-                  languageCodes={languageCodes}
-                  handleLanguageSwap={handleLanguageSwap}
-                />
-              }
-            />
-            <Route
-              path='/favourites'
-              element={
-                <FavouritePage
-                  speech={speech}
-                  setSpeech={setSpeech}
-                  handleStart={handleStart}
-                  handleStop={handleStop}
-                  setInputLanguage={setInputLanguage}
-                  setOutputLanguage={setOutputLanguage}
-                  inputLanguage={inputLanguage}
-                  outputLanguage={outputLanguage}
-                  buttonState={buttonState}
-                  languageCodes={languageCodes}
-                />
-              }
-            />
-          </Routes>
-        </>
-      ) : (
-        <AuthPage setUser={setUser} />
-      )}
+      <>
+        <NavBar user={user} setUser={setUser} />
+        <Routes>
+          <Route
+            path='/translate'
+            element={
+              <TranslatePage
+                user={user}
+                speech={speech}
+                setSpeech={setSpeech}
+                handleStart={handleStart}
+                handleStop={handleStop}
+                setInputLanguage={setInputLanguage}
+                setOutputLanguage={setOutputLanguage}
+                inputLanguage={inputLanguage}
+                outputLanguage={outputLanguage}
+                buttonState={buttonState}
+                languageCodes={languageCodes}
+                handleLanguageSwap={handleLanguageSwap}
+              />
+            }
+          />
+          <Route
+            path='/favourites'
+            element={
+              <FavouritePage
+                speech={speech}
+                setSpeech={setSpeech}
+                handleStart={handleStart}
+                handleStop={handleStop}
+                setInputLanguage={setInputLanguage}
+                setOutputLanguage={setOutputLanguage}
+                inputLanguage={inputLanguage}
+                outputLanguage={outputLanguage}
+                buttonState={buttonState}
+                languageCodes={languageCodes}
+              />
+            }
+          />
+          <Route path='/login' element={<AuthPage setUser={setUser} />} />
+        </Routes>
+      </>
     </main>
   );
 }

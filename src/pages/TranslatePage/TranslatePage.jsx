@@ -4,6 +4,7 @@ import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
 
 export default function TranslatePage({
+  user,
   speech,
   setSpeech,
   handleStart,
@@ -59,6 +60,7 @@ export default function TranslatePage({
             {speech[0] ? (
               speech.map((s, idx) => (
                 <SpeechContainer
+                  user={user}
                   eachSpeech={s}
                   speech={speech}
                   setSpeech={setSpeech}
