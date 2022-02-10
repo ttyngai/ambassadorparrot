@@ -39,7 +39,7 @@
   /* margin-top: 2px; */
   z-index: 2;
 }
-.starButton:hover {
+/* .starButton:hover {
   animation: starHover linear 0.1s forwards;
 }
 
@@ -51,19 +51,14 @@
   100% {
     color: yellow;
   }
-}
+} */
 
 .buttonStarred {
   color: yellow;
-  font-size: 25px;
-  float: right;
-  margin-right: 4px;
-  /* margin-top: 2px; */
-  z-index: 2;
 }
 
 .deleteButton {
-  color: rgba(255, 0, 0, 0.144);
+  color: rgba(231, 0, 0, 0.548);
   font-size: 22px;
   float: right;
   margin-right: 4px;
