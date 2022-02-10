@@ -3,7 +3,7 @@ import speak from '../../utilities/speak';
 import * as speechesAPI from '../../utilities/speeches-api';
 import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
-
+import { useState, useEffect } from 'react';
 export default function EachSpeech({
   eachSpeech,
   speech,
@@ -16,6 +16,8 @@ export default function EachSpeech({
   // if (length >= 0) {
   //   nameOfClass += ` focus`;
   // }
+
+  // const [dateTime, setDateTime] = useState('');
 
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
@@ -35,6 +37,7 @@ export default function EachSpeech({
     const lang = voiceSettings(eachSpeech.outputLanguage);
     speak(eachSpeech.outputText, lang);
   }
+
   async function handleSaveSpeech() {
     const starredSpeech = await speechesAPI.star(eachSpeech);
 
@@ -47,9 +50,9 @@ export default function EachSpeech({
     });
     setSpeech(starredSpeechArray);
   }
+
   return (
     <div className='eachSpeech'>
-      {/* <div className='speakerButton'>🔈</div> */}
       <div
         className={
           eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
@@ -60,7 +63,9 @@ export default function EachSpeech({
         ★
       </div>
       <div className='speechDate'>
-        {eachSpeech.timeCreated ? eachSpeech.timeCreated.toLocaleString() : ''}
+        {typeof eachSpeech.timeCreated == 'string'
+          ? new Date(eachSpeech.timeCreated).toLocaleString()
+          : eachSpeech.timeCreated.toLocaleString()}
       </div>
       <div onClick={handleSayAgain}>
         <div className='input'>
