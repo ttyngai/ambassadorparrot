@@ -25,5 +25,7 @@ async function getSpeech(req, res) {
   res.json(speeches);
 }
 async function deleteSpeech(req, res) {
-  console.log('delete controller');
+  let speech = await Speech.findById(req.body._id);
+  speech.remove();
+  res.json(speech);
 }

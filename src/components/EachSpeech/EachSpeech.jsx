@@ -3,12 +3,12 @@ import speak from '../../utilities/speak';
 import * as speechesAPI from '../../utilities/speeches-api';
 import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
-import { useState, useEffect } from 'react';
 export default function EachSpeech({
   user,
   eachSpeech,
   speech,
   setSpeech,
+  // handleDeleteSpeech,
   empty,
   languageCodes,
   outputLanguage,
@@ -45,13 +45,20 @@ export default function EachSpeech({
   }
 
   async function handleDeleteSpeech() {
-    console.log('delete', eachSpeech);
     const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
+    let speechCopy = [...speech];
+    let deletedSpeechArray = [];
+    speechCopy.forEach(function (s) {
+      if (s._id != deletedSpeech._id) {
+        deletedSpeechArray.push(s);
+      }
+    });
+    setSpeech(deletedSpeechArray);
   }
 
-  return (
+  return eachSpeech ? (
     <div className='eachSpeech'>
-      {user && eachSpeech._id ? (
+      {user && eachSpeech && eachSpeech._id ? (
         <>
           <span className='deleteButton' onClick={handleDeleteSpeech}>
             ✖
@@ -120,5 +127,7 @@ export default function EachSpeech({
         </div>
       </div>
     </div>
+  ) : (
+    ''
   );
 }
