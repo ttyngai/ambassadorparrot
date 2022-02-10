@@ -44,17 +44,26 @@ export default function EachSpeech({
     setSpeech(starredSpeechArray);
   }
 
+  async function handleDeleteSpeech() {
+    console.log('delete', eachSpeech);
+  }
+
   return (
     <div className='eachSpeech'>
       {user && eachSpeech._id ? (
-        <div
-          className={
-            eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
-          }
-          onClick={handleStarSpeech}
-        >
-          ★
-        </div>
+        <>
+          <span className='deleteButton' onClick={handleDeleteSpeech}>
+            ✖
+          </span>
+          <span
+            className={
+              eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
+            }
+            onClick={handleStarSpeech}
+          >
+            ★
+          </span>
+        </>
       ) : (
         ''
       )}

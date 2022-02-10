@@ -34,8 +34,8 @@
   font-size: 25px;
   float: right;
   color: grey;
-  margin-right: 7px;
-  margin-top: 18px;
+  margin-right: 2px;
+  margin-top: 12px;
   z-index: 2;
 }
 .starButton:hover {
@@ -46,6 +46,19 @@
 .buttonStarred {
   transform: scale(1.2);
   color: yellow;
+}
+
+.deleteButton {
+  font-size: 22px;
+  float: right;
+  color: rgb(168, 3, 3);
+  margin-right: 2px;
+  margin-top: 15px;
+  z-index: 2;
+}
+
+.deleteButton:hover {
+  transform: scale(1.2);
 }
 
 .textBubble {
