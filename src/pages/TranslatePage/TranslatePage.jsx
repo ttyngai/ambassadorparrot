@@ -69,7 +69,7 @@ export default function TranslatePage({
               </option>
             ))}
           </select>
-          <span className='deleteAllButton'>✖</span>
+          {/* <span className='deleteAllButton'>✖</span> */}
         </span>
         <div className='dialogueFadeBottom'>
           <div

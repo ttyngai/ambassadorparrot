@@ -37,6 +37,7 @@ function App() {
 
   // Startup of recognition/voice modules
   useEffect(function () {
+    window.speechSynthesis.cancel();
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     window.speechSynthesis.getVoices();
