@@ -36,7 +36,8 @@
   color: rgba(255, 255, 0, 0.24);
   font-size: 19px;
   float: right;
-  margin-right: 6px;
+  padding: 5px 4px;
+  /* margin-right: 6px; */
   /* margin-top: 2px; */
   z-index: 2;
 }
@@ -62,8 +63,9 @@
   color: rgba(231, 0, 0, 0.548);
   font-size: 18px;
   float: right;
-  margin-right: 6px;
-  margin-top: 3px;
+  padding: 8px 4px;
+  /* margin-right: 6px;
+  margin-top: 3px; */
   z-index: 2;
 }
 
