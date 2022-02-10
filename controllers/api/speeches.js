@@ -4,6 +4,7 @@ module.exports = {
   create,
   star,
   getSpeech,
+  deleteSpeech,
 };
 
 async function create(req, res) {
@@ -22,4 +23,7 @@ async function star(req, res) {
 async function getSpeech(req, res) {
   let speeches = await Speech.find({ user: req.user });
   res.json(speeches);
+}
+async function deleteSpeech(req, res) {
+  console.log('delete controller');
 }

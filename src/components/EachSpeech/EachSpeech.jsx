@@ -46,6 +46,7 @@ export default function EachSpeech({
 
   async function handleDeleteSpeech() {
     console.log('delete', eachSpeech);
+    const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
   }
 
   return (

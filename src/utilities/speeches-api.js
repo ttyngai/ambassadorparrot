@@ -12,3 +12,6 @@ export function star(speech) {
 export function getSpeech() {
   return sendRequest(`${BASE_URL}/getSpeeches`);
 }
+export function deleteSpeech(speech) {
+  return sendRequest(`${BASE_URL}/deleteSpeech`, 'DELETE', speech);
+}
