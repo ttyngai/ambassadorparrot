@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { useNavigate } from 'react-router-dom';

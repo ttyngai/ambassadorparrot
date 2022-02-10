@@ -83,36 +83,44 @@ body {
 }
 
 .form-container {
-  padding: 3vmin;
-  background-color: var(--tan-1);
-  border: 0.1vmin solid var(--tan-3);
+  margin: auto;
+  width: 80%;
+  min-width: 300px;
+  /* min-height: 100px; */
+  padding: 5px;
+  background-color: transparent;
+  /* border: 0.1vmin solid var(--tan-3); */
   border-radius: 1vmin;
 }
 
 p.error-message {
+  font-size: 15px;
   color: var(--orange);
   text-align: center;
+  margin: 0;
+  /* position: fixed; */
 }
 
 form {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 1.25vmin;
-  color: var(--text-light);
+  color: white;
 }
 
 label {
-  font-size: 2vmin;
+  font-size: 15px;
   display: flex;
   align-items: center;
 }
 
 input {
+  background-color: transparent;
   padding: 1vmin;
-  font-size: 2vmin;
-  border: 0.1vmin solid var(--tan-3);
+  font-size: 15px;
+  border: 0.1vmin solid grey;
   border-radius: 0.5vmin;
-  color: var(--text-dark);
+  color: white;
   background-image: none !important; /* prevent lastpass */
   outline: none;
 }
@@ -123,15 +131,16 @@ input:focus {
 
 button,
 a.button {
-  margin: 1vmin;
-  padding: 1vmin;
+  width: 75%;
+  margin: auto;
+  padding: 5px;
   color: var(--white);
   background-color: var(--orange);
-  font-size: 2vmin;
+  font-size: 15px;
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  border: 0.1vmin solid var(--tan-2);
+  border: transparent;
   border-radius: 0.5vmin;
   outline: none;
   cursor: pointer;
@@ -150,10 +159,10 @@ button.btn-xs {
 button:disabled,
 form:invalid button[type='submit'] {
   cursor: not-allowed;
-  background-color: var(--tan-4);
+  background-color: grey;
 }
 
 button[type='submit'] {
   grid-column: span 2;
-  margin: 1vmin 0 0;
+  margin: auto;
 }

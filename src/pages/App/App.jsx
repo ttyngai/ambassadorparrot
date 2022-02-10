@@ -125,31 +125,29 @@ function App() {
     <main className='App'>
       <>
         <NavBar user={user} setUser={setUser} setSpeech={setSpeech} />
-        <br />
-        <div className='speechContainer'>
-          <Routes>
-            <Route
-              path='/*'
-              element={
-                <ContainerPage
-                  user={user}
-                  speech={speech}
-                  setSpeech={setSpeech}
-                  handleStart={handleStart}
-                  handleStop={handleStop}
-                  setInputLanguage={setInputLanguage}
-                  setOutputLanguage={setOutputLanguage}
-                  inputLanguage={inputLanguage}
-                  outputLanguage={outputLanguage}
-                  buttonState={buttonState}
-                  languageCodes={languageCodes}
-                  handleLanguageSwap={handleLanguageSwap}
-                />
-              }
-            />
-            <Route path='/login' element={<AuthPage setUser={setUser} />} />)
-          </Routes>
-        </div>
+
+        <Routes>
+          <Route
+            path='/*'
+            element={
+              <ContainerPage
+                user={user}
+                speech={speech}
+                setSpeech={setSpeech}
+                handleStart={handleStart}
+                handleStop={handleStop}
+                setInputLanguage={setInputLanguage}
+                setOutputLanguage={setOutputLanguage}
+                inputLanguage={inputLanguage}
+                outputLanguage={outputLanguage}
+                buttonState={buttonState}
+                languageCodes={languageCodes}
+                handleLanguageSwap={handleLanguageSwap}
+              />
+            }
+          />
+          <Route path='/login' element={<AuthPage setUser={setUser} />} />)
+        </Routes>
       </>
     </main>
   );

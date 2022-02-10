@@ -1,0 +1,9 @@
+.authContainer {
+  margin: auto;
+  max-width: 800px;
+}
+
+.loginSignupTitle {
+  font-size: 25px;
+  margin: auto;
+}

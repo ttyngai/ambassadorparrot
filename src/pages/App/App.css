@@ -1,16 +1,15 @@
 .App {
   text-align: center;
 }
-
-.speechContainer {
+.bracketContainer {
   color: white;
   border-left: 2px solid grey;
   border-right: 2px solid grey;
   border-radius: 30px;
   width: 99vw;
   max-width: 800px;
-  height: calc(90vh - 150px);
-  min-height: 200px;
+  height: 100%;
+  min-height: 300px;
   margin: auto;
   padding: 15px 5px;
 }
