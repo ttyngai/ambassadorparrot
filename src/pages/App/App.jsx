@@ -22,7 +22,7 @@ function App() {
     { value: 'es', label: 'Español', flagCode: 'ES' },
     { value: 'fr', label: 'Français', flagCode: 'FR' },
     { value: 'hi', label: 'हिन्दी', flagCode: 'IN' },
-    { value: 'id', label: 'Bahasa Indonesia', flagCode: 'ID' },
+    { value: 'id', label: 'Indonesia', flagCode: 'ID' },
     { value: 'it', label: 'Italiano', flagCode: 'IT' },
     { value: 'ja', label: '日本語', flagCode: 'JP' },
     { value: 'ko', label: '한국어', flagCode: 'KR' },

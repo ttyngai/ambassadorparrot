@@ -56,7 +56,7 @@ export default function TranslatePage({
             ))}
           </select>
           <span className='swapArrow' onClick={handleLanguageSwap}>
-            &nbsp;&nbsp;⇆&nbsp;&nbsp;
+            ⇆
           </span>
           <select
             className='languageSelect'
