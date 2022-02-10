@@ -90,7 +90,7 @@ function App() {
     setButtonState('loading');
     setTimeout(async function () {
       setButtonState(true);
-      if (speech[speech.length - 1].new) {
+      if (speech[speech.length - 1] && speech[speech.length - 1].new) {
         let fullSpeech, lastSpeech;
         const speechReturn = await translate(speech, outputLanguage, 'recent');
         fullSpeech = [...speech];
@@ -125,7 +125,7 @@ function App() {
   return (
     <main className='App'>
       <>
-        <NavBar user={user} setUser={setUser} />
+        <NavBar user={user} setUser={setUser} setSpeech={setSpeech} />
 
         <Routes>
           <Route
