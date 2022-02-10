@@ -69,11 +69,11 @@ export default function EachSpeech({
               className='starButton buttonStarred'
               onClick={handleStarSpeech}
             >
-              ★
+              .★
             </span>
           ) : (
             <span className='starButton' onClick={handleStarSpeech}>
-              ★
+              ★.
             </span>
           )}
         </>
