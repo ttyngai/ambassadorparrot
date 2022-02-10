@@ -61,6 +61,10 @@
   transform: scale(1.2);
   color: red;
 }
+.deleteButton:active {
+  transform: scale(1.2);
+  color: red;
+}
 
 .textBubble {
   border: 1px solid transparent;

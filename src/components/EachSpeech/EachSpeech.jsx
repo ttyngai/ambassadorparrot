@@ -63,14 +63,19 @@ export default function EachSpeech({
           <span className='deleteButton' onClick={handleDeleteSpeech}>
             ✖
           </span>
-          <span
-            className={
-              eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
-            }
-            onClick={handleStarSpeech}
-          >
-            ★
-          </span>
+
+          {eachSpeech.isStarred ? (
+            <span
+              className='starButton buttonStarred'
+              onClick={handleStarSpeech}
+            >
+              ★
+            </span>
+          ) : (
+            <span className='starButton' onClick={handleStarSpeech}>
+              ★
+            </span>
+          )}
         </>
       ) : (
         ''
