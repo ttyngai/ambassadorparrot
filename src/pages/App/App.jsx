@@ -41,6 +41,16 @@ function App() {
     window.SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     window.speechSynthesis.getVoices();
+    let hasEnabledVoice = false;
+    document.addEventListener('click', () => {
+      if (hasEnabledVoice) {
+        return;
+      }
+      const lecture = new SpeechSynthesisUtterance('hello');
+      lecture.volume = 0;
+      speechSynthesis.speak(lecture);
+      hasEnabledVoice = true;
+    });
   }, []);
 
   function handleStart() {

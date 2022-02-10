@@ -84,7 +84,7 @@
 
 .dialogue {
   overflow: scroll;
-  height: calc(90vh - 215px);
+  height: calc(85vh - 215px);
 }
 .dialogueFadeTop {
   mask-image: linear-gradient(0deg, #000 90%, transparent);
