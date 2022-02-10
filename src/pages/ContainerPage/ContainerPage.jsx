@@ -25,8 +25,11 @@ export default function TranslatePage({
 
   useEffect(function () {
     async function initSpeeches() {
-      const speeches = await speechesAPI.getSpeech();
-      setSpeech(speeches);
+      if (user) {
+        let speechCopy = [...speech];
+        const speeches = await speechesAPI.getSpeech();
+        setSpeech(speeches.concat(speechCopy));
+      }
     }
     initSpeeches();
     setTimeout(function () {
