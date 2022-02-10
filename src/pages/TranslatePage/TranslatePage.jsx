@@ -43,31 +43,33 @@ export default function TranslatePage({
     <>
       <br />
       <div className='speechContainer'>
-        <select
-          className='languageSelect'
-          onChange={(evt) => handleSetInputLanguage(evt.target.value)}
-          value={inputLanguage}
-        >
-          {languageCodes.map((option, idx) => (
-            <option key={idx} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <span className='swapArrow' onClick={handleLanguageSwap}>
-          &nbsp;&nbsp;⇆&nbsp;&nbsp;
+        <span className='selectorContainer'>
+          <select
+            className='languageSelect'
+            onChange={(evt) => handleSetInputLanguage(evt.target.value)}
+            value={inputLanguage}
+          >
+            {languageCodes.map((option, idx) => (
+              <option key={idx} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <span className='swapArrow' onClick={handleLanguageSwap}>
+            &nbsp;&nbsp;⇆&nbsp;&nbsp;
+          </span>
+          <select
+            className='languageSelect'
+            onChange={(evt) => setOutputLanguage(evt.target.value)}
+            value={outputLanguage}
+          >
+            {languageCodes.map((option, idx) => (
+              <option key={idx} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </span>
-        <select
-          className='languageSelect'
-          onChange={(evt) => setOutputLanguage(evt.target.value)}
-          value={outputLanguage}
-        >
-          {languageCodes.map((option, idx) => (
-            <option key={idx} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
         <div className='dialogueFadeBottom'>
           <div
             className={
