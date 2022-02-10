@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import { getUser } from '../../utilities/users-service';
 import translate from '../../utilities/translate';
 import { Routes, Route } from 'react-router-dom';
-import TranslatePage from '../TranslatePage/TranslatePage';
+import ContainerPage from '../ContainerPage/ContainerPage';
 import AuthPage from '../AuthPage/AuthPage';
-
 import NavBar from '../../components/NavBar/NavBar';
 import * as speechesAPI from '../../utilities/speeches-api';
 
@@ -126,14 +125,13 @@ function App() {
     <main className='App'>
       <>
         <NavBar user={user} setUser={setUser} setSpeech={setSpeech} />
-
         <br />
         <div className='speechContainer'>
           <Routes>
             <Route
-              path='/'
+              path='/*'
               element={
-                <TranslatePage
+                <ContainerPage
                   user={user}
                   speech={speech}
                   setSpeech={setSpeech}

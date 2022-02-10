@@ -1,6 +1,6 @@
 import EachSpeech from '../../components/EachSpeech/EachSpeech';
 import { useState, useEffect } from 'react';
-import './TranslatePage.css';
+import './ContainerPage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
 import * as speechesAPI from '../../utilities/speeches-api';
