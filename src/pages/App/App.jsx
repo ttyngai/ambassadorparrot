@@ -131,18 +131,24 @@ function App() {
       });
       setSpeech(favSpeech);
     }
-    setTimeout(function () {
-      scrollToBottom();
-    }, 500);
+    scrollToBottom();
   }
 
   function scrollToBottom() {
     if (document.getElementById('dialogue')) {
       document.getElementById('dialogue').scrollTo({
-        top: document.getElementById('dialogue').scrollHeight,
-        behavior: 'smooth',
+        top: 0,
       });
     }
+
+    setTimeout(function () {
+      if (document.getElementById('dialogue')) {
+        document.getElementById('dialogue').scrollTo({
+          top: document.getElementById('dialogue').scrollHeight,
+          behavior: 'smooth',
+        });
+      }
+    }, 500);
   }
 
   return (
@@ -154,7 +160,6 @@ function App() {
           sampleConvo={sampleConvo}
           handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
-          scrollToBottom={scrollToBottom}
           toggleFav={toggleFav}
           speechPreFav={speechPreFav}
         />

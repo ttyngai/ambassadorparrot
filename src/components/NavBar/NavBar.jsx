@@ -21,7 +21,6 @@ function NavBar({
   }
 
   function handleTranslateClick() {
-    scrollToBottom();
     if (speechPreFav.length != 0) {
       toggleFav();
     }
