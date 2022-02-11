@@ -42,7 +42,8 @@ function App() {
   function handleStart() {
     setButtonState(false);
     let recognition = new window.SpeechRecognition();
-    console.log(inputLanguage);
+
+    recognition.lang = inputLanguage;
     if (
       (navigator.userAgent.includes('Windows') ||
         navigator.userAgent.includes('Win64')) &&
@@ -50,7 +51,6 @@ function App() {
     ) {
       recognition.lang = 'zh-yue';
     }
-    recognition.lang = inputLanguage;
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {
