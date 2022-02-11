@@ -14,7 +14,7 @@ function App() {
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('zh-HK');
+  const [outputLanguage, setOutputLanguage] = useState('zh-yue');
   const languageCodes = [
     { value: 'en', label: 'English(US)', flagCode: 'US' },
     { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
@@ -31,7 +31,7 @@ function App() {
     { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
     { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
     // for hong kong, zh-yue needs to be yue for desktop, zh-HK for apple
-    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
+    { value: 'zh-yue', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
   const sampleConvo = [
