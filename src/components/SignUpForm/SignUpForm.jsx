@@ -20,13 +20,17 @@ export default function SignUpForm({ setUser }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const formData = [...form];
-      delete formData.error;
+      const formData = { ...form };
+      // delete formData.error;
       delete formData.confirm;
+      console.log('the user', formData);
       const user = await signUp(formData);
+      console.log('the user', user);
       if (user) {
         setUser(user);
         navigate('/');
+      } else {
+        setError('Sign Up Failed - Try Again');
       }
     } catch {
       setError('Sign Up Failed - Try Again');
