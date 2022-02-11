@@ -29,7 +29,7 @@ const sampleConvo = [
   },
   {
     inputText:
-      'Press the button below to start. Press the again to hear the translation!',
+      'Press the button below to start. Press it again to hear the translation!',
     inputLanguage: 'en-GB',
     outputText:
       '下のボタンを押して開始します。もう一度押すと翻訳が聞こえます！',

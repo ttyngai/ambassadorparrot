@@ -144,10 +144,15 @@
 }
 
 .swapArrow {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
+  color: grey;
   cursor: pointer;
   padding: 0 10px;
+}
+.swapArrow:hover {
+  color: yellow;
+  transform: scale(1.3);
 }
 
 ::-webkit-scrollbar {
