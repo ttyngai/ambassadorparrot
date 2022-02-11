@@ -7,6 +7,8 @@ export default async function translate(speech, targetLanguage, mostRecent) {
   }
   let translated;
   let lang = voiceSettings(targetLanguage);
+  console.log('before consuming, lang', lang);
+  console.log('before consuming, targetLanguage', targetLanguage);
 
   await fetch(
     'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
@@ -30,13 +32,15 @@ export default async function translate(speech, targetLanguage, mostRecent) {
     })
     .then(async (data) => {
       //replace &#39; in italian with proper '
-      console.log(data.data);
+      console.log('data', data.data.translations[0].translatedText);
       translated = data.data.translations[0].translatedText.replace(
         `&#39;`,
         "'"
       );
 
-      if (targetLanguage == 'zh-HK') lang.target = 'zh-HK';
+      if (targetLanguage == 'zh-yue') {
+        lang.target = 'zh-HK';
+      }
       speak(data.data.translations[0].translatedText, lang);
       return data.data.translations[0].translatedText;
     });

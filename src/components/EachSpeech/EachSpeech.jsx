@@ -73,7 +73,7 @@ export default function EachSpeech({
 
   return eachSpeech ? (
     <div className='eachSpeech'>
-      {eachSpeech.outputLanguage ? (
+      {eachSpeech.inputLanguage ? (
         <span
           className='deleteButton'
           onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}

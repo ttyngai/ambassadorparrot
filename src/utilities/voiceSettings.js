@@ -77,7 +77,7 @@ export default function voiceSettings(code) {
     };
   } else if (code == 'zh-yue') {
     setting = {
-      target: 'zh-yue',
+      target: 'zh-TW',
       voice: 22,
     };
   } else if (code == 'zh-TW') {

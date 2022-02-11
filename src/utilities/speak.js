@@ -280,6 +280,7 @@ export default function speak(text, lang) {
     // console.log('return', v.lang.includes(lang.target));
     return v.lang.includes(lang.target);
   });
+  console.log(lang.target);
   console.log(msg.voice);
   window.speechSynthesis.speak(msg);
 }
