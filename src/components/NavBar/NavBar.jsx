@@ -2,11 +2,18 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-function NavBar({ user, setUser, setSpeech, scrollToBottom }) {
+function NavBar({
+  user,
+  setUser,
+  setSpeech,
+  scrollToBottom,
+  handleStarterConvo,
+}) {
   function handlelogOut() {
     userService.logOut();
     setUser(null);
     setSpeech([]);
+    handleStarterConvo();
   }
 
   return (

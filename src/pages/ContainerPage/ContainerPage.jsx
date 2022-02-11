@@ -9,6 +9,7 @@ export default function TranslatePage({
   scrollToBottom,
   speech,
   setSpeech,
+  handleStarterConvo,
   handleStart,
   handleStop,
   inputLanguage,
@@ -43,6 +44,11 @@ export default function TranslatePage({
       }
     }
     initSpeeches();
+
+    if (!user) {
+      handleStarterConvo();
+    }
+
     setTimeout(function () {
       scrollToBottom();
     }, 1500);

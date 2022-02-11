@@ -11,7 +11,6 @@ import * as speechesAPI from '../../utilities/speeches-api';
 function App() {
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
-  const [sampling, setSampling] = useState(false);
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
@@ -82,10 +81,6 @@ function App() {
       speechSynthesis.speak(lecture);
       hasEnabledVoice = true;
     });
-    //Starter conversation
-    if (speech.length == 0) {
-      setSpeech(sampleConvo);
-    }
   }, []);
 
   function handleStart() {
@@ -145,6 +140,10 @@ function App() {
     }, 1500);
   }
 
+  function handleStarterConvo() {
+    setSpeech(sampleConvo);
+  }
+
   function handleLanguageSwap() {
     let tempInputLanguage = inputLanguage;
     setInputLanguage(outputLanguage);
@@ -158,12 +157,15 @@ function App() {
       });
     }
   }
+
   return (
     <main className='App'>
       <>
         <NavBar
           user={user}
           setUser={setUser}
+          sampleConvo={sampleConvo}
+          handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
           scrollToBottom={scrollToBottom}
         />
@@ -177,6 +179,7 @@ function App() {
                 scrollToBottom={scrollToBottom}
                 speech={speech}
                 setSpeech={setSpeech}
+                handleStarterConvo={handleStarterConvo}
                 handleStart={handleStart}
                 handleStop={handleStop}
                 setInputLanguage={setInputLanguage}
