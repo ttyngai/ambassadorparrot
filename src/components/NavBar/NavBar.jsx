@@ -1,5 +1,5 @@
 import './NavBar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
 function NavBar({
@@ -11,11 +11,15 @@ function NavBar({
   toggleFav,
   speechPreFav,
 }) {
+  const navigate = useNavigate();
+
   function handlelogOut() {
     userService.logOut();
     setUser(null);
     setSpeech([]);
-    handleStarterConvo();
+    setTimeout(function () {
+      navigate('/login');
+    }, 1000);
   }
 
   function handleTranslateClick() {

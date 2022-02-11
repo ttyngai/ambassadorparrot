@@ -151,7 +151,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
   height: 0px;
 }
 
@@ -163,6 +163,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0;
+  border-radius: 3px;
   background: #b0b0b0;
 }
