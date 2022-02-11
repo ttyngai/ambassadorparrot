@@ -131,7 +131,7 @@ a.button {
   margin: auto;
   padding: 5px 10px;
   color: var(--white);
-  background-color: rgb(145, 145, 20);
+  background-color: rgb(117, 117, 14);
   font-size: 15px;
   font-weight: bold;
   text-decoration: none;
@@ -140,6 +140,10 @@ a.button {
   border-radius: 0.5vmin;
   outline: none;
   cursor: pointer;
+}
+button:hover {
+  background-color: rgb(189, 189, 23);
+  color: black;
 }
 
 button.btn-sm {

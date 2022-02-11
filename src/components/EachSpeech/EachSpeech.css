@@ -5,6 +5,7 @@
   text-align: left;
   border-radius: 5px;
 }
+
 .eachSpeech:hover {
   transform: scale(1.005);
   background-color: rgba(255, 255, 0, 0.075);
@@ -33,11 +34,26 @@
 }
 
 .starButton {
-  color: rgba(255, 255, 0, 0.411);
+  color: rgba(255, 255, 0, 0.329);
   font-size: 20px;
   float: right;
-  padding-right: 6px;
+  padding-right: 8px;
   z-index: 2;
+}
+.starButton:hover {
+  animation: starHover 0.5s linear;
+}
+
+@keyframes starHover {
+  0% {
+    color: yellow;
+  }
+  50% {
+    color: rgba(0, 0, 0, 0.164);
+  }
+  100% {
+    color: rgba(255, 255, 0, 0.616);
+  }
 }
 
 .buttonStarred {
@@ -49,7 +65,7 @@
   font-weight: bold;
   font-size: 20px;
   float: right;
-  padding-right: 6px;
+  padding-right: 8px;
   z-index: 2;
 }
 
@@ -74,11 +90,13 @@
   color: black;
   background-color: #e9e9eb;
 }
+
 .outputTextBubble {
   text-align: right;
   color: white;
   background-color: #468cf7;
 }
+
 .outputTextBlink {
   animation: blink infinite 1s linear;
 }
