@@ -106,12 +106,7 @@ function App() {
         }
         setSpeech([...fullSpeech, newSpeechObj]);
       }
-      if (document.getElementById('dialogue')) {
-        document.getElementById('dialogue').scrollTo({
-          top: document.getElementById('dialogue').scrollHeight,
-          behavior: 'smooth',
-        });
-      }
+      scrollToBottom();
     }, 1500);
   }
 
@@ -120,11 +115,23 @@ function App() {
     setInputLanguage(outputLanguage);
     setOutputLanguage(tempInputLanguage);
   }
-
+  function scrollToBottom() {
+    if (document.getElementById('dialogue')) {
+      document.getElementById('dialogue').scrollTo({
+        top: document.getElementById('dialogue').scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }
   return (
     <main className='App'>
       <>
-        <NavBar user={user} setUser={setUser} setSpeech={setSpeech} />
+        <NavBar
+          user={user}
+          setUser={setUser}
+          setSpeech={setSpeech}
+          scrollToBottom={scrollToBottom}
+        />
 
         <Routes>
           <Route

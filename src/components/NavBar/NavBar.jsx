@@ -2,7 +2,7 @@ import './NavBar.css';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-function NavBar({ user, setUser, setSpeech }) {
+function NavBar({ user, setUser, setSpeech, scrollToBottom }) {
   function handlelogOut() {
     userService.logOut();
     setUser(null);
@@ -13,7 +13,7 @@ function NavBar({ user, setUser, setSpeech }) {
     <nav className='navBackground'>
       <span className='title'>&nbsp;&nbsp;PARROT&nbsp;🦜</span>
       <br />
-      <Link className='navButton' to='/'>
+      <Link className='navButton' to='/' onClick={scrollToBottom}>
         Translate
       </Link>
       &nbsp;&nbsp;
