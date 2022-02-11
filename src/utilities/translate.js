@@ -9,9 +9,10 @@ export default async function translate(speech, targetLanguage, mostRecent) {
   let lang = voice.voiceSettings(targetLanguage);
 
   // target:lang.target needs zh-yue
-
+  let taiwanSwap;
   if (targetLanguage == 'zh-HK') {
     lang.target = 'zh-TW';
+    taiwanSwap = true;
   }
 
   await fetch(
@@ -38,7 +39,7 @@ export default async function translate(speech, targetLanguage, mostRecent) {
       );
 
       // Change back to zh-HK from traditional TW
-      if (lang.target == 'zh-TW') {
+      if (lang.target == 'zh-TW' && taiwanSwap) {
         lang.target = 'zh-HK';
       }
       speak(data.data.translations[0].translatedText, lang);
