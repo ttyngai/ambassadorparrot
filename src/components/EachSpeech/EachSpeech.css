@@ -55,7 +55,8 @@
 
 .deleteButton {
   color: rgba(231, 0, 0, 0.548);
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 19px;
   float: right;
   padding: 8px 4px;
   z-index: 2;
