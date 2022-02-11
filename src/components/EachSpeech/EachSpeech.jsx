@@ -65,29 +65,37 @@ export default function EachSpeech({
 
   async function handleAddSpeech() {
     let speechCopy = [...speech];
+    eachSpeech.user = user;
     let speechAdded = await speechesAPI.create(eachSpeech);
-    speechAdded = speechCopy
-      .slice(0, index)
-      .concat([eachSpeech.concat(speechCopy.slice(index + 1))]);
-    setSpeech(speechAdded);
+    speechCopy[index] = speechAdded;
+    setSpeech(speechCopy);
   }
 
   return eachSpeech ? (
     <div className='eachSpeech'>
-      <span
-        className='deleteButton'
-        onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
-      >
-        ✖
-      </span>
-
-      {user || eachSpeech._id ? (
-        <span className='starButton buttonStarred' onClick={handleStarSpeech}>
+      {eachSpeech.outputLanguage ? (
+        <span
+          className='deleteButton'
+          onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
+        >
+          ✖
+        </span>
+      ) : (
+        ''
+      )}
+      {eachSpeech._id ? (
+        <span
+          className={
+            eachSpeech.isStarred ? 'starButton buttonStarred' : 'starButton'
+          }
+          onClick={handleStarSpeech}
+        >
           ★
         </span>
-      ) : true ? (
-        <span className='starButton' onClick={handleAddSpeech}>
+      ) : user && eachSpeech.outputLanguage ? (
+        <span className='addButton' onClick={handleAddSpeech}>
           +
+          {/* Need to fix where if you are the user, you dont want to see the plus sign */}
         </span>
       ) : (
         ''

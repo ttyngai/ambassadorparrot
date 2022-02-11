@@ -32,15 +32,20 @@ export default function TranslatePage({
         speechCopy.forEach(function (s) {
           if (!s.sample) speechWithoutSamples.push(s);
         });
+
         const speeches = await speechesAPI.getSpeech();
-        console.log('the rest', speechWithoutSamples);
-        setSpeech(speeches.concat(speechWithoutSamples));
+        const sorted = speeches.sort(function (a, b) {
+          console.log(a.createdAt < b.createdAt);
+          return a.createdAt > b.createdAt;
+        });
+        console.log(sorted);
+        setSpeech(sorted.concat(speechWithoutSamples));
       }
     }
     initSpeeches();
     setTimeout(function () {
       scrollToBottom();
-    }, 500);
+    }, 1000);
   }, []);
 
   return (

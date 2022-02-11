@@ -44,6 +44,15 @@
   color: yellow;
 }
 
+.addButton {
+  color: yellowgreen;
+  font-weight: bold;
+  font-size: 25px;
+  float: right;
+  padding: 0px 4px;
+  z-index: 2;
+}
+
 .deleteButton {
   color: rgba(231, 0, 0, 0.548);
   font-size: 18px;
