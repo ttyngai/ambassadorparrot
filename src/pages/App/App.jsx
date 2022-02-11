@@ -14,7 +14,7 @@ function App() {
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('zh-yue');
+  const [outputLanguage, setOutputLanguage] = useState('zh-HK');
   const languageCodes = [
     { value: 'en', label: 'English(US)', flagCode: 'US' },
     { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
@@ -85,9 +85,12 @@ function App() {
   function handleStart() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition();
-
     recognition.lang = inputLanguage;
-    if (navigator.userAgent.includes('Windows') && inputLanguage == 'zh-HK') {
+    //  Fix Hong Kong dual language sync
+    if (
+      navigator.userAgent.includes('Windows') ||
+      (navigator.userAgent.includes('Win64') && inputLanguage == 'zh-HK')
+    ) {
       recognition.lang = 'zh-yue';
     }
     recognition.interimResults = true;
