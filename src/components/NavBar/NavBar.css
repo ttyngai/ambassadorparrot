@@ -7,7 +7,21 @@
 
 .title {
   font-size: 40px;
+  padding: 0px 0px 0px 15px;
   font-weight: bold;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+.titleLogo {
+  font-size: 60px;
+  margin-left: -10px;
+}
+
+.titleContainer {
+  padding-bottom: 10px;
 }
 .navButton {
   padding: 2px 10px;

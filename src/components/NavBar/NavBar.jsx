@@ -31,8 +31,11 @@ function NavBar({
 
   return (
     <nav className='navBackground'>
-      <span className='title'>&nbsp;&nbsp;PARROT&nbsp;🦜</span>
-      <br />
+      <div className='titleContainer'>
+        <span className='title'>
+          PARROT<span className='titleLogo'>🦜</span>
+        </span>
+      </div>
       <Link className='navButton' to='/' onClick={handleTranslateClick}>
         Translate
       </Link>
