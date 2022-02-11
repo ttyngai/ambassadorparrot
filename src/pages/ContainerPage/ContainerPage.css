@@ -118,7 +118,7 @@
 
 .dialogue {
   overflow: scroll;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 320px);
   min-height: 120px;
 }
 .dialogueFadeTop {
