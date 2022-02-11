@@ -41,7 +41,7 @@
   z-index: 2;
 }
 .starButton:hover {
-  animation: starHover 0.5s linear;
+  animation: starHover 0.5s ease-in-out;
 }
 
 @keyframes starHover {
