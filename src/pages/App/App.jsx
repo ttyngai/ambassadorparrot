@@ -14,7 +14,7 @@ function App() {
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('zh-yue');
+  const [outputLanguage, setOutputLanguage] = useState('zh-HK');
   const languageCodes = [
     { value: 'en', label: 'English(US)', flagCode: 'US' },
     { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
@@ -31,7 +31,7 @@ function App() {
     { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
     { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
     // for hong kong, zh-yue needs to be yue for desktop, zh-HK for apple
-    { value: 'zh-yue', label: '中文(香港)', flagCode: 'HK' },
+    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
   const sampleConvo = [
@@ -39,7 +39,7 @@ function App() {
       inputText: "Hello, I'm Parrot, your personal translator. ",
       inputLanguage: 'en',
       outputText: '你好, 我是 Parrot, 你的私人翻譯員 。',
-      outputLanguage: 'zh-yue',
+      outputLanguage: 'zh-HK',
       timeCreated: new Date('6/15/2012, 5:14:39 PM'),
       sample: true,
     },
@@ -84,17 +84,17 @@ function App() {
 
   function handleStart() {
     setButtonState(false);
-    const recognition = new window.SpeechRecognition();
+    let recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
     //  Fix Hong Kong dual language sync
 
-    if (
-      (navigator.userAgent.includes('Windows') ||
-        navigator.userAgent.includes('Win64')) &&
-      inputLanguage == 'zh-HK'
-    ) {
-      recognition.lang = 'zh-yue';
-    }
+    // if (
+    //   (navigator.userAgent.includes('Windows') ||
+    //     navigator.userAgent.includes('Win64')) &&
+    //   inputLanguage == 'zh-HK'
+    // ) {
+    //   recognition.lang = 'zh-yue';
+    // }
 
     recognition.interimResults = true;
     recognition.continuous = true;
@@ -107,7 +107,17 @@ function App() {
       // Uppercase First letter
       concat.inputText =
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
+
       concat.inputLanguage = inputLanguage;
+      //  Fix Hong Kong dual language sync
+
+      // if (
+      //   (navigator.userAgent.includes('Windows') ||
+      //     navigator.userAgent.includes('Win64')) &&
+      //   inputLanguage == 'zh-HK'
+      // ) {
+      //   concat.inputLanguage = 'zh-yue';
+      // }
       concat.timeCreated = new Date();
       concat.new = true;
       setSpeech([...speech, concat]);
@@ -135,6 +145,7 @@ function App() {
         lastSpeech = fullSpeech.pop();
         lastSpeech.outputText = speechReturn;
         lastSpeech.outputLanguage = outputLanguage;
+
         lastSpeech.user = user;
         delete lastSpeech.new;
         let newSpeechObj;

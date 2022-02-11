@@ -8,13 +8,19 @@ export default async function translate(speech, targetLanguage, mostRecent) {
   let translated;
   let lang = voiceSettings(targetLanguage);
 
+  // target:lang.target needs zh-yue
+
+  if (targetLanguage == 'zh-HK') {
+    lang.target = 'zh-TW';
+  }
+
   await fetch(
     'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
     {
       method: 'POST',
       body: JSON.stringify({
         q: targetSpeech,
-        // if HK, need zh-yue as target
+        // if HK, need zh-TW as traditional target
         target: lang.target,
       }),
     }
@@ -31,7 +37,8 @@ export default async function translate(speech, targetLanguage, mostRecent) {
         "'"
       );
 
-      if (targetLanguage == 'zh-yue') {
+      // Change back to zh-HK from traditional TW
+      if (lang.target == 'zh-TW') {
         lang.target = 'zh-HK';
       }
       speak(data.data.translations[0].translatedText, lang);
