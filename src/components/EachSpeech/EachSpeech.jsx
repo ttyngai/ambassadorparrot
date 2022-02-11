@@ -1,7 +1,7 @@
 import './EachSpeech.css';
 import speak from '../../utilities/speak';
 import * as speechesAPI from '../../utilities/speeches-api';
-import voiceSettings from '../../utilities/voiceSettings';
+import * as voice from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 export default function EachSpeech({
   user,
@@ -28,7 +28,7 @@ export default function EachSpeech({
   });
 
   function handleSayAgain() {
-    const lang = voiceSettings(eachSpeech.outputLanguage);
+    const lang = voice.voiceSettings(eachSpeech.outputLanguage);
     speak(eachSpeech.outputText, lang);
   }
 
@@ -78,7 +78,7 @@ export default function EachSpeech({
           className='deleteButton'
           onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
         >
-          ✖
+          ✕
         </span>
       ) : (
         ''

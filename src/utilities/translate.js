@@ -1,12 +1,12 @@
 import speak from '../utilities/speak';
-import voiceSettings from '../utilities/voiceSettings';
+import * as voice from '../utilities/voiceSettings';
 export default async function translate(speech, targetLanguage, mostRecent) {
   let targetSpeech;
   if (mostRecent == 'recent') {
     targetSpeech = speech[speech.length - 1].inputText;
   }
   let translated;
-  let lang = voiceSettings(targetLanguage);
+  let lang = voice.voiceSettings(targetLanguage);
 
   // target:lang.target needs zh-yue
 

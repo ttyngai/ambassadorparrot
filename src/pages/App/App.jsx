@@ -7,6 +7,7 @@ import ContainerPage from '../ContainerPage/ContainerPage';
 import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as speechesAPI from '../../utilities/speeches-api';
+import * as voice from '../../utilities/voiceSettings';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -15,53 +16,8 @@ function App() {
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
-  const languageCodes = [
-    { value: 'en', label: 'English(US)', flagCode: 'US' },
-    { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
-    { value: 'es', label: 'Español', flagCode: 'ES' },
-    { value: 'fr', label: 'Français', flagCode: 'FR' },
-    { value: 'hi', label: 'हिन्दी', flagCode: 'IN' },
-    { value: 'id', label: 'Indonesia', flagCode: 'ID' },
-    { value: 'it', label: 'Italiano', flagCode: 'IT' },
-    { value: 'ja', label: '日本語', flagCode: 'JP' },
-    { value: 'ko', label: '한국어', flagCode: 'KR' },
-    { value: 'nl', label: 'Nederlands', flagCode: 'NL' },
-    { value: 'pl', label: 'Polski', flagCode: 'PL' },
-    { value: 'pt-BR', label: 'Português', flagCode: 'PT' },
-    { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
-    { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
-    // for hong kong, zh-yue needs to be yue for desktop, zh-HK for apple
-    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
-    { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
-  ];
-  const sampleConvo = [
-    {
-      inputText: "Hello, I'm Parrot, your personal translator. ",
-      inputLanguage: 'en',
-      outputText: '你好, 我是 Parrot, 你的私人翻譯員 。',
-      outputLanguage: 'zh-HK',
-      timeCreated: new Date('6/15/2012, 5:14:39 PM'),
-      sample: true,
-    },
-    {
-      inputText:
-        'Press the button below to start. Press the again to hear the translation!',
-      inputLanguage: 'en-GB',
-      outputText:
-        '下のボタンを押して開始します。もう一度押すと翻訳が聞こえます！',
-      outputLanguage: 'ja',
-      timeCreated: new Date('5/7/2013, 2:12:10 AM'),
-      sample: true,
-    },
-    {
-      inputText: 'Have fun!',
-      inputLanguage: 'en',
-      outputText: 'Divertiti!',
-      outputLanguage: 'it',
-      timeCreated: new Date('1/2/2014, 8:56:42 PM'),
-      sample: true,
-    },
-  ];
+  const languageCodes = voice.getLanguageCodes();
+  const sampleConvo = voice.getSampleConvo();
 
   // Startup of recognition/voice modules
   useEffect(function () {
@@ -86,16 +42,6 @@ function App() {
     setButtonState(false);
     let recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
-    //  Fix Hong Kong dual language sync
-
-    // if (
-    //   (navigator.userAgent.includes('Windows') ||
-    //     navigator.userAgent.includes('Win64')) &&
-    //   inputLanguage == 'zh-HK'
-    // ) {
-    //   recognition.lang = 'zh-yue';
-    // }
-
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {
@@ -109,15 +55,6 @@ function App() {
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
 
       concat.inputLanguage = inputLanguage;
-      //  Fix Hong Kong dual language sync
-
-      // if (
-      //   (navigator.userAgent.includes('Windows') ||
-      //     navigator.userAgent.includes('Win64')) &&
-      //   inputLanguage == 'zh-HK'
-      // ) {
-      //   concat.inputLanguage = 'zh-yue';
-      // }
       concat.timeCreated = new Date();
       concat.new = true;
       setSpeech([...speech, concat]);
