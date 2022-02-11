@@ -57,7 +57,6 @@ export default function TranslatePage({
   return (
     <>
       <div className='speechContainer'>
-        {navigator.userAgent}
         <span className='selectorContainer'>
           <select
             className='languageSelect'

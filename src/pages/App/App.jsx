@@ -30,6 +30,7 @@ function App() {
     { value: 'pt-BR', label: 'Português', flagCode: 'PT' },
     { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
     { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
+    // for hong kong, zh-yue needs to be yue for desktop, zh-HK for apple
     { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
@@ -84,7 +85,11 @@ function App() {
   function handleStart() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition();
+
     recognition.lang = inputLanguage;
+    if (navigator.userAgent.includes('Windows') && inputLanguage == 'zh-HK') {
+      recognition.lang = 'zh-yue';
+    }
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {
