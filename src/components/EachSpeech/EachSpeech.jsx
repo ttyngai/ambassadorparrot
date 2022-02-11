@@ -28,11 +28,13 @@ export default function EachSpeech({
     }
   });
 
+  // Will say again if the speech is clicked
   function handleSayAgain() {
     const lang = voice.voiceSettings(eachSpeech.outputLanguage);
     speak(eachSpeech.outputText, lang);
   }
 
+  // Stars some speeches
   async function handleStarSpeech() {
     const starredSpeech = await speechesAPI.star(eachSpeech);
     let speechCopy = [...speech];
@@ -45,6 +47,7 @@ export default function EachSpeech({
     setSpeech(starredSpeechArray);
   }
 
+  // Delete speeches if object also in database
   async function handleDeleteSpeech() {
     const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
     let speechCopy = [...speech];
@@ -56,6 +59,8 @@ export default function EachSpeech({
     });
     setSpeech(deletedSpeechArray);
   }
+
+  // Delete speeches
   function handleStateDelete() {
     let speechCopy = [...speech];
     let removed = speechCopy
@@ -64,6 +69,7 @@ export default function EachSpeech({
     setSpeech(removed);
   }
 
+  // Add speech that wasn't in the database but in state
   async function handleAddSpeech() {
     let speechCopy = [...speech];
     eachSpeech.user = user;

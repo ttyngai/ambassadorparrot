@@ -7,12 +7,10 @@ function NavBar({
   setUser,
   setSpeech,
   scrollToBottom,
-  handleStarterConvo,
   toggleFav,
   speechPreFav,
 }) {
   const navigate = useNavigate();
-
   function handlelogOut() {
     userService.logOut();
     setUser(null);
@@ -28,7 +26,6 @@ function NavBar({
       toggleFav();
     }
   }
-
   return (
     <nav className='navBackground'>
       <div className='titleContainer'>
@@ -62,7 +59,6 @@ function NavBar({
         </Link>
       )}
       &nbsp;&nbsp;
-      {/* <span>LoggedIn: {user.name}</span> */}
     </nav>
   );
 }

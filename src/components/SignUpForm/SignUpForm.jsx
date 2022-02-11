@@ -23,9 +23,7 @@ export default function SignUpForm({ setUser }) {
       const formData = { ...form };
       // delete formData.error;
       delete formData.confirm;
-      console.log('the user', formData);
       const user = await signUp(formData);
-      console.log('the user', user);
       if (user) {
         setUser(user);
         navigate('/');
@@ -34,7 +32,6 @@ export default function SignUpForm({ setUser }) {
       }
     } catch {
       setError('Sign Up Failed - Try Again');
-      console.log('failed!!!!');
     }
   }
   const disable = form.password !== form.confirm;
