@@ -7,8 +7,6 @@ export default async function translate(speech, targetLanguage, mostRecent) {
   }
   let translated;
   let lang = voiceSettings(targetLanguage);
-  console.log('before consuming, lang', lang);
-  console.log('before consuming, targetLanguage', targetLanguage);
 
   await fetch(
     'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
@@ -32,7 +30,7 @@ export default async function translate(speech, targetLanguage, mostRecent) {
     })
     .then(async (data) => {
       //replace &#39; in italian with proper '
-      console.log('data', data.data.translations[0].translatedText);
+
       translated = data.data.translations[0].translatedText.replace(
         `&#39;`,
         "'"
