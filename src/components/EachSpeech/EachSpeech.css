@@ -36,7 +36,7 @@
   color: rgba(255, 255, 0, 0.411);
   font-size: 19px;
   float: right;
-  padding: 5px 4px;
+  /* padding: 5px 4px; */
   z-index: 2;
 }
 
@@ -58,7 +58,7 @@
   font-weight: bold;
   font-size: 19px;
   float: right;
-  padding: 8px 4px;
+  /* padding: 8px 4px; */
   z-index: 2;
 }
 
