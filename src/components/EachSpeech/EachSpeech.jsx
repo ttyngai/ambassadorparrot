@@ -79,7 +79,7 @@ export default function EachSpeech({
           className='deleteButton'
           onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
         >
-          ╳✕✖⊗❌✕❎✖
+          ✖
         </span>
       ) : (
         ''

@@ -34,9 +34,9 @@
 
 .starButton {
   color: rgba(255, 255, 0, 0.411);
-  font-size: 19px;
+  font-size: 20px;
   float: right;
-  /* padding: 5px 4px; */
+  padding-right: 6px;
   z-index: 2;
 }
 
@@ -54,11 +54,11 @@
 }
 
 .deleteButton {
-  color: rgba(231, 0, 0, 0.548);
+  color: grey;
   font-weight: bold;
-  font-size: 19px;
+  font-size: 21px;
   float: right;
-  /* padding: 8px 4px; */
+
   z-index: 2;
 }
 
