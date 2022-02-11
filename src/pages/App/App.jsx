@@ -12,6 +12,7 @@ import * as voice from '../../utilities/voiceSettings';
 function App() {
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
+  const [speechPreFav, setSpeechspeechPreFav] = useState([]);
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
@@ -106,6 +107,27 @@ function App() {
     setInputLanguage(outputLanguage);
     setOutputLanguage(tempInputLanguage);
   }
+
+  function toggleFav() {
+    if (speechPreFav.length > 0) {
+      setSpeech(speechPreFav);
+      setSpeechspeechPreFav([]);
+    } else {
+      let speechCopy = [...speech];
+      setSpeechspeechPreFav(speech);
+      let favSpeech = [];
+      speechCopy.forEach(function (s) {
+        if (s.isStarred) {
+          favSpeech.push(s);
+        }
+      });
+      setSpeech(favSpeech);
+    }
+    setTimeout(function () {
+      scrollToBottom();
+    }, 500);
+  }
+
   function scrollToBottom() {
     if (document.getElementById('dialogue')) {
       document.getElementById('dialogue').scrollTo({
@@ -125,6 +147,8 @@ function App() {
           handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
           scrollToBottom={scrollToBottom}
+          toggleFav={toggleFav}
+          speechPreFav={speechPreFav}
         />
 
         <Routes>

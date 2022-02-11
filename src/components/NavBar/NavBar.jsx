@@ -8,6 +8,8 @@ function NavBar({
   setSpeech,
   scrollToBottom,
   handleStarterConvo,
+  toggleFav,
+  speechPreFav,
 }) {
   function handlelogOut() {
     userService.logOut();
@@ -16,18 +18,37 @@ function NavBar({
     handleStarterConvo();
   }
 
+  function handleTranslateClick() {
+    scrollToBottom();
+    if (speechPreFav.length != 0) {
+      toggleFav();
+    }
+  }
+
   return (
     <nav className='navBackground'>
       <span className='title'>&nbsp;&nbsp;PARROT&nbsp;🦜</span>
       <br />
-      <Link className='navButton' to='/' onClick={scrollToBottom}>
+      <Link className='navButton' to='/' onClick={handleTranslateClick}>
         Translate
       </Link>
       &nbsp;&nbsp;
       {user ? (
-        <Link className='navButton' onClick={handlelogOut} to='/'>
-          Log Out
-        </Link>
+        <>
+          <span
+            className={
+              speechPreFav.length > 0 ? 'navButton navActive' : 'navButton'
+            }
+            to='/'
+            onClick={toggleFav}
+          >
+            Favorites
+          </span>
+          &nbsp;&nbsp;
+          <Link className='navButton' onClick={handlelogOut} to='/'>
+            Log Out
+          </Link>
+        </>
       ) : (
         <Link className='navButton' to='/login'>
           Login · Signup
