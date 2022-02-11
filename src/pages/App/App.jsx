@@ -39,7 +39,7 @@ function App() {
       inputLanguage: 'en',
       outputText: '你好, 我是 Parrot, 你的私人翻譯員 。',
       outputLanguage: 'zh-HK',
-      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      timeCreated: new Date('6/15/2012, 5:14:39 PM'),
       sample: true,
     },
     {
@@ -49,7 +49,7 @@ function App() {
       outputText:
         '下のボタンを押して開始します。もう一度押すと翻訳が聞こえます！',
       outputLanguage: 'ja',
-      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      timeCreated: new Date('5/7/2013, 2:12:10 AM'),
       sample: true,
     },
     {
@@ -57,7 +57,7 @@ function App() {
       inputLanguage: 'en',
       outputText: 'Divertiti!',
       outputLanguage: 'it',
-      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      timeCreated: new Date('1/2/2014, 8:56:42 PM'),
       sample: true,
     },
   ];
