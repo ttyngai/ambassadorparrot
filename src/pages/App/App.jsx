@@ -14,7 +14,7 @@ function App() {
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
-  const [outputLanguage, setOutputLanguage] = useState('zh-HK');
+  const [outputLanguage, setOutputLanguage] = useState('zh-yue');
   const languageCodes = [
     { value: 'en', label: 'English(US)', flagCode: 'US' },
     { value: 'en-GB', label: 'English(UK)', flagCode: 'GB' },
@@ -30,7 +30,7 @@ function App() {
     { value: 'pt-BR', label: 'Português', flagCode: 'PT' },
     { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
     { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
-    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
+    { value: 'zh-yue', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
   const sampleConvo = [
@@ -38,7 +38,7 @@ function App() {
       inputText: "Hello, I'm Parrot, your personal translator. ",
       inputLanguage: 'en',
       outputText: '你好, 我是 Parrot, 你的私人翻譯員 。',
-      outputLanguage: 'zh-HK',
+      outputLanguage: 'zh-yue',
       timeCreated: new Date('6/15/2012, 5:14:39 PM'),
       sample: true,
     },
@@ -85,6 +85,7 @@ function App() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
+    console.log('input lang', inputLanguage);
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {

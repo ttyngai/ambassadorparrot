@@ -3,8 +3,7 @@ export default function voiceSettings(code) {
   if (code == 'en') {
     setting = {
       target: 'en',
-      // voice: 0,
-      voice: 17,
+      voice: 0,
     };
   } else if (code == 'de') {
     setting = {
@@ -44,8 +43,7 @@ export default function voiceSettings(code) {
   } else if (code == 'ja') {
     setting = {
       target: 'ja',
-      // voice: 15,
-      voice: 34,
+      voice: 15,
     };
   } else if (code == 'ko') {
     setting = {
@@ -77,25 +75,16 @@ export default function voiceSettings(code) {
       target: 'zh-CN',
       voice: 21,
     };
-  } else if (code == 'zh-HK') {
+  } else if (code == 'zh-yue') {
     setting = {
-      target: 'zh-CN',
-      // voice: 22,
-      voice: 53,
+      target: 'zh-yue',
+      voice: 22,
     };
   } else if (code == 'zh-TW') {
     setting = {
       target: 'zh-TW',
-      // voice: 23,
-      voice: 54,
+      voice: 23,
     };
   }
   return setting;
 }
-
-// function findIOSvoice(){
-// const = [
-
-// ]
-
-// }
