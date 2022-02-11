@@ -35,21 +35,19 @@ function App() {
   ];
   const sampleConvo = [
     {
-      inputText:
-        "Hello, I'm Parrot, your personal translator! Please start by choosing your language in the selectors above.",
+      inputText: "Hello, I'm Parrot, your personal translator. ",
       inputLanguage: 'en',
-      outputText:
-        '你好, 我是 Parrot, 你的私人翻譯員 。請首先在上面的選擇器中選擇您的語言。',
+      outputText: '你好, 我是 Parrot, 你的私人翻譯員 。',
       outputLanguage: 'zh-HK',
       timeCreated: new Date('6/15/2012, 5:14:40 PM'),
       sample: true,
     },
     {
       inputText:
-        "Press the button below to start. When you're done, just press the button again to hear the translation!",
+        'Press the button below to start. Press the again to hear the translation!',
       inputLanguage: 'en-GB',
       outputText:
-        '下のボタンを押して開始します。完了したら、もう一度ボタンを押すだけで翻訳を聞くことができます。',
+        '下のボタンを押して開始します。もう一度押すと翻訳が聞こえます！',
       outputLanguage: 'ja',
       timeCreated: new Date('6/15/2012, 5:14:40 PM'),
       sample: true,
