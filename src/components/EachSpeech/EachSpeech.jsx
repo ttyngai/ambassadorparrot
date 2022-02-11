@@ -95,7 +95,7 @@ export default function EachSpeech({
         </span>
       ) : user && eachSpeech.outputLanguage ? (
         <span className='addButton' onClick={handleAddSpeech}>
-          +
+          ➕
           {/* Need to fix where if you are the user, you dont want to see the plus sign */}
         </span>
       ) : (
