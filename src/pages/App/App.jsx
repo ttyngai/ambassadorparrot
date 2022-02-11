@@ -30,7 +30,7 @@ function App() {
     { value: 'pt-BR', label: 'Português', flagCode: 'PT' },
     { value: 'ru', label: 'Pусский язык', flagCode: 'RU' },
     { value: 'zh-CN', label: '中文(中國)', flagCode: 'CN' },
-    { value: 'zh-yue', label: '中文(香港)', flagCode: 'HK' },
+    { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
   const sampleConvo = [
@@ -85,7 +85,6 @@ function App() {
     setButtonState(false);
     const recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
-    console.log('input lang', inputLanguage);
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {
