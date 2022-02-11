@@ -93,17 +93,9 @@ export default function voiceSettings(code) {
   return setting;
 }
 
-function findIOSvoice(){
-const = [
+// function findIOSvoice(){
+// const = [
 
+// ]
 
-
-
-
-]
-
-
-
-
-
-}
+// }
