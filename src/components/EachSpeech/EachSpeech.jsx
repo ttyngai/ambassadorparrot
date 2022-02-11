@@ -3,6 +3,7 @@ import speak from '../../utilities/speak';
 import * as speechesAPI from '../../utilities/speeches-api';
 import * as voice from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
+
 export default function EachSpeech({
   user,
   index,
@@ -78,7 +79,7 @@ export default function EachSpeech({
           className='deleteButton'
           onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
         >
-          ✕
+          ╳✕✖⊗❌✕❎✖
         </span>
       ) : (
         ''
