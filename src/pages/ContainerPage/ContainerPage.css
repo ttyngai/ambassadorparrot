@@ -100,8 +100,8 @@
 }
 
 .emptyPrompt {
-  padding-top: calc(50vh - 160px);
-  font-size: 30px;
+  padding-top: calc(50vh - 200px);
+  font-size: 25px;
   color: grey;
 }
 
