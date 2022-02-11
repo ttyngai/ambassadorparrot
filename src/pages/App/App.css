@@ -3,8 +3,8 @@
 }
 .bracketContainer {
   color: white;
-  border-left: 2px solid grey;
-  border-right: 2px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
   border-radius: 30px;
   width: 99vw;
   max-width: 800px;
