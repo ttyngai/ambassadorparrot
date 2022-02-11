@@ -8,31 +8,31 @@ export default function SignUpForm({ setUser }) {
     email: '',
     password: '',
     confirm: '',
-    error: '',
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   function handleChange(evt) {
     setForm({ ...form, [evt.target.name]: evt.target.value });
-    setError('/');
+    setError('');
   }
 
-  let handleSubmit = async (evt) => {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       const formData = { ...form };
       delete formData.error;
       delete formData.confirm;
-      console.log('formData here', formData);
       const user = await signUp(formData);
-      console.log('and here', user);
-      setUser(user);
-      navigate('/');
+      if (user) {
+        setUser(user);
+        navigate('/');
+      }
     } catch {
-      setForm({ error: 'Sign Up Failed - Try Again' });
+      setError('Sign Up Failed - Try Again');
+      console.log('failed!!!!');
     }
-  };
+  }
   const disable = form.password !== form.confirm;
 
   return (
@@ -76,7 +76,7 @@ export default function SignUpForm({ setUser }) {
           </button>
         </form>
       </div>
-      <p className='error-message'>&nbsp;{form.error}</p>
+      <p className='error-message'>&nbsp;{error}</p>
     </div>
   );
 }
