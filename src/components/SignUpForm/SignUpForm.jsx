@@ -20,7 +20,7 @@ export default function SignUpForm({ setUser }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const formData = { ...form };
+      const formData = [...form];
       delete formData.error;
       delete formData.confirm;
       const user = await signUp(formData);
