@@ -87,12 +87,15 @@ function App() {
     const recognition = new window.SpeechRecognition();
     recognition.lang = inputLanguage;
     //  Fix Hong Kong dual language sync
+
     if (
-      navigator.userAgent.includes('Windows') ||
-      (navigator.userAgent.includes('Win64') && inputLanguage == 'zh-HK')
+      (navigator.userAgent.includes('Windows') ||
+        navigator.userAgent.includes('Win64')) &&
+      inputLanguage == 'zh-HK'
     ) {
       recognition.lang = 'zh-yue';
     }
+
     recognition.interimResults = true;
     recognition.continuous = true;
     recognition.onresult = (e) => {

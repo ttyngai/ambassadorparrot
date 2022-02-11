@@ -12,14 +12,9 @@ export default async function translate(speech, targetLanguage, mostRecent) {
     'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvfxyq6CDaQqsiPhVVuNcj07rPHGxH2dM',
     {
       method: 'POST',
-      // headers: {
-      //   Accept: 'application/json',
-      //   'Content-Type': 'application/json',
-      //   // charset: 'UTF-8',
-      //   //   // 'Access-Control-Allow-Origin': '*',
-      // },
       body: JSON.stringify({
         q: targetSpeech,
+        // if HK, need zh-yue as target
         target: lang.target,
       }),
     }
