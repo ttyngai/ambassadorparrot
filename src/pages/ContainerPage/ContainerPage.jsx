@@ -6,6 +6,7 @@ import loadingLogo from '../../images/loading.png';
 import * as speechesAPI from '../../utilities/speeches-api';
 export default function TranslatePage({
   user,
+  scrollToBottom,
   speech,
   setSpeech,
   handleStart,
@@ -27,19 +28,19 @@ export default function TranslatePage({
     async function initSpeeches() {
       if (user) {
         let speechCopy = [...speech];
+        let speechWithoutSamples = [];
+        speechCopy.forEach(function (s) {
+          if (!s.sample) speechWithoutSamples.push(s);
+        });
         const speeches = await speechesAPI.getSpeech();
-        setSpeech(speeches.concat(speechCopy));
+        console.log('the rest', speechWithoutSamples);
+        setSpeech(speeches.concat(speechWithoutSamples));
       }
     }
     initSpeeches();
     setTimeout(function () {
-      if (document.getElementById('dialogue')) {
-        document.getElementById('dialogue').scrollTo({
-          top: document.getElementById('dialogue').scrollHeight,
-          behavior: 'smooth',
-        });
-      }
-    }, 1000);
+      scrollToBottom();
+    }, 500);
   }, []);
 
   return (

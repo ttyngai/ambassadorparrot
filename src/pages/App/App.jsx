@@ -11,6 +11,7 @@ import * as speechesAPI from '../../utilities/speeches-api';
 function App() {
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
+  const [sampling, setSampling] = useState(false);
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
@@ -33,6 +34,36 @@ function App() {
     { value: 'zh-HK', label: '中文(香港)', flagCode: 'HK' },
     { value: 'zh-TW', label: '中文(台灣)', flagCode: 'TW' },
   ];
+  const sampleConvo = [
+    {
+      inputText:
+        "Hello, I'm Parrot, your personal translator! Please start by choosing your language in the selectors above.",
+      inputLanguage: 'en',
+      outputText:
+        '你好, 我是 Parrot, 你的私人翻譯員 。請首先在上面的選擇器中選擇您的語言。',
+      outputLanguage: 'zh-HK',
+      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      sample: true,
+    },
+    {
+      inputText:
+        "Press the button below to start. When you're done, just press the button again to hear the translation!",
+      inputLanguage: 'en-GB',
+      outputText:
+        '下のボタンを押して開始します。完了したら、もう一度ボタンを押すだけで翻訳を聞くことができます。',
+      outputLanguage: 'ja',
+      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      sample: true,
+    },
+    {
+      inputText: 'Have fun!',
+      inputLanguage: 'en',
+      outputText: 'Divertiti!',
+      outputLanguage: 'it',
+      timeCreated: new Date('6/15/2012, 5:14:40 PM'),
+      sample: true,
+    },
+  ];
 
   // Startup of recognition/voice modules
   useEffect(function () {
@@ -51,6 +82,10 @@ function App() {
       speechSynthesis.speak(lecture);
       hasEnabledVoice = true;
     });
+    //Starter conversation
+    if (speech.length == 0) {
+      setSpeech(sampleConvo);
+    }
   }, []);
 
   function handleStart() {
@@ -139,6 +174,7 @@ function App() {
             element={
               <ContainerPage
                 user={user}
+                scrollToBottom={scrollToBottom}
                 speech={speech}
                 setSpeech={setSpeech}
                 handleStart={handleStart}

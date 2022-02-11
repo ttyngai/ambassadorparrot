@@ -5,10 +5,10 @@ import voiceSettings from '../../utilities/voiceSettings';
 import ReactCountryFlag from 'react-country-flag';
 export default function EachSpeech({
   user,
+  index,
   eachSpeech,
   speech,
   setSpeech,
-  // handleDeleteSpeech,
   empty,
   languageCodes,
   outputLanguage,
@@ -55,31 +55,44 @@ export default function EachSpeech({
     });
     setSpeech(deletedSpeechArray);
   }
+  function handleStateDelete() {
+    let speechCopy = [...speech];
+    let removed = speechCopy
+      .slice(0, index)
+      .concat(speechCopy.slice(index + 1));
+    setSpeech(removed);
+  }
+
+  async function handleAddSpeech() {
+    let speechCopy = [...speech];
+    let speechAdded = await speechesAPI.create(eachSpeech);
+    speechAdded = speechCopy
+      .slice(0, index)
+      .concat([eachSpeech.concat(speechCopy.slice(index + 1))]);
+    setSpeech(speechAdded);
+  }
 
   return eachSpeech ? (
     <div className='eachSpeech'>
-      {user && eachSpeech && eachSpeech._id ? (
-        <>
-          <span className='deleteButton' onClick={handleDeleteSpeech}>
-            ✖
-          </span>
+      <span
+        className='deleteButton'
+        onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
+      >
+        ✖
+      </span>
 
-          {eachSpeech.isStarred ? (
-            <span
-              className='starButton buttonStarred'
-              onClick={handleStarSpeech}
-            >
-              ★
-            </span>
-          ) : (
-            <span className='starButton' onClick={handleStarSpeech}>
-              ★
-            </span>
-          )}
-        </>
+      {user || eachSpeech._id ? (
+        <span className='starButton buttonStarred' onClick={handleStarSpeech}>
+          ★
+        </span>
+      ) : true ? (
+        <span className='starButton' onClick={handleAddSpeech}>
+          +
+        </span>
       ) : (
         ''
       )}
+
       <div className='speechDate'>
         {typeof eachSpeech.timeCreated == 'string'
           ? new Date(eachSpeech.timeCreated).toLocaleString()
