@@ -85,9 +85,8 @@ function App() {
         });
       }
     };
-
-    // When deleted star list, coming back you see double of everything
-
+    // record preferred languages for each user
+    // find empty star logo
     // in fav, new speech, when unclicked doesn't stay in normal
     setRecognition(recognition);
     recognition.start();

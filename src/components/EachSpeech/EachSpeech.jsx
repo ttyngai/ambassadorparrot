@@ -40,6 +40,7 @@ export default function EachSpeech({
   // Stars some speeches
   async function handleStarSpeech() {
     const starredSpeech = await speechesAPI.star(eachSpeech);
+    // update in fav list
     let speechCopy = [...speech];
     let starredSpeechArray = speechCopy.map(function (s) {
       if (s._id == starredSpeech._id) {
@@ -48,6 +49,15 @@ export default function EachSpeech({
       return s;
     });
     setSpeech(starredSpeechArray);
+    // also update in main list
+    let SpeechPreFavCopy = [...speechPreFav];
+    let starredSpeechPreFavArray = SpeechPreFavCopy.map(function (s) {
+      if (s._id == starredSpeech._id) {
+        s.isStarred = !s.isStarred;
+      }
+      return s;
+    });
+    setSpeechPreFav(starredSpeechPreFavArray);
   }
 
   // Delete speeches if object also in database
