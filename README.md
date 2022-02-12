@@ -6,5 +6,5 @@ PARROT TRANSLATOR 🦜
 
   https://parrot-translate.herokuapp.com
 
-https://raw.github.com/ttyngai/parrot-translate/main/src/images/recordingScreen.jpg
-https://raw.github.com/ttyngai/parrot-translate/main/src/images/favScreen.jpg
+![Recording Screen](https://raw.github.com/ttyngai/parrot-translate/main/src/images/recordingScreen.jpg 'ScreenShot of app recording')
+![Favourite Screen](https://raw.github.com/ttyngai/parrot-translate/main/src/images/favScreen.jpg 'ScreenShot of app at favourite page')
