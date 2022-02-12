@@ -46,17 +46,29 @@
 
 @keyframes starHover {
   0% {
-    color: rgba(255, 255, 0, 0.616);
+    color: rgba(255, 255, 0, 1);
   }
-  30% {
-    color: yellow;
+  15% {
+    color: rgba(255, 255, 0, 0.5);
   }
 
-  70% {
-    color: rgba(0, 0, 0, 0.164);
+  30% {
+    color: rgba(255, 255, 0, 0.25);
+  }
+  45% {
+    color: rgba(255, 255, 0, 0);
+  }
+  60% {
+    color: rgba(255, 255, 0, 0.25);
+  }
+  75% {
+    color: rgba(255, 255, 0, 0.5);
+  }
+  90% {
+    color: rgba(255, 255, 0, 0.75);
   }
   100% {
-    color: rgba(255, 255, 0, 0.616);
+    color: rgba(255, 255, 0, 0.5);
   }
 }
 
@@ -78,8 +90,40 @@
   font-weight: bold;
   font-size: 21px;
   float: right;
-
   z-index: 2;
+}
+
+.deleteButton:hover {
+  animation: deleteHover 0.5s linear;
+  color: rgba(255, 0, 0, 1);
+}
+
+@keyframes deleteHover {
+  0% {
+    color: rgba(255, 0, 0, 1);
+  }
+  15% {
+    color: rgba(255, 0, 0, 0.5);
+  }
+
+  30% {
+    color: rgba(255, 0, 0, 0.25);
+  }
+  45% {
+    color: rgba(255, 0, 0, 0);
+  }
+  60% {
+    color: rgba(255, 0, 0, 0.25);
+  }
+  75% {
+    color: rgba(255, 0, 0, 0.5);
+  }
+  90% {
+    color: rgba(255, 0, 0, 0.75);
+  }
+  100% {
+    color: rgba(255, 0, 0, 1);
+  }
 }
 
 .textBubble {
@@ -87,6 +131,7 @@
   border-radius: 15px;
   padding: 4px 13px;
   max-width: 80%;
+  box-shadow: 3px 3px 5px black;
 }
 
 .inputTextBubble {
