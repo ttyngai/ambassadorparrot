@@ -3,10 +3,10 @@ import * as voice from '../utilities/voiceSettings';
 export default async function translate(speech, targetLanguage) {
   let translated;
   let lang = voice.voiceSettings(targetLanguage);
-  let taiwanSwap;
+  let taiwaneseHKSwap;
   if (targetLanguage == 'zh-HK') {
     lang.target = 'zh-TW';
-    taiwanSwap = true;
+    taiwaneseHKSwap = true;
   }
 
   await fetch(
@@ -31,7 +31,7 @@ export default async function translate(speech, targetLanguage) {
       );
 
       // Change back to zh-HK from traditional TW
-      if (lang.target == 'zh-TW' && taiwanSwap) {
+      if (lang.target == 'zh-TW' && taiwaneseHKSwap) {
         lang.target = 'zh-HK';
       }
       speak(translated, lang);

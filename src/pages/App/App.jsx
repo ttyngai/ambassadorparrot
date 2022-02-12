@@ -86,7 +86,7 @@ function App() {
       }
     };
 
-    // When you come from loginsignup, your original unsaved speech disappears
+    // When deleted star list, coming back you see double of everything
 
     // in fav, new speech, when unclicked doesn't stay in normal
     setRecognition(recognition);
@@ -193,24 +193,31 @@ function App() {
   async function deleteSpeechList(nav) {
     if (nav == 'fav') {
       const deleted = await speechesAPI.deleteFav(user._id);
-      // Delete from  the speechPreFav
+      // Delete from  the speechPreFav at state, so when returning to translate, deleted fav wont show
       let speechPreFavCopy = [...speechPreFav];
-      let speechPreFavCopyRemovedItem = [];
-      speechPreFavCopy.forEach(function (s) {
+      let speechPreFavCopyWithoutRemovedItem = [];
+      for (let i = 0; i < speechPreFavCopy.length - 1; i++) {
+        let wasDeleted;
         deleted.forEach(function (d) {
-          if (s._id !== d._id) {
-            speechPreFavCopyRemovedItem.push(s);
+          if (speechPreFavCopy[i]._id == d._id) {
+            wasDeleted = true;
           }
         });
-      });
-      setSpeechPreFav(speechPreFavCopyRemovedItem);
+        if (!wasDeleted) {
+          speechPreFavCopyWithoutRemovedItem.push(speechPreFavCopy[i]);
+        }
+      }
+      setSpeechPreFav(speechPreFavCopyWithoutRemovedItem);
       setSpeech([]);
     } else {
-      // if theres a user, need to set everything
+      // if theres a user, copies onto speechPreFav waiting for the main translate page to be clicked
       if (user) {
         const cleared = await speechesAPI.clearList();
+        console.log('after fav cleared', cleared);
         setSpeech([]);
-      } else {
+      }
+      // If not logged in, just clears the main page
+      else {
         setSpeech([]);
         handleStarterConvo();
         // not logged in just change state
