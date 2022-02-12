@@ -56,15 +56,16 @@
   20% {
     transform: scale(1, 1);
   }
-
   100% {
     transform: scale(1, 1);
   }
 }
-.recordingStop {
+.recording {
   margin-top: -18px;
   font-size: 60px;
+  font-weight: bold;
   animation: pulse 0.5s linear infinite;
+  color: red;
   cursor: pointer;
 }
 @keyframes pulse {
