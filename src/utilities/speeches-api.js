@@ -18,3 +18,7 @@ export function deleteSpeech(speech) {
 export function clearList() {
   return sendRequest(`${BASE_URL}/clearSpeeches`, 'PUT');
 }
+export function deleteFav(userId) {
+  console.log('in util', userId);
+  return sendRequest(`${BASE_URL}/deleteFav/${userId}`, 'DELETE');
+}

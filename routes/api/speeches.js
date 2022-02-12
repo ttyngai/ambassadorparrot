@@ -8,6 +8,7 @@ router.post('/new', speechCtrl.create);
 router.put('/star', speechCtrl.star);
 router.put('/clearSpeeches', speechCtrl.clearList);
 router.delete('/deleteSpeech', speechCtrl.deleteSpeech);
+router.delete('/deleteFav/:id', speechCtrl.deleteFav);
 router.get('/getSpeeches', speechCtrl.getSpeech);
 // router.get('/getOrders', speechCtrl.getOrders);
 // // GET /api/orders/cart

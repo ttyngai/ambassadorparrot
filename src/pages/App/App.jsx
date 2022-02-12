@@ -90,6 +90,8 @@ function App() {
     // Also make delete confirm
 
     // When you come from loginsignup, your original unsaved speech disappears
+
+    // in fav, new speech, when unclicked doesn't stay in normal
     setRecognition(recognition);
     recognition.start();
   }
@@ -139,30 +141,31 @@ function App() {
   async function renderSpeeches() {
     if (user) {
       let speechCopy = [...speech];
-
       let speechNotSavedWithoutSamples = [];
       speechCopy.forEach(function (s) {
         if (!s.sample) speechNotSavedWithoutSamples.push(s);
       });
       const speeches = await speechesAPI.getSpeech();
       // Only show the speeches that were never "cleared", both fav and not fav
+
       const neverCleared = [];
       speeches.forEach((s) => {
-        if (s.isClearred) {
+        if (!s.isClearred) {
           neverCleared.push(s);
         }
       });
+
       // sorted by newest at bottom
-      const sorted = speeches.sort(function (a, b) {
-        if (a.createdAt > b.createdAt) return 1;
-        if (a.createdAt < b.createdAt) return -1;
+      const sorted = neverCleared.sort(function (a, b) {
+        if (a.timeCreated > b.timeCreated) return 1;
+        if (a.timeCreated < b.timeCreated) return -1;
         return 0;
       });
       setSpeech(sorted.concat(speechNotSavedWithoutSamples));
     }
   }
 
-  function renderFav(option) {
+  async function renderFav(option) {
     if (nav == 'fav') {
       // nav == 'nav' mean we want to turn it off after view by pressing itself
       setNav('translate');
@@ -174,23 +177,30 @@ function App() {
       // Save whatever including deleted
       let speechCopy = [...speech];
       setSpeechPreFav(speechCopy);
+      // from here , what I have is speech on screen
 
-      // cannot find favourites this way anymore
+      const speeches = await speechesAPI.getSpeech();
+
       let favSpeech = [];
-      speechCopy.forEach(function (s) {
+      speeches.forEach(function (s) {
         if (s.isStarred) {
           favSpeech.push(s);
         }
       });
-
-      setSpeech(favSpeech);
+      const sorted = favSpeech.sort(function (a, b) {
+        if (a.timeCreated > b.timeCreated) return 1;
+        if (a.timeCreated < b.timeCreated) return -1;
+        return 0;
+      });
+      setSpeech(sorted);
     }
     scrollToBottom(option);
   }
 
   async function deleteSpeechList(nav) {
     if (nav == 'fav') {
-      console.log('delete all fav');
+      console.log('delete all fav from:', user._id);
+      const deleted = await speechesAPI.deleteFav(user._id);
 
       setSpeech([]);
     } else {

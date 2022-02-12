@@ -6,6 +6,7 @@ module.exports = {
   getSpeech,
   deleteSpeech,
   clearList,
+  deleteFav,
 };
 
 async function create(req, res) {
@@ -52,4 +53,13 @@ async function clearList(req, res) {
     }
   });
   res.json(afterRemove);
+}
+
+async function deleteFav(req, res) {
+  const favSpeeches = await Speech.find({ user: req.user, isStarred: true });
+  favSpeeches.forEach(function (s) {
+    s.remove();
+  });
+  // favSpeeches.save();
+  res.json('ok');
 }
