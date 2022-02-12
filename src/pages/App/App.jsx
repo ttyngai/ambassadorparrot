@@ -85,10 +85,6 @@ function App() {
         });
       }
     };
-    // Include the prefavspeech in function as a state, for invoking later even after state change
-    // Also, when coming back from favourites, if you spoke, it will not show
-    // Also, if spoke within favourites, should automatically be favourited
-    // Also make delete confirm
 
     // When you come from loginsignup, your original unsaved speech disappears
 
@@ -213,7 +209,6 @@ function App() {
       // if theres a user, need to set everything
       if (user) {
         const cleared = await speechesAPI.clearList();
-        console.log('cleared', cleared);
         setSpeech([]);
       } else {
         setSpeech([]);
@@ -246,6 +241,7 @@ function App() {
       <>
         <NavBar
           user={user}
+          speech={speech}
           nav={nav}
           renderSpeeches={renderSpeeches}
           setNav={setNav}

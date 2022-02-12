@@ -5,6 +5,7 @@ import * as userService from '../../utilities/users-service';
 
 function NavBar({
   user,
+  speech,
   nav,
   setNav,
   setUser,
@@ -37,6 +38,7 @@ function NavBar({
     } else {
       scrollToBottom('noTopRescroll');
       setNav('translate');
+      console.log('pressed translate');
     }
     setConfirming(false);
   }

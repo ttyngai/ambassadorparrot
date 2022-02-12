@@ -33,11 +33,17 @@ export default function ContainerPage({
   useEffect(function () {
     renderSpeeches();
     // Populate the page with starter convo for un-loggedin users
-    if (!user) {
-      handleStarterConvo();
-    }
     setTimeout(function () {
-      scrollToBottom();
+      if (
+        !user &&
+        (!speech[0] || !speech[0].sample) &&
+        (!speech[1] || !speech[1].sample) &&
+        (!speech[2] || !speech[2].sample)
+      ) {
+        handleStarterConvo();
+      } else if (user) {
+        scrollToBottom();
+      }
     }, 1000);
   }, []);
 
