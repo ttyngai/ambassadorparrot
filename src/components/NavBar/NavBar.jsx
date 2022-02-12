@@ -49,7 +49,6 @@ function NavBar({
   function handleDeleteAll() {
     console.log('deleting');
   }
-  // console.log('nav: ', nav);
 
   return (
     <nav className='navBackground'>
