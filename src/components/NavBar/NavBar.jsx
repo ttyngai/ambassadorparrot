@@ -9,7 +9,7 @@ function NavBar({
   setUser,
   setSpeech,
   renderSpeeches,
-  toggleFav,
+  renderFav,
   speechPreFav,
   scrollToBottom,
 }) {
@@ -31,12 +31,19 @@ function NavBar({
 
   function handleTranslateClick() {
     if (nav == 'fav') {
-      console.log('Was fav');
-      toggleFav();
+      renderFav();
     } else {
-      scrollToBottom();
+      scrollToBottom('noTopRescroll');
+      setNav('translate');
     }
-    setNav('translate');
+  }
+
+  function handleFavClick() {
+    if (nav == 'fav') {
+      scrollToBottom('noTopRescroll');
+    } else {
+      renderFav();
+    }
   }
 
   function handleDeleteAll() {
@@ -64,7 +71,7 @@ function NavBar({
           <span
             className={nav == 'fav' ? 'navButton navActive' : 'navButton'}
             to='/'
-            onClick={toggleFav}
+            onClick={handleFavClick}
           >
             Favorites
           </span>

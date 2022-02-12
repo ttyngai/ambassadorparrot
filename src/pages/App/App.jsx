@@ -73,6 +73,9 @@ function App() {
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
       concat.new = true;
+
+      // Add this new speech into the speech also in fav
+
       setSpeech([...speech, concat]);
       if (document.getElementById('dialogue')) {
         document.getElementById('dialogue').scrollTo({
@@ -81,9 +84,10 @@ function App() {
         });
       }
     };
-    // Include the called function as a state, for invoking later even after state change
+    // Include the prefavspeech in function as a state, for invoking later even after state change
     // Also, when coming back from favourites, if you spoke, it will not show
     // Also, if spoke within favourites, should automatically be favourited
+    // Also make delete confirm
     setRecognition(recognition);
     recognition.start();
   }
@@ -101,12 +105,18 @@ function App() {
         lastSpeech.outputText = speechReturn;
         lastSpeech.outputLanguage = outputLanguage;
         lastSpeech.user = user;
+        if (nav == 'fav') {
+          lastSpeech.isStarred = true;
+        }
         delete lastSpeech.new;
         let newSpeechObj;
         if (user) {
           newSpeechObj = await speechesAPI.create(lastSpeech);
         } else {
           newSpeechObj = lastSpeech;
+        }
+        if (nav == 'fav') {
+          setSpeechPreFav([...speechPreFav, newSpeechObj]);
         }
         setSpeech([...fullSpeech, newSpeechObj]);
       }
@@ -143,20 +153,19 @@ function App() {
     }
   }
 
-  function toggleFav() {
+  function renderFav(option) {
     if (nav == 'fav') {
+      console.log('was fav');
       // nav == 'nav' mean we want to turn it off after view by pressing itself
       setNav('translate');
       setSpeech(speechPreFav);
       setSpeechPreFav([]);
     } else {
+      console.log('was not fav');
       // calc to show favourites
       setNav('fav');
       let speechCopy = [...speech];
-      console.log('from translate to fav speech', speech);
-      console.log('from translate to fav speech', speechCopy);
       setSpeechPreFav(speechCopy);
-      console.log('from translate to fav speechPreFav', speechPreFav);
       let favSpeech = [];
       speechCopy.forEach(function (s) {
         if (s.isStarred) {
@@ -165,23 +174,7 @@ function App() {
       });
       setSpeech(favSpeech);
     }
-    console.log('from translate to fav speechPreFav', speechPreFav);
-    // if (speechPreFav.length > 0) {
-    //   setSpeech(speechPreFav);
-    //   setSpeechPreFav([]);
-    // } else {
-    //   let speechCopy = [...speech];
-    //   setSpeechPreFav(speech);
-    //   let favSpeech = [];
-    //   speechCopy.forEach(function (s) {
-    //     if (s.isStarred) {
-    //       favSpeech.push(s);
-    //     }
-    //   });
-    //   setSpeech(favSpeech);
-    // }
-
-    scrollToBottom();
+    scrollToBottom(option);
   }
 
   function scrollToBottom(option) {
@@ -214,7 +207,7 @@ function App() {
           sampleConvo={sampleConvo}
           // handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
-          toggleFav={toggleFav}
+          renderFav={renderFav}
           scrollToBottom={scrollToBottom}
           speechPreFav={speechPreFav}
         />

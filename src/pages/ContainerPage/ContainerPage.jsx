@@ -39,7 +39,7 @@ export default function TranslatePage({
       scrollToBottom();
     }, 1000);
   }, []);
-  console.log('the speech', speech);
+
   return (
     <>
       <div className='speechContainer'>
