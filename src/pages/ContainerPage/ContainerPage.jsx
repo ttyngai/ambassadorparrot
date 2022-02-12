@@ -23,6 +23,7 @@ export default function TranslatePage({
   languageCodes,
   flagCode,
   speechPreFav,
+  setButtonState,
 }) {
   function handleSetInputLanguage(input) {
     setInputLanguage(input);
@@ -34,7 +35,6 @@ export default function TranslatePage({
     if (!user) {
       handleStarterConvo();
     }
-
     setTimeout(function () {
       scrollToBottom();
     }, 1000);
@@ -91,6 +91,7 @@ export default function TranslatePage({
                   inputLanguage={inputLanguage}
                   outputLanguage={outputLanguage}
                   languageCodes={languageCodes}
+                  setButtonState={setButtonState}
                 />
               ))
             ) : (
@@ -104,7 +105,6 @@ export default function TranslatePage({
         </div>
       </div>
 
-      {/* {speechPreFav.length < 0 ? ( */}
       <div>
         <div className='speakButton'>
           {buttonState ? (
@@ -126,9 +126,6 @@ export default function TranslatePage({
           )}
         </div>
       </div>
-      {/* ) : (
-        ''
-      )} */}
     </>
   );
 }

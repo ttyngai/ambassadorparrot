@@ -5,6 +5,7 @@ module.exports = {
   star,
   getSpeech,
   deleteSpeech,
+  clearList,
 };
 
 async function create(req, res) {
@@ -36,4 +37,19 @@ async function deleteSpeech(req, res) {
     speech.remove();
     res.json(speech);
   } catch {}
+}
+
+async function clearList(req, res) {
+  let allSpeeches = await Speech.find({ user: req.user });
+  let afterRemove = [];
+  allSpeeches.forEach(function (s) {
+    if (!s.isStarred) {
+      s.remove();
+    } else {
+      s.isCleared = true;
+      s.save();
+      afterRemove.push(s);
+    }
+  });
+  res.json(afterRemove);
 }

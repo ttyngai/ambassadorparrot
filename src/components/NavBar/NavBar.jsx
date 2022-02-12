@@ -11,6 +11,7 @@ function NavBar({
   setSpeech,
   renderFav,
   speechPreFav,
+  deleteSpeechList,
   scrollToBottom,
 }) {
   const [confirming, setConfirming] = useState(false);
@@ -50,17 +51,19 @@ function NavBar({
   }
 
   function handleDeleteAll() {
+    // First round to show confirm button
     if (!confirming) {
-      console.log('ask');
       setConfirming(true);
       // Waitime to cancel confirm
       setTimeout(function () {
         setConfirming(false);
-        console.log('cancel confirm');
       }, 3000);
     } else {
-      console.log('delete it');
+      deleteSpeechList(nav);
       setConfirming(false);
+    }
+    if (nav == 'loginSignup') {
+      setNav('translate');
     }
   }
 
@@ -110,13 +113,29 @@ function NavBar({
           </Link>
         </>
       ) : (
-        <Link
-          className={nav == 'loginSignup' ? 'navButton navActive' : 'navButton'}
-          to='/login'
-          onClick={handleLogin}
-        >
-          Login · Signup
-        </Link>
+        <>
+          <Link
+            className={
+              !confirming
+                ? 'navButton deleteAllButton'
+                : 'navButton deleteAllButton deleteConfirm'
+            }
+            onClick={handleDeleteAll}
+            to='/'
+          >
+            {!confirming ? 'Clear List' : 'Confirm?'}
+          </Link>
+          &nbsp;
+          <Link
+            className={
+              nav == 'loginSignup' ? 'navButton navActive' : 'navButton'
+            }
+            to='/login'
+            onClick={handleLogin}
+          >
+            Login · Signup
+          </Link>
+        </>
       )}
       &nbsp;
     </nav>

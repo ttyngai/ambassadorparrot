@@ -88,6 +88,8 @@ function App() {
     // Also, when coming back from favourites, if you spoke, it will not show
     // Also, if spoke within favourites, should automatically be favourited
     // Also make delete confirm
+
+    // When you come from loginsignup, your original unsaved speech disappears
     setRecognition(recognition);
     recognition.start();
   }
@@ -141,7 +143,6 @@ function App() {
       speechCopy.forEach(function (s) {
         if (!s.sample) speechWithoutSamples.push(s);
       });
-      console.log('said speeches without samples', speechWithoutSamples);
       const speeches = await speechesAPI.getSpeech();
       // sorted by newest at bottom
       const sorted = speeches.sort(function (a, b) {
@@ -155,13 +156,11 @@ function App() {
 
   function renderFav(option) {
     if (nav == 'fav') {
-      console.log('was fav');
       // nav == 'nav' mean we want to turn it off after view by pressing itself
       setNav('translate');
       setSpeech(speechPreFav);
       setSpeechPreFav([]);
     } else {
-      console.log('was not fav');
       // calc to show favourites
       setNav('fav');
       let speechCopy = [...speech];
@@ -175,6 +174,25 @@ function App() {
       setSpeech(favSpeech);
     }
     scrollToBottom(option);
+  }
+
+  async function deleteSpeechList(nav) {
+    if (nav == 'fav') {
+      console.log('delete all fav');
+    } else {
+      console.log('clear this list but not fav');
+      // if theres a user, need to set everything
+
+      if (user) {
+        const cleared = await speechesAPI.clearList();
+        console.log('cleared', cleared);
+        setSpeech(cleared);
+      } else {
+        setSpeech([]);
+        handleStarterConvo();
+        // not logged in just change state
+      }
+    }
   }
 
   function scrollToBottom(option) {
@@ -208,6 +226,7 @@ function App() {
           // handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
           renderFav={renderFav}
+          deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
           speechPreFav={speechPreFav}
         />
@@ -234,6 +253,7 @@ function App() {
                 languageCodes={languageCodes}
                 handleLanguageSwap={handleLanguageSwap}
                 speechPreFav={speechPreFav}
+                setButtonState={setButtonState}
               />
             }
           />

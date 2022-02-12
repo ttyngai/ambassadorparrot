@@ -15,3 +15,6 @@ export function getSpeech() {
 export function deleteSpeech(speech) {
   return sendRequest(`${BASE_URL}/deleteSpeech`, 'DELETE', speech);
 }
+export function clearList() {
+  return sendRequest(`${BASE_URL}/clearSpeeches`, 'PUT');
+}

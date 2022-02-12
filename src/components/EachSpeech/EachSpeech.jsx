@@ -13,6 +13,7 @@ export default function EachSpeech({
   empty,
   languageCodes,
   outputLanguage,
+  setButtonState,
 }) {
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
