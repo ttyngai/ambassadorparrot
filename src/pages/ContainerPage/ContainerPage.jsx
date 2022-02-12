@@ -38,7 +38,8 @@ export default function ContainerPage({
         !user &&
         (!speech[0] || !speech[0].sample) &&
         (!speech[1] || !speech[1].sample) &&
-        (!speech[2] || !speech[2].sample)
+        (!speech[2] || !speech[2].sample) &&
+        speech.length == 0
       ) {
         handleStarterConvo();
       } else if (user) {
