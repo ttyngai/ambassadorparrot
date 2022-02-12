@@ -60,6 +60,5 @@ async function deleteFav(req, res) {
   favSpeeches.forEach(function (s) {
     s.remove();
   });
-  // favSpeeches.save();
-  res.json('ok');
+  res.json(favSpeeches);
 }

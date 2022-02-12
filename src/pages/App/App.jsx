@@ -199,9 +199,20 @@ function App() {
 
   async function deleteSpeechList(nav) {
     if (nav == 'fav') {
-      console.log('delete all fav from:', user._id);
       const deleted = await speechesAPI.deleteFav(user._id);
+      // Delete from  the speechPreFav
+      let speechPreFavCopy = [...speechPreFav];
 
+      let speechPreFavCopyRemovedItem = [];
+      speechPreFavCopy.forEach(function (s) {
+        deleted.forEach(function (d) {
+          if (s._id !== d._id) {
+            speechPreFavCopyRemovedItem.push(s);
+          }
+        });
+      });
+      setSpeechPreFav(speechPreFavCopyRemovedItem);
+      console.log('deleted ones', deleted);
       setSpeech([]);
     } else {
       // if theres a user, need to set everything
