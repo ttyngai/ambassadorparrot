@@ -148,14 +148,12 @@ function App() {
       });
       const speeches = await speechesAPI.getSpeech();
       // Only show the speeches that were never "cleared", both fav and not fav
-
       const neverCleared = [];
       speeches.forEach((s) => {
         if (!s.isCleared) {
           neverCleared.push(s);
         }
       });
-      console.log('check if ever cleared', neverCleared);
       // sorted by newest at bottom
       const sorted = neverCleared.sort(function (a, b) {
         if (a.timeCreated > b.timeCreated) return 1;
@@ -179,9 +177,7 @@ function App() {
       let speechCopy = [...speech];
       setSpeechPreFav(speechCopy);
       // from here , what I have is speech on screen
-
       const speeches = await speechesAPI.getSpeech();
-
       let favSpeech = [];
       speeches.forEach(function (s) {
         if (s.isStarred) {
@@ -203,7 +199,6 @@ function App() {
       const deleted = await speechesAPI.deleteFav(user._id);
       // Delete from  the speechPreFav
       let speechPreFavCopy = [...speechPreFav];
-
       let speechPreFavCopyRemovedItem = [];
       speechPreFavCopy.forEach(function (s) {
         deleted.forEach(function (d) {
@@ -213,7 +208,6 @@ function App() {
         });
       });
       setSpeechPreFav(speechPreFavCopyRemovedItem);
-      console.log('deleted ones', deleted);
       setSpeech([]);
     } else {
       // if theres a user, need to set everything
