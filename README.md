@@ -24,6 +24,8 @@ https://parrot-translate.herokuapp.com
 
 - Language can be selected, and also swapped if communicating with foreign speaker
 
+- `✖` can be pressed to delete individual conversation, no confirmation is required
+
 - In order to have conversation stored, login/sign up is required
 
 - After login, conversation that was made before will still temporarily be available at main screen, which could be saved by pressing `Add`.
