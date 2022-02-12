@@ -87,6 +87,7 @@ function App() {
     };
     // record preferred languages for each user
     // find empty star logo
+    // some &#39;
     // in fav, new speech, when unclicked doesn't stay in normal
     setRecognition(recognition);
     recognition.start();
