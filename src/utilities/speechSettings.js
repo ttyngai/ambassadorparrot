@@ -37,14 +37,6 @@ const sampleConvo = [
     timeCreated: new Date('5/7/2013, 2:12:10 AM'),
     sample: true,
   },
-  {
-    inputText: 'Have fun!',
-    inputLanguage: 'en',
-    outputText: 'Divertiti!',
-    outputLanguage: 'it',
-    timeCreated: new Date('1/2/2014, 8:56:42 PM'),
-    sample: true,
-  },
 ];
 
 export function speechSettings(code) {
