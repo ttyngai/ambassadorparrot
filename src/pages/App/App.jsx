@@ -162,6 +162,7 @@ function App() {
           handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
           toggleFav={toggleFav}
+          scrollToBottom={scrollToBottom}
           speechPreFav={speechPreFav}
         />
 

@@ -2,7 +2,14 @@ import './NavBar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-function NavBar({ user, setUser, setSpeech, toggleFav, speechPreFav }) {
+function NavBar({
+  user,
+  setUser,
+  setSpeech,
+  toggleFav,
+  speechPreFav,
+  scrollToBottom,
+}) {
   const navigate = useNavigate();
   function handlelogOut() {
     userService.logOut();
@@ -16,6 +23,8 @@ function NavBar({ user, setUser, setSpeech, toggleFav, speechPreFav }) {
   function handleTranslateClick() {
     if (speechPreFav.length != 0) {
       toggleFav();
+    } else {
+      scrollToBottom();
     }
   }
 
@@ -50,7 +59,7 @@ function NavBar({ user, setUser, setSpeech, toggleFav, speechPreFav }) {
             onClick={handleDeleteAll}
             to='/'
           >
-            Delete
+            {speechPreFav.length > 0 ? 'Delete ★' : 'Clear List'}
           </Link>
           &nbsp;&nbsp;
           <Link className='navButton' onClick={handlelogOut} to='/'>
