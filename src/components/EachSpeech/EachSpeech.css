@@ -1,7 +1,7 @@
 .eachSpeech {
   font-size: 15px;
   color: white;
-  padding: 3px 10px 15px 10px;
+  padding: 0px 8px 8px 8px;
   margin: 5px;
   text-align: left;
   border-radius: 5px;
@@ -31,7 +31,7 @@
 .speechDate {
   text-align: left;
   font-size: 10px;
-  color: grey;
+  color: rgb(167, 167, 167);
 }
 
 .starButton {
@@ -41,6 +41,7 @@
   padding-right: 8px;
   z-index: 2;
 }
+
 .starButton:hover {
   animation: starHover 0.5s ease-in-out;
 }
@@ -85,6 +86,7 @@
   padding-top: 4px;
   z-index: 2;
 }
+
 .addButton:hover {
   transform: scale(1.25);
   color: rgb(186, 255, 47);
