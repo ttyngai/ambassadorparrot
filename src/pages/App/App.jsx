@@ -41,6 +41,9 @@ function App() {
     });
   }, []);
 
+  function handleStarterConvo() {
+    setSpeech(sampleConvo);
+  }
   // If in favourites, need to also add new made speech to preFavSpeech
   function handleStart() {
     setButtonState(false);
@@ -114,10 +117,6 @@ function App() {
       }
       scrollToBottom('noTopRescroll');
     }, 1500);
-  }
-
-  function handleStarterConvo() {
-    setSpeech(sampleConvo);
   }
 
   async function renderSpeeches() {
