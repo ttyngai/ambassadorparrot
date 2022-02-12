@@ -6,4 +6,5 @@ PARROT TRANSLATOR 🦜
 
   https://parrot-translate.herokuapp.com
 
-https://raw.github.com/ttyngai/parrot-translate/main/{PATH}
+https://raw.github.com/ttyngai/parrot-translate/main/src/images/recordingScreen.jpg
+https://raw.github.com/ttyngai/parrot-translate/main/src/images/favScreen.jpg
