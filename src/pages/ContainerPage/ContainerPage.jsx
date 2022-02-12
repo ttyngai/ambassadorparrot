@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import './ContainerPage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
+import swapLogo from '../../images/swap.png';
 export default function ContainerPage({
   user,
   nav,
@@ -17,7 +18,6 @@ export default function ContainerPage({
   setInputLanguage,
   outputLanguage,
   setOutputLanguage,
-  // handleLanguageSwap,
   buttonState,
   languageCodes,
   speechPreFav,
@@ -58,9 +58,13 @@ export default function ContainerPage({
               </option>
             ))}
           </select>
-          <span className='swapArrow' onClick={handleLanguageSwap}>
-            ⇌
-          </span>
+
+          <img
+            src={swapLogo}
+            className='swapArrow'
+            onClick={handleLanguageSwap}
+          />
+
           <select
             className='languageSelect'
             onChange={(evt) => setOutputLanguage(evt.target.value)}
