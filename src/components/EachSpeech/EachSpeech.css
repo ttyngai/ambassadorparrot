@@ -1,4 +1,5 @@
 .eachSpeech {
+  font-size: 15px;
   color: white;
   padding: 3px 10px 15px 10px;
   margin: 5px;
@@ -51,7 +52,6 @@
   15% {
     color: rgba(255, 255, 0, 0.5);
   }
-
   30% {
     color: rgba(255, 255, 0, 0.25);
   }
@@ -134,7 +134,7 @@
 .textBubble {
   border: 1px solid transparent;
   border-radius: 15px;
-  padding: 4px 13px;
+  padding: 2px 12px 2px 12px;
   max-width: 80%;
   box-shadow: 3px 3px 5px black;
 }

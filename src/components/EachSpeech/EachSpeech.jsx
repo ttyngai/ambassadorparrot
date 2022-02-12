@@ -147,7 +147,7 @@ export default function EachSpeech({
               style={{
                 verticalAlign: 'middle',
                 borderRadius: '20px',
-                fontSize: '35px',
+                fontSize: '28px',
               }}
             />
           </div>
@@ -177,7 +177,7 @@ export default function EachSpeech({
               style={{
                 verticalAlign: 'middle',
                 borderRadius: '20px',
-                fontSize: '35px',
+                fontSize: '28px',
               }}
             />
           </div>
