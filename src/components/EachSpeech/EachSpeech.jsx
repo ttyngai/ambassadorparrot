@@ -124,7 +124,7 @@ export default function EachSpeech({
         >
           ★
         </span>
-      ) : user && eachSpeech.outputLanguage ? (
+      ) : user && eachSpeech.outputLanguage && !eachSpeech.sample ? (
         <span className='addButton' onClick={handleAddSpeech}>
           Add
         </span>
