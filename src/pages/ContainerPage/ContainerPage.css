@@ -138,11 +138,13 @@
 
 .selectorContainer {
   display: flex;
+  flex-direction: row;
+  align-content: center;
   justify-content: center;
 }
 
 .swapArrow {
-  height: 30px;
+  height: 25px;
   cursor: pointer;
   padding: 0 15px;
 }
