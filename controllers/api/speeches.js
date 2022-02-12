@@ -50,6 +50,7 @@ async function clearList(req, res) {
       s.isCleared = true;
       s.save();
       afterRemove.push(s);
+      console.log(s);
     }
   });
   res.json(afterRemove);

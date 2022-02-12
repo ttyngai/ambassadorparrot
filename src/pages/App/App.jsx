@@ -16,6 +16,7 @@ function App() {
   const [nav, setNav] = useState('translate');
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
+  // Set default for input output languages
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
   const languageCodes = voice.getLanguageCodes();
@@ -150,11 +151,11 @@ function App() {
 
       const neverCleared = [];
       speeches.forEach((s) => {
-        if (!s.isClearred) {
+        if (!s.isCleared) {
           neverCleared.push(s);
         }
       });
-
+      console.log('check if ever cleared', neverCleared);
       // sorted by newest at bottom
       const sorted = neverCleared.sort(function (a, b) {
         if (a.timeCreated > b.timeCreated) return 1;
@@ -219,7 +220,7 @@ function App() {
       if (user) {
         const cleared = await speechesAPI.clearList();
         console.log('cleared', cleared);
-        setSpeech(cleared);
+        setSpeech([]);
       } else {
         setSpeech([]);
         handleStarterConvo();
