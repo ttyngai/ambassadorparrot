@@ -40,6 +40,7 @@ async function deleteSpeech(req, res) {
   } catch {}
 }
 
+// clear list on main page
 async function clearList(req, res) {
   let allSpeeches = await Speech.find({ user: req.user });
   let afterRemove = [];
@@ -55,6 +56,7 @@ async function clearList(req, res) {
   res.json(afterRemove);
 }
 
+// delete favourites list
 async function deleteFav(req, res) {
   const favSpeeches = await Speech.find({ user: req.user, isStarred: true });
   favSpeeches.forEach(function (s) {

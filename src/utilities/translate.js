@@ -1,14 +1,8 @@
 import speak from '../utilities/speak';
 import * as voice from '../utilities/voiceSettings';
-export default async function translate(speech, targetLanguage, mostRecent) {
-  let targetSpeech;
-  if (mostRecent == 'recent') {
-    targetSpeech = speech[speech.length - 1].inputText;
-  }
+export default async function translate(speech, targetLanguage) {
   let translated;
   let lang = voice.voiceSettings(targetLanguage);
-
-  // target:lang.target needs zh-yue
   let taiwanSwap;
   if (targetLanguage == 'zh-HK') {
     lang.target = 'zh-TW';
@@ -20,19 +14,17 @@ export default async function translate(speech, targetLanguage, mostRecent) {
     {
       method: 'POST',
       body: JSON.stringify({
-        q: targetSpeech,
+        q: speech[speech.length - 1].inputText,
         // if HK, need zh-TW as traditional target
         target: lang.target,
       }),
     }
   )
     .then((res) => {
-      let response = res.json();
-      return response;
+      return res.json();
     })
     .then(async (data) => {
-      //replace &#39; in italian with proper '
-
+      //replace &#39; in italian with proper ' symbol
       translated = data.data.translations[0].translatedText.replace(
         `&#39;`,
         "'"
@@ -42,8 +34,8 @@ export default async function translate(speech, targetLanguage, mostRecent) {
       if (lang.target == 'zh-TW' && taiwanSwap) {
         lang.target = 'zh-HK';
       }
-      speak(data.data.translations[0].translatedText, lang);
-      return data.data.translations[0].translatedText;
+      speak(translated, lang);
+      // return data.data.translations[0].translatedText;
     });
   return translated;
 }

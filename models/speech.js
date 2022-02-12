@@ -15,7 +15,9 @@ const speechSchema = new Schema(
     },
     outputLanguage: { type: String, required: true },
     timeCreated: { type: String, required: true },
+    // Favourites
     isStarred: { type: Boolean, default: false },
+    // Records that it was once cleared from main page
     isCleared: { type: Boolean, default: false },
   },
   {

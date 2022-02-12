@@ -2,20 +2,17 @@ const express = require('express');
 const router = express.Router();
 const speechCtrl = require('../../controllers/api/speeches');
 
-// POST /api/orders/cart/items/:id
+// Record speech
 router.post('/new', speechCtrl.create);
-// POST /api/orders/cart/items/:id
+// Add as a favourite
 router.put('/star', speechCtrl.star);
+// Clear main page
 router.put('/clearSpeeches', speechCtrl.clearList);
+// Delete a single speech
 router.delete('/deleteSpeech', speechCtrl.deleteSpeech);
-router.delete('/deleteFav/:id', speechCtrl.deleteFav);
+// Delete favourites list
+router.delete('/deleteFav', speechCtrl.deleteFav);
+// Get speeches from database
 router.get('/getSpeeches', speechCtrl.getSpeech);
-// router.get('/getOrders', speechCtrl.getOrders);
-// // GET /api/orders/cart
-// router.get('/cart', speechCtrl.cart);
-// // POST /api/orders/cart/checkout
-// router.post('/cart/checkout', speechCtrl.checkout);
-// // PUT /api/orders/cart/qty
-// router.put('/cart/qty', speechCtrl.setItemQtyInCart);
 
 module.exports = router;
