@@ -58,7 +58,7 @@ function NavBar({
       >
         Translate
       </Link>
-      &nbsp;&nbsp;
+      &nbsp;
       {user ? (
         <>
           <span
@@ -68,7 +68,7 @@ function NavBar({
           >
             Favorites
           </span>
-          &nbsp;&nbsp;
+          &nbsp;
           <Link
             className='navButton deleteAllButton'
             onClick={handleDeleteAll}
@@ -76,7 +76,7 @@ function NavBar({
           >
             {speechPreFav.length > 0 ? 'Delete ★' : 'Clear List'}
           </Link>
-          &nbsp;&nbsp;
+          &nbsp;
           <Link className='navButton' onClick={handlelogOut} to='/'>
             Log Out
           </Link>
@@ -90,7 +90,7 @@ function NavBar({
           Login · Signup
         </Link>
       )}
-      &nbsp;&nbsp;
+      &nbsp;
     </nav>
   );
 }

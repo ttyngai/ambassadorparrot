@@ -51,7 +51,6 @@ function App() {
   function handleStart() {
     setButtonState(false);
     let recognition = new window.SpeechRecognition();
-
     recognition.lang = inputLanguage;
     if (
       (navigator.userAgent.includes('Windows') ||
@@ -71,7 +70,6 @@ function App() {
       // Uppercase First letter
       concat.inputText =
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
-
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
       concat.new = true;
@@ -84,6 +82,8 @@ function App() {
       }
     };
     // Include the called function as a state, for invoking later even after state change
+    // Also, when coming back from favourites, if you spoke, it will not show
+    // Also, if spoke within favourites, should automatically be favourited
     setRecognition(recognition);
     recognition.start();
   }
