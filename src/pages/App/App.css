@@ -19,7 +19,7 @@
 }
 
 .recordingBarOn {
-  animation: recordGlow 2s linear infinite;
+  animation: recordGlow 1.5s linear infinite;
 }
 
 @keyframes recordGlow {
@@ -27,7 +27,7 @@
     box-shadow: red 0px 0px 100px 0px;
   }
   50% {
-    box-shadow: red 0px 0px 100px 60px;
+    box-shadow: red 0px 0px 100px 40px;
   }
   0% {
     box-shadow: red 0px 0px 100px 00px;
