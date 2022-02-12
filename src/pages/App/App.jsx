@@ -196,7 +196,7 @@ function App() {
       // Delete from  the speechPreFav at state, so when returning to translate, deleted fav wont show
       let speechPreFavCopy = [...speechPreFav];
       let speechPreFavCopyWithoutRemovedItem = [];
-      for (let i = 0; i < speechPreFavCopy.length - 1; i++) {
+      for (let i = 0; i < speechPreFavCopy.length; i++) {
         let wasDeleted;
         deleted.forEach(function (d) {
           if (speechPreFavCopy[i]._id == d._id) {
