@@ -7,7 +7,7 @@ import ContainerPage from '../ContainerPage/ContainerPage';
 import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as speechesAPI from '../../utilities/speeches-api';
-import * as voice from '../../utilities/voiceSettings';
+import * as voice from '../../utilities/speechSettings';
 
 function App() {
   const [user, setUser] = useState(getUser());

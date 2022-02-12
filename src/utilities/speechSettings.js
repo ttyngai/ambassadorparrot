@@ -47,7 +47,7 @@ const sampleConvo = [
   },
 ];
 
-export function voiceSettings(code) {
+export function speechSettings(code) {
   let setting = {};
   if (code == 'en') {
     setting = {

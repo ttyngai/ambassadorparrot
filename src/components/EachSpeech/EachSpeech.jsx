@@ -1,7 +1,7 @@
 import './EachSpeech.css';
 import speak from '../../utilities/speak';
 import * as speechesAPI from '../../utilities/speeches-api';
-import * as voice from '../../utilities/voiceSettings';
+import * as voice from '../../utilities/speechSettings';
 import ReactCountryFlag from 'react-country-flag';
 
 export default function EachSpeech({
@@ -33,7 +33,7 @@ export default function EachSpeech({
 
   // Will say again if the speech is clicked
   function handleSayAgain() {
-    const lang = voice.voiceSettings(eachSpeech.outputLanguage);
+    const lang = voice.speechSettings(eachSpeech.outputLanguage);
     speak(eachSpeech.outputText, lang);
   }
 

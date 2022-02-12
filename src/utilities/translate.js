@@ -1,8 +1,8 @@
 import speak from '../utilities/speak';
-import * as voice from '../utilities/voiceSettings';
+import * as voice from './speechSettings';
 export default async function translate(speech, targetLanguage) {
   let translated;
-  let lang = voice.voiceSettings(targetLanguage);
+  let lang = voice.speechSettings(targetLanguage);
   let taiwaneseHKSwap;
   if (targetLanguage == 'zh-HK') {
     lang.target = 'zh-TW';
