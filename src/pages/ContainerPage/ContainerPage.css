@@ -65,27 +65,14 @@
 }
 
 .recording {
-  font-size: 40px;
-  animation: pulse 1s linear infinite;
+  font-size: 50px;
   cursor: pointer;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1, 1);
-  }
-
-  50% {
-    transform: scale(1.25, 1.25);
-  }
-
-  100% {
-    transform: scale(1, 1);
-  }
+  border: 3px dotted lightgrey;
+  border-radius: 100%;
+  padding: 8px 12px 13px 12px;
 }
 
 .loading {
-  margin-top: -50px;
   max-height: 45px;
   animation: loading 0.5s linear infinite;
 }

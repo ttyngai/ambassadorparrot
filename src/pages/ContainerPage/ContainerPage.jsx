@@ -124,9 +124,9 @@ export default function ContainerPage({
               />
             )
           ) : (
-            <div className={'microphone recording'} onClick={handleStop}>
+            <span className='microphone recording' onClick={handleStop}>
               🟥
-            </div>
+            </span>
           )}
         </div>
       </div>
