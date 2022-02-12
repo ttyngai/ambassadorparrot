@@ -1,4 +1,5 @@
 import './NavBar.css';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
@@ -8,11 +9,11 @@ function NavBar({
   setNav,
   setUser,
   setSpeech,
-  renderSpeeches,
   renderFav,
   speechPreFav,
   scrollToBottom,
 }) {
+  const [confirming, setConfirming] = useState(false);
   const navigate = useNavigate();
 
   function handlelogOut() {
@@ -36,6 +37,7 @@ function NavBar({
       scrollToBottom('noTopRescroll');
       setNav('translate');
     }
+    setConfirming(false);
   }
 
   function handleFavClick() {
@@ -44,10 +46,22 @@ function NavBar({
     } else {
       renderFav();
     }
+    setConfirming(false);
   }
 
   function handleDeleteAll() {
-    console.log('deleting');
+    if (!confirming) {
+      console.log('ask');
+      setConfirming(true);
+      // Waitime to cancel confirm
+      setTimeout(function () {
+        setConfirming(false);
+        console.log('cancel confirm');
+      }, 3000);
+    } else {
+      console.log('delete it');
+      setConfirming(false);
+    }
   }
 
   return (
@@ -76,11 +90,19 @@ function NavBar({
           </span>
           &nbsp;
           <Link
-            className='navButton deleteAllButton'
+            className={
+              !confirming
+                ? 'navButton deleteAllButton'
+                : 'navButton deleteAllButton deleteConfirm'
+            }
             onClick={handleDeleteAll}
             to='/'
           >
-            {speechPreFav.length > 0 ? 'Delete ★' : 'Clear List'}
+            {!confirming
+              ? nav == 'fav'
+                ? 'Delete ★'
+                : 'Clear List'
+              : 'Confirm?'}
           </Link>
           &nbsp;
           <Link className='navButton' onClick={handlelogOut} to='/'>

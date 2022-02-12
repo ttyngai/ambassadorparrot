@@ -26,7 +26,7 @@
   padding: 2px 8px;
   font-size: 15px;
   text-decoration: none;
-  background-color: rgb(255, 255, 0, 0.15);
+  background-color: rgb(255, 255, 0, 0.1);
   border-radius: 5px;
   color: white;
   font-weight: bold;
@@ -46,4 +46,22 @@
 .deleteAllButton:hover {
   background-color: rgba(255, 0, 0, 0.5);
   color: white;
+}
+.deleteConfirm {
+  animation: deleteConfirm 1s ease-in-out infinite;
+}
+
+@keyframes deleteConfirm {
+  0% {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: rgb(0, 0, 0);
+  }
+  50% {
+    background-color: rgba(255, 0, 0, 1);
+    color: rgb(255, 255, 255);
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: rgb(0, 0, 0);
+  }
 }
