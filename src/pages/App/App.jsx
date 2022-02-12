@@ -39,13 +39,6 @@ function App() {
       speechSynthesis.speak(lecture);
       hasEnabledVoice = true;
     });
-
-    //check to see if speech is empty, gives starter convo, need to be in favourites
-    // if (speech.length == 0) {
-    //   setTimeout(function () {
-    //     handleStarterConvo();
-    //   }, 1500);
-    // }
   }, []);
 
   // If in favourites, need to also add new made speech to preFavSpeech
@@ -74,9 +67,7 @@ function App() {
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
       concat.new = true;
-
       // Add this new speech into the speech also in fav
-
       setSpeech([...speech, concat]);
       if (document.getElementById('dialogue')) {
         document.getElementById('dialogue').scrollTo({
@@ -88,7 +79,7 @@ function App() {
     // record preferred languages for each user
     // find empty star logo
     // some &#39;
-    // in fav, new speech, when unclicked doesn't stay in normal
+
     setRecognition(recognition);
     recognition.start();
   }
@@ -127,12 +118,6 @@ function App() {
 
   function handleStarterConvo() {
     setSpeech(sampleConvo);
-  }
-
-  function handleLanguageSwap() {
-    let tempInputLanguage = inputLanguage;
-    setInputLanguage(outputLanguage);
-    setOutputLanguage(tempInputLanguage);
   }
 
   async function renderSpeeches() {
@@ -274,7 +259,7 @@ function App() {
                 setInputLanguage={setInputLanguage}
                 outputLanguage={outputLanguage}
                 setOutputLanguage={setOutputLanguage}
-                handleLanguageSwap={handleLanguageSwap}
+                // handleLanguageSwap={handleLanguageSwap}
                 buttonState={buttonState}
                 languageCodes={languageCodes}
                 speechPreFav={speechPreFav}

@@ -17,12 +17,18 @@ export default function ContainerPage({
   setInputLanguage,
   outputLanguage,
   setOutputLanguage,
-  handleLanguageSwap,
+  // handleLanguageSwap,
   buttonState,
   languageCodes,
   speechPreFav,
   setSpeechPreFav,
 }) {
+  function handleLanguageSwap() {
+    let tempInputLanguage = inputLanguage;
+    setInputLanguage(outputLanguage);
+    setOutputLanguage(tempInputLanguage);
+  }
+
   function handleSetInputLanguage(input) {
     setInputLanguage(input);
   }
