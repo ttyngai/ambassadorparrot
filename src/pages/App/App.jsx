@@ -12,7 +12,8 @@ import * as voice from '../../utilities/voiceSettings';
 function App() {
   const [user, setUser] = useState(getUser());
   const [speech, setSpeech] = useState([]);
-  const [speechPreFav, setSpeechspeechPreFav] = useState([]);
+  const [speechPreFav, setSpeechPreFav] = useState([]);
+  const [nav, setNav] = useState('translate');
   const [recognition, setRecognition] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [inputLanguage, setInputLanguage] = useState('en');
@@ -37,8 +38,16 @@ function App() {
       speechSynthesis.speak(lecture);
       hasEnabledVoice = true;
     });
+
+    //check to see if speech is empty, gives starter convo, need to be in favourites
+    // if (speech.length == 0) {
+    //   setTimeout(function () {
+    //     handleStarterConvo();
+    //   }, 1500);
+    // }
   }, []);
 
+  // If in favourites, need to also add new made speech to preFavSpeech
   function handleStart() {
     setButtonState(false);
     let recognition = new window.SpeechRecognition();
@@ -91,7 +100,6 @@ function App() {
         lastSpeech = fullSpeech.pop();
         lastSpeech.outputText = speechReturn;
         lastSpeech.outputLanguage = outputLanguage;
-
         lastSpeech.user = user;
         delete lastSpeech.new;
         let newSpeechObj;
@@ -102,7 +110,7 @@ function App() {
         }
         setSpeech([...fullSpeech, newSpeechObj]);
       }
-      scrollToBottom();
+      scrollToBottom('noTopRescroll');
     }, 1500);
   }
 
@@ -116,13 +124,39 @@ function App() {
     setOutputLanguage(tempInputLanguage);
   }
 
-  function toggleFav() {
-    if (speechPreFav.length > 0) {
-      setSpeech(speechPreFav);
-      setSpeechspeechPreFav([]);
-    } else {
+  async function renderSpeeches() {
+    if (user) {
       let speechCopy = [...speech];
-      setSpeechspeechPreFav(speech);
+      let speechWithoutSamples = [];
+      speechCopy.forEach(function (s) {
+        if (!s.sample) speechWithoutSamples.push(s);
+      });
+      console.log('said speeches without samples', speechWithoutSamples);
+      const speeches = await speechesAPI.getSpeech();
+      // sorted by newest at bottom
+      const sorted = speeches.sort(function (a, b) {
+        if (a.createdAt > b.createdAt) return 1;
+        if (a.createdAt < b.createdAt) return -1;
+        return 0;
+      });
+      setSpeech(sorted.concat(speechWithoutSamples));
+    }
+  }
+
+  function toggleFav() {
+    if (nav == 'fav') {
+      // nav == 'nav' mean we want to turn it off after view by pressing itself
+      setNav('translate');
+      setSpeech(speechPreFav);
+      setSpeechPreFav([]);
+    } else {
+      // calc to show favourites
+      setNav('fav');
+      let speechCopy = [...speech];
+      console.log('from translate to fav speech', speech);
+      console.log('from translate to fav speech', speechCopy);
+      setSpeechPreFav(speechCopy);
+      console.log('from translate to fav speechPreFav', speechPreFav);
       let favSpeech = [];
       speechCopy.forEach(function (s) {
         if (s.isStarred) {
@@ -131,12 +165,28 @@ function App() {
       });
       setSpeech(favSpeech);
     }
+    console.log('from translate to fav speechPreFav', speechPreFav);
+    // if (speechPreFav.length > 0) {
+    //   setSpeech(speechPreFav);
+    //   setSpeechPreFav([]);
+    // } else {
+    //   let speechCopy = [...speech];
+    //   setSpeechPreFav(speech);
+    //   let favSpeech = [];
+    //   speechCopy.forEach(function (s) {
+    //     if (s.isStarred) {
+    //       favSpeech.push(s);
+    //     }
+    //   });
+    //   setSpeech(favSpeech);
+    // }
+
     scrollToBottom();
   }
 
-  function scrollToBottom() {
+  function scrollToBottom(option) {
     // Set scroll from top
-    if (document.getElementById('dialogue')) {
+    if (document.getElementById('dialogue') && option != 'noTopRescroll') {
       document.getElementById('dialogue').scrollTo({
         top: 0,
       });
@@ -157,9 +207,12 @@ function App() {
       <>
         <NavBar
           user={user}
+          nav={nav}
+          renderSpeeches={renderSpeeches}
+          setNav={setNav}
           setUser={setUser}
           sampleConvo={sampleConvo}
-          handleStarterConvo={handleStarterConvo}
+          // handleStarterConvo={handleStarterConvo}
           setSpeech={setSpeech}
           toggleFav={toggleFav}
           scrollToBottom={scrollToBottom}
@@ -172,7 +225,9 @@ function App() {
             element={
               <ContainerPage
                 user={user}
+                nav={nav}
                 scrollToBottom={scrollToBottom}
+                renderSpeeches={renderSpeeches}
                 speech={speech}
                 setSpeech={setSpeech}
                 handleStarterConvo={handleStarterConvo}
@@ -185,10 +240,21 @@ function App() {
                 buttonState={buttonState}
                 languageCodes={languageCodes}
                 handleLanguageSwap={handleLanguageSwap}
+                speechPreFav={speechPreFav}
               />
             }
           />
-          <Route path='/login' element={<AuthPage setUser={setUser} />} />)
+          <Route
+            path='/login'
+            element={
+              <AuthPage
+                setUser={setUser}
+                handleStarterConvo={handleStarterConvo}
+                setNav={setNav}
+              />
+            }
+          />
+          )
         </Routes>
       </>
     </main>

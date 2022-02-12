@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { useNavigate } from 'react-router-dom';
 
-export default function SignUpForm({ setUser }) {
+export default function SignUpForm({ setUser, handleStarterConvo, setNav }) {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -27,6 +27,7 @@ export default function SignUpForm({ setUser }) {
       if (user) {
         setUser(user);
         navigate('/');
+        setNav('translate');
       } else {
         setError('Sign Up Failed - Try Again');
       }

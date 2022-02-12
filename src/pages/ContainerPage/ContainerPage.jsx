@@ -6,8 +6,10 @@ import loadingLogo from '../../images/loading.png';
 import * as speechesAPI from '../../utilities/speeches-api';
 export default function TranslatePage({
   user,
+  nav,
   scrollToBottom,
   speech,
+  renderSpeeches,
   setSpeech,
   handleStarterConvo,
   handleStart,
@@ -20,40 +22,24 @@ export default function TranslatePage({
   buttonState,
   languageCodes,
   flagCode,
+  speechPreFav,
 }) {
   function handleSetInputLanguage(input) {
     setInputLanguage(input);
   }
 
   useEffect(function () {
-    async function initSpeeches() {
-      if (user) {
-        let speechCopy = [...speech];
-        let speechWithoutSamples = [];
-        speechCopy.forEach(function (s) {
-          if (!s.sample) speechWithoutSamples.push(s);
-        });
-        const speeches = await speechesAPI.getSpeech();
-        // sorted by newest at bottom
-        const sorted = speeches.sort(function (a, b) {
-          if (a.createdAt > b.createdAt) return 1;
-          if (a.createdAt < b.createdAt) return -1;
-          return 0;
-        });
-        setSpeech(sorted.concat(speechWithoutSamples));
-      }
-    }
-    initSpeeches();
-
+    renderSpeeches();
+    // Populate the page with starter convo for un-loggedin users
     if (!user) {
       handleStarterConvo();
     }
 
     setTimeout(function () {
       scrollToBottom();
-    }, 1500);
+    }, 1000);
   }, []);
-
+  console.log('the speech', speech);
   return (
     <>
       <div className='speechContainer'>
@@ -108,11 +94,17 @@ export default function TranslatePage({
                 />
               ))
             ) : (
-              <div className='emptyPrompt'>Press button to start</div>
+              <div className='emptyPrompt'>
+                {nav == 'fav'
+                  ? 'Favourites List Empty'
+                  : 'Press button to start'}
+              </div>
             )}
           </div>
         </div>
       </div>
+
+      {/* {speechPreFav.length < 0 ? ( */}
       <div>
         <div className='speakButton'>
           {buttonState ? (
@@ -134,6 +126,9 @@ export default function TranslatePage({
           )}
         </div>
       </div>
+      {/* ) : (
+        ''
+      )} */}
     </>
   );
 }

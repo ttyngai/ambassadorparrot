@@ -4,33 +4,46 @@ import * as userService from '../../utilities/users-service';
 
 function NavBar({
   user,
+  nav,
+  setNav,
   setUser,
   setSpeech,
+  renderSpeeches,
   toggleFav,
   speechPreFav,
   scrollToBottom,
 }) {
   const navigate = useNavigate();
+
   function handlelogOut() {
+    setSpeech([]);
     userService.logOut();
     setUser(null);
-    setSpeech([]);
+    setNav('loginSignup');
     setTimeout(function () {
       navigate('/login');
-    }, 1000);
+    }, 500);
+  }
+
+  function handleLogin() {
+    setNav('loginSignup');
   }
 
   function handleTranslateClick() {
-    if (speechPreFav.length != 0) {
+    if (nav == 'fav') {
+      console.log('Was fav');
       toggleFav();
     } else {
       scrollToBottom();
     }
+    setNav('translate');
   }
 
   function handleDeleteAll() {
     console.log('deleting');
   }
+  // console.log('nav: ', nav);
+
   return (
     <nav className='navBackground'>
       <div className='titleContainer'>
@@ -38,16 +51,18 @@ function NavBar({
           PARROT<span className='titleLogo'>🦜</span>
         </span>
       </div>
-      <Link className='navButton' to='/' onClick={handleTranslateClick}>
+      <Link
+        className={nav == 'translate' ? 'navButton navActive' : 'navButton'}
+        to='/'
+        onClick={handleTranslateClick}
+      >
         Translate
       </Link>
       &nbsp;&nbsp;
       {user ? (
         <>
           <span
-            className={
-              speechPreFav.length > 0 ? 'navButton navActive' : 'navButton'
-            }
+            className={nav == 'fav' ? 'navButton navActive' : 'navButton'}
             to='/'
             onClick={toggleFav}
           >
@@ -67,7 +82,11 @@ function NavBar({
           </Link>
         </>
       ) : (
-        <Link className='navButton' to='/login'>
+        <Link
+          className={nav == 'loginSignup' ? 'navButton navActive' : 'navButton'}
+          to='/login'
+          onClick={handleLogin}
+        >
           Login · Signup
         </Link>
       )}
