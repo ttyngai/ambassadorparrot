@@ -38,7 +38,6 @@ function NavBar({
     } else {
       scrollToBottom('noTopRescroll');
       setNav('translate');
-      console.log('pressed translate');
     }
     setConfirming(false);
   }
@@ -116,17 +115,21 @@ function NavBar({
         </>
       ) : (
         <>
-          <Link
-            className={
-              !confirming
-                ? 'navButton deleteAllButton'
-                : 'navButton deleteAllButton deleteConfirm'
-            }
-            onClick={handleDeleteAll}
-            to='/'
-          >
-            {!confirming ? 'Clear List' : 'Confirm?'}
-          </Link>
+          {nav != 'loginSignup' ? (
+            <Link
+              className={
+                !confirming
+                  ? 'navButton deleteAllButton'
+                  : 'navButton deleteAllButton deleteConfirm'
+              }
+              onClick={handleDeleteAll}
+              to='/'
+            >
+              {!confirming ? 'Clear List' : 'Confirm?'}
+            </Link>
+          ) : (
+            ''
+          )}
           &nbsp;
           <Link
             className={

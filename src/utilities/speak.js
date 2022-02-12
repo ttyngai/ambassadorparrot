@@ -277,7 +277,6 @@ export default function speak(text, lang) {
   }
 
   msg.voice = voices.find(function (v) {
-    // console.log('return', v.lang.includes(lang.target));
     return v.lang.includes(lang.target);
   });
 

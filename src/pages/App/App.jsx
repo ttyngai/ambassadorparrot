@@ -213,7 +213,6 @@ function App() {
       // if theres a user, copies onto speechPreFav waiting for the main translate page to be clicked
       if (user) {
         const cleared = await speechesAPI.clearList();
-        console.log('after fav cleared', cleared);
         setSpeech([]);
       }
       // If not logged in, just clears the main page

@@ -6,7 +6,6 @@ module.exports = { create, login, checkToken };
 
 function checkToken(req, res) {
   // req.user will always be there for you when a token is sent
-  console.log('req.user', req.user);
   res.json(req.exp);
 }
 
@@ -25,7 +24,6 @@ async function create(req, res) {
 
 async function login(req, res) {
   try {
-    // console.log('login controller', req.body);
     const user = await User.findOne({ email: req.body.email });
     // const match
     const match = await bcrypt.compare(req.body.password, user.password);
