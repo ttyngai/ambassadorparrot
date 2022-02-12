@@ -105,18 +105,6 @@
   color: grey;
 }
 
-.deleteAllButton {
-  padding: 25px;
-  font-size: 40px;
-  color: rgba(255, 0, 0, 0.425);
-  z-index: 2;
-  cursor: pointer;
-}
-
-.deleteAllButton:hover {
-  color: rgba(255, 0, 0, 0.753);
-}
-
 .viewAllStarsButton {
   padding: 25px;
   font-size: 45px;

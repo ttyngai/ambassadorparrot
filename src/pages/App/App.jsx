@@ -135,12 +135,13 @@ function App() {
   }
 
   function scrollToBottom() {
+    // Set scroll from top
     if (document.getElementById('dialogue')) {
       document.getElementById('dialogue').scrollTo({
         top: 0,
       });
     }
-
+    // Scrolls to bottom after timeout
     setTimeout(function () {
       if (document.getElementById('dialogue')) {
         document.getElementById('dialogue').scrollTo({

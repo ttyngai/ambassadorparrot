@@ -1,6 +1,5 @@
 .navBackground {
   width: 100vw;
-  /* padding-top: 3px; */
   margin-bottom: -30px;
   z-index: 1;
 }
@@ -41,4 +40,9 @@
 .navActive {
   background-color: rgb(117, 117, 14);
   color: black;
+}
+
+.deleteAllButton:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
 }

@@ -2,14 +2,7 @@ import './NavBar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-function NavBar({
-  user,
-  setUser,
-  setSpeech,
-  scrollToBottom,
-  toggleFav,
-  speechPreFav,
-}) {
+function NavBar({ user, setUser, setSpeech, toggleFav, speechPreFav }) {
   const navigate = useNavigate();
   function handlelogOut() {
     userService.logOut();
@@ -24,6 +17,10 @@ function NavBar({
     if (speechPreFav.length != 0) {
       toggleFav();
     }
+  }
+
+  function handleDeleteAll() {
+    console.log('deleting');
   }
   return (
     <nav className='navBackground'>
@@ -47,6 +44,14 @@ function NavBar({
           >
             Favorites
           </span>
+          &nbsp;&nbsp;
+          <Link
+            className='navButton deleteAllButton'
+            onClick={handleDeleteAll}
+            to='/'
+          >
+            Delete
+          </Link>
           &nbsp;&nbsp;
           <Link className='navButton' onClick={handlelogOut} to='/'>
             Log Out
