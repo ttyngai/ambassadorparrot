@@ -1,7 +1,7 @@
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import './AuthPage.css';
-function AuthPage({ setUser, handleStarterConvo, setNav }) {
+function AuthPage({ setUser, setNav }) {
   return (
     <main>
       <br />
@@ -10,11 +10,7 @@ function AuthPage({ setUser, handleStarterConvo, setNav }) {
         <div className='authContainer'>
           <span className='loginSignupTitle'>Login/Signup</span>
           <LoginForm setUser={setUser} setNav={setNav} />
-          <SignUpForm
-            setUser={setUser}
-            handleStarterConvo={handleStarterConvo}
-            setNav={setNav}
-          />
+          <SignUpForm setUser={setUser} setNav={setNav} />
         </div>
       </div>
     </main>

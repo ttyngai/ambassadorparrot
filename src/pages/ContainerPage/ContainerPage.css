@@ -40,12 +40,15 @@
   height: 50px;
   cursor: pointer;
 }
+
 .microphone:hover {
   transform: scale(1.1);
 }
+
 .microphoneEmpty {
   animation: pulsePause 2s linear infinite;
 }
+
 @keyframes pulsePause {
   0% {
     transform: scale(1, 1);
@@ -60,6 +63,7 @@
     transform: scale(1, 1);
   }
 }
+
 .recording {
   margin-top: -18px;
   font-size: 60px;
@@ -68,6 +72,7 @@
   color: red;
   cursor: pointer;
 }
+
 @keyframes pulse {
   0% {
     transform: scale(1, 1);
@@ -81,11 +86,13 @@
     transform: scale(1, 1);
   }
 }
+
 .loading {
   margin-top: -50px;
   max-height: 45px;
   animation: loading 0.5s linear infinite;
 }
+
 @keyframes loading {
   0% {
     transform: rotate(0deg);

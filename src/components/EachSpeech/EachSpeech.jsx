@@ -10,10 +10,8 @@ export default function EachSpeech({
   eachSpeech,
   speech,
   setSpeech,
-  empty,
   languageCodes,
   outputLanguage,
-  setButtonState,
   speechPreFav,
   setSpeechPreFav,
 }) {
@@ -152,7 +150,7 @@ export default function EachSpeech({
             />
           </div>
           &nbsp;&nbsp;
-          <div className={empty ? 'emptyPrompt' : 'textBubble inputTextBubble'}>
+          <div className='textBubble inputTextBubble'>
             {eachSpeech.inputText}
           </div>
         </div>

@@ -5,13 +5,11 @@ import * as userService from '../../utilities/users-service';
 
 function NavBar({
   user,
-  speech,
+  setUser,
   nav,
   setNav,
-  setUser,
   setSpeech,
   renderFav,
-  speechPreFav,
   deleteSpeechList,
   scrollToBottom,
 }) {

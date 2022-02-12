@@ -1,9 +1,8 @@
 import EachSpeech from '../../components/EachSpeech/EachSpeech';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './ContainerPage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
-import * as speechesAPI from '../../utilities/speeches-api';
 export default function ContainerPage({
   user,
   nav,
@@ -21,9 +20,7 @@ export default function ContainerPage({
   handleLanguageSwap,
   buttonState,
   languageCodes,
-  flagCode,
   speechPreFav,
-  setButtonState,
   setSpeechPreFav,
 }) {
   function handleSetInputLanguage(input) {
@@ -80,18 +77,14 @@ export default function ContainerPage({
             {speech[0] ? (
               speech.map((s, idx) => (
                 <EachSpeech
+                  key={idx}
                   user={user}
+                  index={idx}
                   eachSpeech={s}
                   speech={speech}
                   setSpeech={setSpeech}
-                  key={idx}
-                  length={speech.length}
-                  index={idx}
-                  flagCode={flagCode}
-                  inputLanguage={inputLanguage}
-                  outputLanguage={outputLanguage}
                   languageCodes={languageCodes}
-                  setButtonState={setButtonState}
+                  outputLanguage={outputLanguage}
                   speechPreFav={speechPreFav}
                   setSpeechPreFav={setSpeechPreFav}
                 />
@@ -106,7 +99,6 @@ export default function ContainerPage({
           </div>
         </div>
       </div>
-
       <div>
         <div className='speakButton'>
           {buttonState ? (

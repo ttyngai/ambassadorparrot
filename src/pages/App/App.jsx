@@ -247,18 +247,13 @@ function App() {
       <>
         <NavBar
           user={user}
-          speech={speech}
-          nav={nav}
-          renderSpeeches={renderSpeeches}
-          setNav={setNav}
           setUser={setUser}
-          sampleConvo={sampleConvo}
-          // handleStarterConvo={handleStarterConvo}
+          nav={nav}
+          setNav={setNav}
           setSpeech={setSpeech}
           renderFav={renderFav}
           deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
-          speechPreFav={speechPreFav}
         />
 
         <Routes>
@@ -269,34 +264,27 @@ function App() {
                 user={user}
                 nav={nav}
                 scrollToBottom={scrollToBottom}
-                renderSpeeches={renderSpeeches}
                 speech={speech}
+                renderSpeeches={renderSpeeches}
                 setSpeech={setSpeech}
                 handleStarterConvo={handleStarterConvo}
                 handleStart={handleStart}
                 handleStop={handleStop}
-                setInputLanguage={setInputLanguage}
-                setOutputLanguage={setOutputLanguage}
                 inputLanguage={inputLanguage}
+                setInputLanguage={setInputLanguage}
                 outputLanguage={outputLanguage}
+                setOutputLanguage={setOutputLanguage}
+                handleLanguageSwap={handleLanguageSwap}
                 buttonState={buttonState}
                 languageCodes={languageCodes}
-                handleLanguageSwap={handleLanguageSwap}
                 speechPreFav={speechPreFav}
                 setSpeechPreFav={setSpeechPreFav}
-                setButtonState={setButtonState}
               />
             }
           />
           <Route
             path='/login'
-            element={
-              <AuthPage
-                setUser={setUser}
-                handleStarterConvo={handleStarterConvo}
-                setNav={setNav}
-              />
-            }
+            element={<AuthPage setUser={setUser} setNav={setNav} />}
           />
           )
         </Routes>
