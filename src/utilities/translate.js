@@ -23,10 +23,10 @@ export default async function translate(speech, targetLanguage) {
     .then((res) => {
       return res.json();
     })
-    .then(async (data) => {
+    .then((data) => {
       //replace &#39; in italian with proper ' symbol
       translated = data.data.translations[0].translatedText.replace(
-        `&#39;`,
+        '&#39;',
         "'"
       );
 
