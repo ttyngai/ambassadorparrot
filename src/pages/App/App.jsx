@@ -228,6 +228,11 @@ function App() {
 
   return (
     <main className='App'>
+      <div
+        className={buttonState ? 'recordingBar' : 'recordingBar recordingBarOn'}
+      >
+        &nbsp;
+      </div>
       <>
         <NavBar
           user={user}

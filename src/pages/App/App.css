@@ -13,3 +13,23 @@
   margin: auto;
   padding: 15px 5px;
 }
+
+.recordingBar {
+  font-size: 0px;
+}
+
+.recordingBarOn {
+  animation: recordGlow 2s linear infinite;
+}
+
+@keyframes recordGlow {
+  0% {
+    box-shadow: red 0px 0px 100px 0px;
+  }
+  50% {
+    box-shadow: red 0px 0px 100px 60px;
+  }
+  0% {
+    box-shadow: red 0px 0px 100px 00px;
+  }
+}
