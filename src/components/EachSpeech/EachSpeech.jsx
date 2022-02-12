@@ -14,6 +14,8 @@ export default function EachSpeech({
   languageCodes,
   outputLanguage,
   setButtonState,
+  speechPreFav,
+  setSpeechPreFav,
 }) {
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
@@ -51,6 +53,8 @@ export default function EachSpeech({
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
     const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
+
+    // Delete in state in favourite
     let speechCopy = [...speech];
     let deletedSpeechArray = [];
     speechCopy.forEach(function (s) {
@@ -59,6 +63,16 @@ export default function EachSpeech({
       }
     });
     setSpeech(deletedSpeechArray);
+
+    // Delete in state in main translate
+    let speechPreFavCopy = [...speechPreFav];
+    let deletedSpeechArrayCopy = [];
+    speechPreFavCopy.forEach(function (s) {
+      if (s._id != deletedSpeech._id) {
+        deletedSpeechArrayCopy.push(s);
+      }
+    });
+    setSpeechPreFav(deletedSpeechArrayCopy);
   }
 
   // Delete speeches

@@ -139,18 +139,26 @@ function App() {
   async function renderSpeeches() {
     if (user) {
       let speechCopy = [...speech];
-      let speechWithoutSamples = [];
+
+      let speechNotSavedWithoutSamples = [];
       speechCopy.forEach(function (s) {
-        if (!s.sample) speechWithoutSamples.push(s);
+        if (!s.sample) speechNotSavedWithoutSamples.push(s);
       });
       const speeches = await speechesAPI.getSpeech();
+      // Only show the speeches that were never "cleared", both fav and not fav
+      const neverCleared = [];
+      speeches.forEach((s) => {
+        if (s.isClearred) {
+          neverCleared.push(s);
+        }
+      });
       // sorted by newest at bottom
       const sorted = speeches.sort(function (a, b) {
         if (a.createdAt > b.createdAt) return 1;
         if (a.createdAt < b.createdAt) return -1;
         return 0;
       });
-      setSpeech(sorted.concat(speechWithoutSamples));
+      setSpeech(sorted.concat(speechNotSavedWithoutSamples));
     }
   }
 
@@ -163,14 +171,18 @@ function App() {
     } else {
       // calc to show favourites
       setNav('fav');
+      // Save whatever including deleted
       let speechCopy = [...speech];
       setSpeechPreFav(speechCopy);
+
+      // cannot find favourites this way anymore
       let favSpeech = [];
       speechCopy.forEach(function (s) {
         if (s.isStarred) {
           favSpeech.push(s);
         }
       });
+
       setSpeech(favSpeech);
     }
     scrollToBottom(option);
@@ -179,10 +191,10 @@ function App() {
   async function deleteSpeechList(nav) {
     if (nav == 'fav') {
       console.log('delete all fav');
-    } else {
-      console.log('clear this list but not fav');
-      // if theres a user, need to set everything
 
+      setSpeech([]);
+    } else {
+      // if theres a user, need to set everything
       if (user) {
         const cleared = await speechesAPI.clearList();
         console.log('cleared', cleared);
@@ -253,6 +265,7 @@ function App() {
                 languageCodes={languageCodes}
                 handleLanguageSwap={handleLanguageSwap}
                 speechPreFav={speechPreFav}
+                setSpeechPreFav={setSpeechPreFav}
                 setButtonState={setButtonState}
               />
             }

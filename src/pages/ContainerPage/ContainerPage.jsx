@@ -4,7 +4,7 @@ import './ContainerPage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
 import * as speechesAPI from '../../utilities/speeches-api';
-export default function TranslatePage({
+export default function ContainerPage({
   user,
   nav,
   scrollToBottom,
@@ -24,6 +24,7 @@ export default function TranslatePage({
   flagCode,
   speechPreFav,
   setButtonState,
+  setSpeechPreFav,
 }) {
   function handleSetInputLanguage(input) {
     setInputLanguage(input);
@@ -73,7 +74,7 @@ export default function TranslatePage({
         <div className='dialogueFadeBottom'>
           <div
             className={
-              speech.length > 2 ? 'dialogue dialogueFadeTop' : 'dialogue'
+              speech.length > 3 ? 'dialogue dialogueFadeTop' : 'dialogue'
             }
             id='dialogue'
           >
@@ -92,6 +93,8 @@ export default function TranslatePage({
                   outputLanguage={outputLanguage}
                   languageCodes={languageCodes}
                   setButtonState={setButtonState}
+                  speechPreFav={speechPreFav}
+                  setSpeechPreFav={setSpeechPreFav}
                 />
               ))
             ) : (
