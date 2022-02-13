@@ -152,6 +152,7 @@ export default function EachSpeech({
                 verticalAlign: 'middle',
                 borderRadius: '20px',
                 fontSize: '28px',
+                boxShadow: 'black 5px 5px 10px 0px',
               }}
             />
           </div>
@@ -182,6 +183,7 @@ export default function EachSpeech({
                 verticalAlign: 'middle',
                 borderRadius: '20px',
                 fontSize: '28px',
+                boxShadow: 'black 5px 5px 10px 0px',
               }}
             />
           </div>

@@ -138,7 +138,7 @@
   border-radius: 15px;
   padding: 2px 12px 2px 12px;
   max-width: 80%;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: black 5px 5px 10px 0px;
 }
 
 .inputTextBubble {
