@@ -18,7 +18,7 @@ function NavBar({
   const navigate = useNavigate();
 
   function handlelogOut() {
-    abortOperation('withError');
+    abortOperation();
     setSpeech([]);
     userService.logOut();
     setUser(null);
@@ -29,12 +29,12 @@ function NavBar({
   }
 
   function handleLogin() {
-    abortOperation('withError');
+    abortOperation();
     setNav('loginSignup');
   }
 
   function handleTranslateClick() {
-    abortOperation('withError');
+    abortOperation();
     if (nav == 'fav') {
       renderFav();
     } else {
@@ -45,7 +45,7 @@ function NavBar({
   }
 
   function handleFavClick() {
-    abortOperation('withError');
+    abortOperation();
     if (nav == 'fav') {
       scrollToBottom('noTopRescroll');
     } else {
@@ -55,7 +55,7 @@ function NavBar({
   }
 
   function handleDeleteAll() {
-    abortOperation('withError');
+    abortOperation();
     // First round to show confirm button
     if (!confirming) {
       setConfirming(true);

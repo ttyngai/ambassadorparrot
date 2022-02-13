@@ -75,7 +75,7 @@ function App() {
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
       // Add a new speech auto speak token
-      concat.reciteNewSpeech = true;
+      concat.freshSpeech = true;
       // Add this new speech into the speech also in fav
       setSpeech([...speech, concat]);
       if (document.getElementById('dialogue')) {
@@ -97,7 +97,7 @@ function App() {
     let speechCopy = [...speech];
     if (
       speechCopy[speechCopy.length - 1] &&
-      speechCopy[speechCopy.length - 1].reciteNewSpeech
+      speechCopy[speechCopy.length - 1].freshSpeech
     ) {
       const speechReturn = await translate(
         speechCopy,
@@ -111,7 +111,7 @@ function App() {
       if (nav == 'fav') {
         newSpeech.isStarred = true;
       }
-      delete newSpeech.reciteNewSpeech;
+      delete newSpeech.freshSpeech;
       let newSpeechObj;
       if (user) {
         // If logged in, will update db
@@ -245,24 +245,21 @@ function App() {
 
   function abortOperation(option) {
     window.speechSynthesis.cancel();
-    if (
-      recognition &&
-      option != 'abortSound' &&
-      option == 'withError' &&
-      !speech[speech.length - 1]._id
-    ) {
+    if (recognition) {
       recognition.abort();
+    }
+    if (speech[speech.length - 1].freshSpeech) {
+      // console.log('test unspoken', speech[speech.length - 1].freshSpeech);
+      // recognition.abort();
+      // let speechCopy = [...speech];
+      // speechCopy[speechCopy.length - 1].outputText = '❌';
+      // setSpeech(speechCopy);
       let speechCopy = [...speech];
-      speechCopy[speechCopy.length - 1].outputText = '❌';
+      speechCopy.pop();
       setSpeech(speechCopy);
     }
-    setButtonState(true);
-    // pop the ongoing speech out
 
-    // let speechCopy = [...speech];
-    // if (!speechCopy.pop()._id) {
-    //   setSpeech(speechCopy);
-    // }
+    setButtonState(true);
   }
 
   return (

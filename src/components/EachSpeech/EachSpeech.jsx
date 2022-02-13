@@ -63,9 +63,9 @@ export default function EachSpeech({
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
     if (!eachSpeech._id) {
-      abortOperation('withError');
+      abortOperation();
     } else {
-      abortOperation('abortSound');
+      abortOperation('soundOnly');
     }
 
     if (eachSpeech._id) {
