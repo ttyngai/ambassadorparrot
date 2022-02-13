@@ -17,6 +17,7 @@ function NavBar({
   const navigate = useNavigate();
 
   function handlelogOut() {
+    window.speechSynthesis.cancel();
     setSpeech([]);
     userService.logOut();
     setUser(null);
@@ -31,6 +32,7 @@ function NavBar({
   }
 
   function handleTranslateClick() {
+    window.speechSynthesis.cancel();
     if (nav == 'fav') {
       renderFav();
     } else {
@@ -41,6 +43,7 @@ function NavBar({
   }
 
   function handleFavClick() {
+    window.speechSynthesis.cancel();
     if (nav == 'fav') {
       scrollToBottom('noTopRescroll');
     } else {
@@ -50,6 +53,7 @@ function NavBar({
   }
 
   function handleDeleteAll() {
+    window.speechSynthesis.cancel();
     // First round to show confirm button
     if (!confirming) {
       setConfirming(true);
