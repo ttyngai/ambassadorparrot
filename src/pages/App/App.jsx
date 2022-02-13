@@ -260,7 +260,10 @@ function App() {
     if (speech[speech.length - 1] && speech[speech.length - 1].freshSpeech) {
       let speechCopy = [...speech];
       speechCopy.pop();
-      setSpeech(speechCopy);
+      // Need delay after cancelling to properly remove aborted speech, and releasing the input language selector
+      setTimeout(function () {
+        setSpeech(speechCopy);
+      }, 2000);
     }
 
     setButtonState(true);

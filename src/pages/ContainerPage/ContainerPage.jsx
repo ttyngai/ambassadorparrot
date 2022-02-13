@@ -50,7 +50,12 @@ export default function ContainerPage({
       <div className='speechContainer'>
         <span className='selectorContainer'>
           <select
-            disabled={speech[speech.length - 1].freshSpeech ? true : false}
+            // Disables input speech when speech is being recorded
+            disabled={
+              speech[speech.length - 1] && speech[speech.length - 1].freshSpeech
+                ? true
+                : ''
+            }
             className='languageSelect'
             onChange={(evt) => handleSetInputLanguage(evt.target.value)}
             value={inputLanguage}
