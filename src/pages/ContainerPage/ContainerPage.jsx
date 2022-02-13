@@ -4,6 +4,7 @@ import './ContainerPage.css';
 import microphoneLogo from '../../images/whiteMicrophone.png';
 import loadingLogo from '../../images/loading.png';
 import swapLogo from '../../images/swap.png';
+import stopLogo from '../../images/stop.png';
 export default function ContainerPage({
   user,
   nav,
@@ -124,9 +125,11 @@ export default function ContainerPage({
               />
             )
           ) : (
-            <span className='microphone recording' onClick={handleStop}>
-              🟥
-            </span>
+            <img
+              src={stopLogo}
+              className='microphone recording'
+              onClick={handleStop}
+            />
           )}
         </div>
       </div>
