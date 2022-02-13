@@ -5,7 +5,7 @@
 **Please click this link to start the app:**
 https://parrot-translate.herokuapp.com
 
-![Screenshot](https://raw.github.com/ttyngai/parrot-translate/main/src/images/screenshot.jpg 'ScreenShot of App')
+![Screenshot](https://raw.github.com/ttyngai/parrot-translate/main/src/images/screenShot.png 'ScreenShot of App')
 
 **Tehcnologies used:**
 
