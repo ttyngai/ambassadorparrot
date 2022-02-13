@@ -125,11 +125,7 @@ export default function ContainerPage({
               />
             )
           ) : (
-            <img
-              src={stopLogo}
-              className='microphone recording'
-              onClick={handleStop}
-            />
+            <img src={stopLogo} className='recording' onClick={handleStop} />
           )}
         </div>
       </div>
