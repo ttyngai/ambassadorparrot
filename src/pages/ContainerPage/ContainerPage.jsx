@@ -20,7 +20,7 @@ export default function ContainerPage({
   outputLanguage,
   setOutputLanguage,
   buttonState,
-  abortRecognition,
+  abortOperation,
 
   languageCodes,
   speechPreFav,
@@ -100,7 +100,7 @@ export default function ContainerPage({
                   outputLanguage={outputLanguage}
                   speechPreFav={speechPreFav}
                   setSpeechPreFav={setSpeechPreFav}
-                  abortRecognition={abortRecognition}
+                  abortOperation={abortOperation}
                 />
               ))
             ) : (

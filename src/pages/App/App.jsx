@@ -243,10 +243,11 @@ function App() {
     }, 500);
   }
 
-  function abortRecognition(option) {
+  function abortOperation(option) {
     window.speechSynthesis.cancel();
     if (
       recognition &&
+      option != 'abortSound' &&
       option == 'withError' &&
       !speech[speech.length - 1]._id
     ) {
@@ -281,7 +282,7 @@ function App() {
           renderFav={renderFav}
           deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
-          abortRecognition={abortRecognition}
+          abortOperation={abortOperation}
         />
 
         <Routes>
@@ -303,7 +304,7 @@ function App() {
                 outputLanguage={outputLanguage}
                 setOutputLanguage={setOutputLanguage}
                 buttonState={buttonState}
-                abortRecognition={abortRecognition}
+                abortOperation={abortOperation}
                 languageCodes={languageCodes}
                 speechPreFav={speechPreFav}
                 setSpeechPreFav={setSpeechPreFav}

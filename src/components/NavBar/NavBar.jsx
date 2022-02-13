@@ -12,13 +12,13 @@ function NavBar({
   renderFav,
   deleteSpeechList,
   scrollToBottom,
-  abortRecognition,
+  abortOperation,
 }) {
   const [confirming, setConfirming] = useState(false);
   const navigate = useNavigate();
 
   function handlelogOut() {
-    abortRecognition('withError');
+    abortOperation('withError');
     setSpeech([]);
     userService.logOut();
     setUser(null);
@@ -29,12 +29,12 @@ function NavBar({
   }
 
   function handleLogin() {
-    abortRecognition('withError');
+    abortOperation('withError');
     setNav('loginSignup');
   }
 
   function handleTranslateClick() {
-    abortRecognition('withError');
+    abortOperation('withError');
     if (nav == 'fav') {
       renderFav();
     } else {
@@ -45,7 +45,7 @@ function NavBar({
   }
 
   function handleFavClick() {
-    abortRecognition('withError');
+    abortOperation('withError');
     if (nav == 'fav') {
       scrollToBottom('noTopRescroll');
     } else {
@@ -55,7 +55,7 @@ function NavBar({
   }
 
   function handleDeleteAll() {
-    abortRecognition('withError');
+    abortOperation('withError');
     // First round to show confirm button
     if (!confirming) {
       setConfirming(true);
