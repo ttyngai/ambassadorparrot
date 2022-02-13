@@ -243,6 +243,27 @@ function App() {
     }, 500);
   }
 
+  function abortRecognition(option) {
+    window.speechSynthesis.cancel();
+    if (
+      recognition &&
+      option == 'withError' &&
+      !speech[speech.length - 1]._id
+    ) {
+      recognition.abort();
+      let speechCopy = [...speech];
+      speechCopy[speechCopy.length - 1].outputText = '❌';
+      setSpeech(speechCopy);
+    }
+    setButtonState(true);
+    // pop the ongoing speech out
+
+    // let speechCopy = [...speech];
+    // if (!speechCopy.pop()._id) {
+    //   setSpeech(speechCopy);
+    // }
+  }
+
   return (
     <main className='App'>
       <div
@@ -260,6 +281,7 @@ function App() {
           renderFav={renderFav}
           deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
+          abortRecognition={abortRecognition}
         />
 
         <Routes>
@@ -281,8 +303,7 @@ function App() {
                 outputLanguage={outputLanguage}
                 setOutputLanguage={setOutputLanguage}
                 buttonState={buttonState}
-                setButtonState={setButtonState}
-                recognition={recognition}
+                abortRecognition={abortRecognition}
                 languageCodes={languageCodes}
                 speechPreFav={speechPreFav}
                 setSpeechPreFav={setSpeechPreFav}
