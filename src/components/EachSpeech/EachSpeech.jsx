@@ -60,36 +60,35 @@ export default function EachSpeech({
 
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
-    const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
-
-    // Delete in state in favourite
-    let speechCopy = [...speech];
-    let deletedSpeechArray = [];
-    speechCopy.forEach(function (s) {
-      if (s._id != deletedSpeech._id) {
-        deletedSpeechArray.push(s);
-      }
-    });
-    setSpeech(deletedSpeechArray);
-
-    // Delete in state in main translate
-    let speechPreFavCopy = [...speechPreFav];
-    let deletedSpeechArrayCopy = [];
-    speechPreFavCopy.forEach(function (s) {
-      if (s._id != deletedSpeech._id) {
-        deletedSpeechArrayCopy.push(s);
-      }
-    });
-    setSpeechPreFav(deletedSpeechArrayCopy);
-  }
-
-  // Delete speeches
-  function handleStateDelete() {
-    let speechCopy = [...speech];
-    let removed = speechCopy
-      .slice(0, index)
-      .concat(speechCopy.slice(index + 1));
-    setSpeech(removed);
+    window.speechSynthesis.cancel();
+    if (eachSpeech._id) {
+      const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
+      // Delete in state in favourite
+      let speechCopy = [...speech];
+      let deletedSpeechArray = [];
+      speechCopy.forEach(function (s) {
+        if (s._id != deletedSpeech._id) {
+          deletedSpeechArray.push(s);
+        }
+      });
+      setSpeech(deletedSpeechArray);
+      // Delete in state in main translate
+      let speechPreFavCopy = [...speechPreFav];
+      let deletedSpeechArrayCopy = [];
+      speechPreFavCopy.forEach(function (s) {
+        if (s._id != deletedSpeech._id) {
+          deletedSpeechArrayCopy.push(s);
+        }
+      });
+      setSpeechPreFav(deletedSpeechArrayCopy);
+    } else {
+      // Delete state only speeches if no id(not in db)
+      let speechCopy = [...speech];
+      let removed = speechCopy
+        .slice(0, index)
+        .concat(speechCopy.slice(index + 1));
+      setSpeech(removed);
+    }
   }
 
   // Add speech that wasn't in the database but in state
@@ -104,10 +103,7 @@ export default function EachSpeech({
   return eachSpeech ? (
     <div className='eachSpeech'>
       {eachSpeech.inputLanguage ? (
-        <span
-          className='deleteButton'
-          onClick={eachSpeech._id ? handleDeleteSpeech : handleStateDelete}
-        >
+        <span className='deleteButton' onClick={handleDeleteSpeech}>
           ✖
         </span>
       ) : (
