@@ -21,7 +21,6 @@ export default function ContainerPage({
   setOutputLanguage,
   buttonState,
   abortOperation,
-
   languageCodes,
   speechPreFav,
   setSpeechPreFav,
@@ -51,6 +50,7 @@ export default function ContainerPage({
       <div className='speechContainer'>
         <span className='selectorContainer'>
           <select
+            disabled={speech[speech.length - 1].freshSpeech ? true : false}
             className='languageSelect'
             onChange={(evt) => handleSetInputLanguage(evt.target.value)}
             value={inputLanguage}

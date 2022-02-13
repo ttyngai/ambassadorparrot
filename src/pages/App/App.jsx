@@ -258,11 +258,6 @@ function App() {
       recognition.abort();
     }
     if (speech[speech.length - 1] && speech[speech.length - 1].freshSpeech) {
-      // console.log('test unspoken', speech[speech.length - 1].freshSpeech);
-      // recognition.abort();
-      // let speechCopy = [...speech];
-      // speechCopy[speechCopy.length - 1].outputText = '❌';
-      // setSpeech(speechCopy);
       let speechCopy = [...speech];
       speechCopy.pop();
       setSpeech(speechCopy);
