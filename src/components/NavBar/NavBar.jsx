@@ -34,7 +34,7 @@ function NavBar({
   }
 
   function handleTranslateClick() {
-    abortOperation();
+    abortOperation('quick');
     if (nav == 'fav') {
       renderFav();
     } else {
@@ -45,7 +45,7 @@ function NavBar({
   }
 
   function handleFavClick() {
-    abortOperation();
+    abortOperation('quick');
     if (nav == 'fav') {
       scrollToBottom('noTopRescroll');
     } else {

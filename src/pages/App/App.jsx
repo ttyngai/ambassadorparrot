@@ -252,7 +252,7 @@ function App() {
   }
 
   // For cancellation of voice recognition operation
-  function abortOperation() {
+  function abortOperation(option) {
     window.speechSynthesis.cancel();
     if (recognition) {
       recognition.abort();
@@ -261,9 +261,14 @@ function App() {
       let speechCopy = [...speech];
       speechCopy.pop();
       // Need delay after cancelling to properly remove aborted speech, and releasing the input language selector
-      setTimeout(function () {
+
+      if (option == 'quick') {
         setSpeech(speechCopy);
-      }, 2000);
+      } else {
+        setTimeout(function () {
+          setSpeech(speechCopy);
+        }, 500);
+      }
     }
 
     setButtonState(true);
