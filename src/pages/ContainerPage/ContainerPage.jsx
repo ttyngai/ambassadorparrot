@@ -20,6 +20,8 @@ export default function ContainerPage({
   outputLanguage,
   setOutputLanguage,
   buttonState,
+  setButtonState,
+  recognition,
   languageCodes,
   speechPreFav,
   setSpeechPreFav,
@@ -98,6 +100,8 @@ export default function ContainerPage({
                   outputLanguage={outputLanguage}
                   speechPreFav={speechPreFav}
                   setSpeechPreFav={setSpeechPreFav}
+                  setButtonState={setButtonState}
+                  recognition={recognition}
                 />
               ))
             ) : (

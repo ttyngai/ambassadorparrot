@@ -281,6 +281,8 @@ function App() {
                 outputLanguage={outputLanguage}
                 setOutputLanguage={setOutputLanguage}
                 buttonState={buttonState}
+                setButtonState={setButtonState}
+                recognition={recognition}
                 languageCodes={languageCodes}
                 speechPreFav={speechPreFav}
                 setSpeechPreFav={setSpeechPreFav}

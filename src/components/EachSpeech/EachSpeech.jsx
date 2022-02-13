@@ -14,6 +14,8 @@ export default function EachSpeech({
   outputLanguage,
   speechPreFav,
   setSpeechPreFav,
+  setButtonState,
+  recognition,
 }) {
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
@@ -61,6 +63,8 @@ export default function EachSpeech({
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
     window.speechSynthesis.cancel();
+    setButtonState(true);
+    recognition.abort();
     if (eachSpeech._id) {
       const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
       // Delete in state in favourite
