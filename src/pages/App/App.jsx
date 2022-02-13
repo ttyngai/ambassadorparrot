@@ -171,7 +171,16 @@ function App() {
       setNav('fav');
       // Save whatever including deleted
       let speechCopy = [...speech];
-      setSpeechPreFav(speechCopy);
+      console.log(speechCopy);
+      // Remove all aborted items
+      let removeAborted = [];
+      speechCopy.forEach(function (s) {
+        if (s.outputText) {
+          removeAborted.push(s);
+        }
+      });
+
+      setSpeechPreFav(removeAborted);
       // From here, what I have is speech on screen
       const speeches = await speechesAPI.getSpeech();
       let favSpeech = [];
