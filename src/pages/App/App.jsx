@@ -171,7 +171,6 @@ function App() {
       setNav('fav');
       // Save whatever including deleted
       let speechCopy = [...speech];
-      console.log(speechCopy);
       // Remove all aborted items
       let removeAborted = [];
       speechCopy.forEach(function (s) {
@@ -252,12 +251,13 @@ function App() {
     }, 500);
   }
 
-  function abortOperation(option) {
+  // For cancellation of voice recognition operation
+  function abortOperation() {
     window.speechSynthesis.cancel();
     if (recognition) {
       recognition.abort();
     }
-    if (speech[speech.length - 1].freshSpeech) {
+    if (speech[speech.length - 1] && speech[speech.length - 1].freshSpeech) {
       // console.log('test unspoken', speech[speech.length - 1].freshSpeech);
       // recognition.abort();
       // let speechCopy = [...speech];

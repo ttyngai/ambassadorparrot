@@ -62,11 +62,14 @@ export default function EachSpeech({
 
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
-    if (!eachSpeech._id) {
-      abortOperation();
-    } else {
-      abortOperation('soundOnly');
-    }
+    abortOperation();
+    // // If no idea, just abort
+    // if (!eachSpeech._id) {
+
+    // } else {
+    //   // if there's an id(in db), go on below
+    //   abortOperation('soundOnly');
+    // }
 
     if (eachSpeech._id) {
       const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
