@@ -53,7 +53,6 @@ function App() {
   async function renderSpeeches() {
     if (user) {
       // Get all in database
-
       const speeches = await speechesAPI.getSpeech();
       // Only show the speeches that were never "cleared", both fav and not fav
       const neverCleared = [...speechNonLoggedIn];
@@ -62,13 +61,14 @@ function App() {
           neverCleared.push(s);
         }
       });
-
+      console.log('neverCleared', neverCleared);
       // Sort by time of entry
       const sorted = neverCleared.sort(function (a, b) {
-        if (a.timeCreated > b.timeCreated) return 1;
-        if (a.timeCreated < b.timeCreated) return -1;
+        if (a.sortStamp > b.sortStamp) return 1;
+        if (a.sortStamp < b.sortStamp) return -1;
         return 0;
       });
+      console.log('sort', sorted);
       setSpeech(sorted);
     }
     setNav('translate');
@@ -99,8 +99,8 @@ function App() {
     });
     // Sort by time of entry
     const sorted = favSpeech.sort(function (a, b) {
-      if (a.timeCreated > b.timeCreated) return 1;
-      if (a.timeCreated < b.timeCreated) return -1;
+      if (a.sortStamp > b.sortStamp) return 1;
+      if (a.sortStamp < b.sortStamp) return -1;
       return 0;
     });
     setSpeech(sorted);
@@ -134,6 +134,7 @@ function App() {
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
       concat.timeCreated = concat.timeCreated.toString();
+      concat.sortStamp = new Date().getTime();
       // Add a new speech auto speak token
       concat.freshSpeech = true;
       if (!user) {
@@ -185,9 +186,9 @@ function App() {
         setSpeechNonLoggedIn([...speechNonLoggedIn, newSpeech]);
       }
       // If in favorite page, also updates the main page
-      if (nav == 'fav') {
-        setSpeechPreFav([...speechPreFav, newSpeechObj]);
-      }
+      // if (nav == 'fav') {
+      //   setSpeechPreFav([...speechPreFav, newSpeechObj]);
+      // }
       // Renders as fast as possible if person alreaady stopped, will give fastest response
       setSpeech([...speechCopy, newSpeechObj]);
       // Incase user pressed button before stops, will hard rerender the latest speech one more time after timeout
@@ -210,7 +211,6 @@ function App() {
       let speechCopy = [...speech];
       speechCopy.pop();
       // Need delay after cancelling to properly remove aborted speech, and releasing the input language selector
-
       if (option == 'quick') {
         setSpeech(speechCopy);
       } else if (option != 'logOut') {
