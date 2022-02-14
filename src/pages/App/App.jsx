@@ -61,14 +61,12 @@ function App() {
           neverCleared.push(s);
         }
       });
-      console.log('neverCleared', neverCleared);
       // Sort by time of entry
       const sorted = neverCleared.sort(function (a, b) {
         if (a.sortStamp > b.sortStamp) return 1;
         if (a.sortStamp < b.sortStamp) return -1;
         return 0;
       });
-      console.log('sort', sorted);
       setSpeech(sorted);
     }
     setNav('translate');
