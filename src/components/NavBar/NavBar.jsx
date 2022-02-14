@@ -38,7 +38,6 @@ function NavBar({
     abortOperation('quick');
     if (nav == 'fav') {
       renderSpeeches();
-      scrollToBottom();
     } else {
       scrollToBottom('noTopRescroll');
     }

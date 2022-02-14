@@ -10,6 +10,8 @@ export default function EachSpeech({
   eachSpeech,
   speech,
   setSpeech,
+  speechNonLoggedIn,
+  setSpeechNonLoggedIn,
   languageCodes,
   outputLanguage,
   speechPreFav,
@@ -107,6 +109,15 @@ export default function EachSpeech({
   async function handleAddSpeech() {
     let speechCopy = [...speech];
     eachSpeech.user = user;
+    let speechNonLoggedInCopy = [...speechNonLoggedIn];
+    let removeAdded = [];
+    //Update speech Non Logged in list
+    speechNonLoggedInCopy.forEach(function (s) {
+      if (s.timeCreated != eachSpeech.timeCreated) {
+        removeAdded.push(s);
+      }
+    });
+    setSpeechNonLoggedIn(removeAdded);
     let speechAdded = await speechesAPI.create(eachSpeech);
     speechCopy[index] = speechAdded;
     setSpeech(speechCopy);

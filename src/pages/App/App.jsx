@@ -19,6 +19,7 @@ function App() {
   const [nav, setNav] = useState('translate');
   const [speech, setSpeech] = useState([]);
   const [speechPreFav, setSpeechPreFav] = useState([]);
+  const [speechNonLoggedIn, setSpeechNonLoggedIn] = useState([]);
   const [recognition, setRecognition] = useState('');
   const [inputLanguage, setInputLanguage] = useState('en');
   const [outputLanguage, setOutputLanguage] = useState('zh-HK');
@@ -48,6 +49,7 @@ function App() {
   function handleStarterConvo() {
     setSpeech(sampleConvo);
   }
+
   // If in favourites, need to also add new made speech to preFavSpeech
   function handleStart() {
     window.speechSynthesis.cancel();
@@ -122,6 +124,7 @@ function App() {
       } else {
         // If not logged in, only updates state
         newSpeechObj = newSpeech;
+        setSpeechNonLoggedIn([...speechNonLoggedIn, newSpeech]);
       }
       // If in favorite page, also updates the main page
       if (nav == 'fav') {
@@ -130,10 +133,10 @@ function App() {
 
       // Renders as fast as possible if person alreaady stopped, will give fastest response
       setSpeech([...speechCopy, newSpeechObj]);
-
       // Incase user pressed button before stops, will hard rerender the latest speech one more time after timeout
       setTimeout(function () {
         setSpeech([...speechCopy, newSpeechObj]);
+        console.log('accumulating non logged speech', speechNonLoggedIn);
       }, 2000);
     }
     scrollToBottom('noTopRescroll');
@@ -184,6 +187,7 @@ function App() {
       setSpeech(sorted.concat(removeAborted));
     }
     setNav('translate');
+    scrollToBottom();
   }
 
   async function renderFav(option) {
@@ -325,6 +329,8 @@ function App() {
                 speech={speech}
                 renderSpeeches={renderSpeeches}
                 setSpeech={setSpeech}
+                speechNonLoggedIn={speechNonLoggedIn}
+                setSpeechNonLoggedIn={setSpeechNonLoggedIn}
                 handleStarterConvo={handleStarterConvo}
                 handleStart={handleStart}
                 handleStop={handleStop}

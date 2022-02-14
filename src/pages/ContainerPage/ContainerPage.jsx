@@ -12,6 +12,8 @@ export default function ContainerPage({
   speech,
   renderSpeeches,
   setSpeech,
+  speechNonLoggedIn,
+  setSpeechNonLoggedIn,
   handleStarterConvo,
   handleStart,
   handleStop,
@@ -101,6 +103,8 @@ export default function ContainerPage({
                   eachSpeech={s}
                   speech={speech}
                   setSpeech={setSpeech}
+                  speechNonLoggedIn={speechNonLoggedIn}
+                  setSpeechNonLoggedIn={setSpeechNonLoggedIn}
                   languageCodes={languageCodes}
                   outputLanguage={outputLanguage}
                   speechPreFav={speechPreFav}
