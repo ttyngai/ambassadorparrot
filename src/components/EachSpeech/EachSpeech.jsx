@@ -93,6 +93,19 @@ export default function EachSpeech({
         .concat(speechCopy.slice(index + 1));
       setSpeech(removed);
     }
+    // Remove from non logged in list as well
+
+    let speechNonLoggedInCopy = [...speechNonLoggedIn];
+    let removedNonLoggedIn = [];
+    console.log('non logg', speechNonLoggedInCopy);
+    speechNonLoggedInCopy.forEach(function (s) {
+      if (s.sortStamp != eachSpeech.sortStamp) {
+        removedNonLoggedIn.push(s);
+        console.log('push this', s);
+      }
+    });
+    console.log('non logged', removedNonLoggedIn);
+    setSpeechNonLoggedIn(removedNonLoggedIn);
   }
 
   // Add speech that wasn't in the database but in state
@@ -103,7 +116,7 @@ export default function EachSpeech({
     let removeAdded = [];
     //Update speech Non Logged in list
     speechNonLoggedInCopy.forEach(function (s) {
-      if (s.timeCreated != eachSpeech.timeCreated) {
+      if (s.sortStamp != eachSpeech.sortStamp) {
         removeAdded.push(s);
       }
     });
