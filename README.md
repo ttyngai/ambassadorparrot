@@ -1,6 +1,6 @@
 ## **PARROT TRANSLATOR 🦜**
 
-Parrot translator is a mobile friendly voice translation app designed to be intuitive and user-friendly. Perfect companion for travelling abroad. It uses voice recognition, Google cloud translation API as well as voice synthesis to allow for seamless voice to voice translation at your fingertips.
+Parrot Translator is a mobile friendly voice translation app designed to be intuitive and user-friendly. Perfect companion for travelling abroad. It uses voice recognition, Google cloud translation API as well as voice synthesis to allow for seamless voice to voice translation at your fingertips.
 
 **Please click this link to start the app:**  
 https://parrot-translate.herokuapp.com
