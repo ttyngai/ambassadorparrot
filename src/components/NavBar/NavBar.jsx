@@ -9,6 +9,7 @@ function NavBar({
   nav,
   setNav,
   setSpeech,
+  setSpeechNonLoggedIn,
   renderSpeeches,
   renderFav,
   deleteSpeechList,
@@ -21,6 +22,7 @@ function NavBar({
   function handlelogOut() {
     abortOperation();
     setSpeech([]);
+    setSpeechNonLoggedIn([]);
     userService.logOut();
     setUser(null);
     setNav('loginSignup');

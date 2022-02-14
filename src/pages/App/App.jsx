@@ -138,48 +138,14 @@ function App() {
       // Incase user pressed button before stops, will hard rerender the latest speech one more time after timeout
       setTimeout(function () {
         setSpeech([...speechCopy, newSpeechObj]);
-        console.log('accumulating non logged speech', speechNonLoggedIn);
-      }, 2000);
+        // console.log('accumulating non logged speech', speechNonLoggedIn);
+      }, 500);
     }
     scrollToBottom('noTopRescroll');
   }
 
   async function renderSpeeches() {
     if (user) {
-      // TWO THINGS, ABORT NO OUTPUT TEXT, ADD speechNonLoggIn
-
-      // let speechCopy;
-      // if (nav == 'fav') {
-      //   // speechCopy = [...speechPreFav];
-      //   speechCopy = [...speech];
-      // } else {
-      //   speechCopy = [...speech];
-      // }
-
-      // // Add speech that was from non-login but not samples
-      // // console.log('first render fa', speechCopy);
-      // // console.log('prenav fa', speechPreFav);
-
-      // let speechNotSavedWithoutSamples = [...speechNonLoggedIn];
-
-      // // speechCopy.forEach(function (s) {
-      // //   if (!s.sample) speechNotSavedWithoutSamples.push(s);
-
-      // // });
-
-      // // Remove aborted
-      // // let removeAborted = [];
-      // speechCopy.forEach(function (s) {
-      //   if (s.outputText) {
-      //     speechNotSavedWithoutSamples.push(s);
-      //   }
-      // });
-      // console.log('waht is the state of non-logged', speechNonLoggedIn);
-      // console.log(
-      //   'waht is the state of non-logged',
-      //   speechNotSavedWithoutSamples
-      // );
-
       // Get all in database
 
       const speeches = await speechesAPI.getSpeech();
@@ -191,15 +157,12 @@ function App() {
         }
       });
 
-      // console.log('after sort, will add', removeAborted);
-
       // Sort by time of entry
       const sorted = neverCleared.sort(function (a, b) {
         if (a.timeCreated > b.timeCreated) return 1;
         if (a.timeCreated < b.timeCreated) return -1;
         return 0;
       });
-      console.log('sorted or nah', sorted);
       setSpeech(sorted);
     }
     setNav('translate');
@@ -327,6 +290,7 @@ function App() {
           nav={nav}
           setNav={setNav}
           setSpeech={setSpeech}
+          setSpeechNonLoggedIn={setSpeechNonLoggedIn}
           renderFav={renderFav}
           renderSpeeches={renderSpeeches}
           deleteSpeechList={deleteSpeechList}
