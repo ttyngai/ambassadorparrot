@@ -41,6 +41,8 @@ https://trello.com/b/guiMwuAI/parrot-translate
 
 - Deleting all favorites can be achived by pressing `Delete ★` and `Confirm` like above. This will remove all favorites from database as well as main page. When navigating back to main page, all conversation except favorites will still persist
 
+- Interuption: When speech is done half way, and when user leaves the speech, the speech object will vanish and be removed from state and not added into database
+
 **Future improvements:**
 
 - Add text input functionalities

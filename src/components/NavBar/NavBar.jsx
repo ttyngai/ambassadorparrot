@@ -20,7 +20,8 @@ function NavBar({
   const navigate = useNavigate();
 
   function handlelogOut() {
-    abortOperation();
+    // To not allow abort speech to render original list
+    abortOperation('logOut');
     setSpeech([]);
     setSpeechNonLoggedIn([]);
     userService.logOut();
@@ -28,7 +29,7 @@ function NavBar({
     setNav('loginSignup');
     setTimeout(function () {
       navigate('/login');
-    }, 500);
+    }, 100);
   }
 
   function handleLogin() {

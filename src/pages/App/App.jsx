@@ -268,13 +268,12 @@ function App() {
 
       if (option == 'quick') {
         setSpeech(speechCopy);
-      } else {
+      } else if (option != 'logOut') {
         setTimeout(function () {
           setSpeech(speechCopy);
         }, 1000);
       }
     }
-
     setButtonState(true);
   }
 
