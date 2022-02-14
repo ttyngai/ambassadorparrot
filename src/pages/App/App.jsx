@@ -76,6 +76,7 @@ function App() {
         concat.inputText[0].toUpperCase() + concat.inputText.slice(1);
       concat.inputLanguage = inputLanguage;
       concat.timeCreated = new Date();
+      concat.timeCreated = concat.timeCreated.toString();
       // Add a new speech auto speak token
       concat.freshSpeech = true;
       if (!user) {
@@ -124,6 +125,7 @@ function App() {
       } else {
         // If not logged in, only updates state
         newSpeechObj = newSpeech;
+
         setSpeechNonLoggedIn([...speechNonLoggedIn, newSpeech]);
       }
       // If in favorite page, also updates the main page
@@ -144,39 +146,52 @@ function App() {
 
   async function renderSpeeches() {
     if (user) {
-      let speechCopy;
-      if (nav == 'fav') {
-        speechCopy = [...speechPreFav];
-      } else {
-        speechCopy = [...speech];
-      }
+      // TWO THINGS, ABORT NO OUTPUT TEXT, ADD speechNonLoggIn
 
-      // Add speech that was from non-login but not samples
-      // console.log('first render fa', speechCopy);
-      // console.log('prenav fa', speechPreFav);
-      let speechNotSavedWithoutSamples = [];
+      // let speechCopy;
+      // if (nav == 'fav') {
+      //   // speechCopy = [...speechPreFav];
+      //   speechCopy = [...speech];
+      // } else {
+      //   speechCopy = [...speech];
+      // }
 
-      speechCopy.forEach(function (s) {
-        if (s.speechNonLoggedIn) speechNotSavedWithoutSamples.push(s);
-      });
-      // Remove aborted
-      let removeAborted = [];
-      speechNotSavedWithoutSamples.forEach(function (s) {
-        if (s.outputText) {
-          removeAborted.push(s);
-        }
-      });
+      // // Add speech that was from non-login but not samples
+      // // console.log('first render fa', speechCopy);
+      // // console.log('prenav fa', speechPreFav);
+
+      // let speechNotSavedWithoutSamples = [...speechNonLoggedIn];
+
+      // // speechCopy.forEach(function (s) {
+      // //   if (!s.sample) speechNotSavedWithoutSamples.push(s);
+
+      // // });
+
+      // // Remove aborted
+      // // let removeAborted = [];
+      // speechCopy.forEach(function (s) {
+      //   if (s.outputText) {
+      //     speechNotSavedWithoutSamples.push(s);
+      //   }
+      // });
+      // console.log('waht is the state of non-logged', speechNonLoggedIn);
+      // console.log(
+      //   'waht is the state of non-logged',
+      //   speechNotSavedWithoutSamples
+      // );
+
+      // Get all in database
 
       const speeches = await speechesAPI.getSpeech();
       // Only show the speeches that were never "cleared", both fav and not fav
-      const neverCleared = [];
+      const neverCleared = [...speechNonLoggedIn];
       speeches.forEach((s) => {
         if (!s.isCleared) {
           neverCleared.push(s);
         }
       });
 
-      console.log('after sort, will add', removeAborted);
+      // console.log('after sort, will add', removeAborted);
 
       // Sort by time of entry
       const sorted = neverCleared.sort(function (a, b) {
@@ -184,7 +199,8 @@ function App() {
         if (a.timeCreated < b.timeCreated) return -1;
         return 0;
       });
-      setSpeech(sorted.concat(removeAborted));
+      console.log('sorted or nah', sorted);
+      setSpeech(sorted);
     }
     setNav('translate');
     scrollToBottom();
@@ -195,7 +211,7 @@ function App() {
     setNav('fav');
     // Save whatever including deleted
     let speechCopy = [...speech];
-    console.log('first render fa', speechCopy);
+    // console.log('first render fa', speechCopy);
     // Remove all aborted items
     let removeAborted = [];
     speechCopy.forEach(function (s) {
