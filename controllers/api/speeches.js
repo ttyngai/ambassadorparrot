@@ -19,6 +19,7 @@ async function create(req, res) {
 async function star(req, res) {
   try {
     let speechStarring = await Speech.findById(req.body._id);
+    speechStarring.isCleared = false;
     speechStarring.isStarred = !speechStarring.isStarred;
     speechStarring.save();
     res.json(speechStarring);

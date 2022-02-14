@@ -65,17 +65,7 @@ export default function EachSpeech({
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
     abortOperation();
-    // // If no idea, just abort
-    // if (!eachSpeech._id) {
-
-    // } else {
-    //   // if there's an id(in db), go on below
-    //   abortOperation('soundOnly');
-    // }
-
     if (eachSpeech._id) {
-      // Error, when in favourite, when something is being spoken, when deleting a favourte, that favourte is deleted in db but not in state
-      // this place doesn't know we are recording, so need to think again how it knows to abort, but remove whatever was removed in state
       const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
       // Delete in state in favourite
       let speechCopy = [...speech];
