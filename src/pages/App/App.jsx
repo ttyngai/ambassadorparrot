@@ -221,6 +221,8 @@ function App() {
       setSpeechPreFav(speechPreFavCopyWithoutRemovedItem);
       setSpeech([]);
     } else {
+      // Clear list of the non-logged in speech
+      setSpeechNonLoggedIn([]);
       // if theres a user, copies onto speechPreFav waiting for the main translate page to be clicked
       if (user) {
         const cleared = await speechesAPI.clearList();
