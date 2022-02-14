@@ -94,17 +94,13 @@ export default function EachSpeech({
       setSpeech(removed);
     }
     // Remove from non logged in list as well
-
     let speechNonLoggedInCopy = [...speechNonLoggedIn];
     let removedNonLoggedIn = [];
-    console.log('non logg', speechNonLoggedInCopy);
     speechNonLoggedInCopy.forEach(function (s) {
       if (s.sortStamp != eachSpeech.sortStamp) {
         removedNonLoggedIn.push(s);
-        console.log('push this', s);
       }
     });
-    console.log('non logged', removedNonLoggedIn);
     setSpeechNonLoggedIn(removedNonLoggedIn);
   }
 
