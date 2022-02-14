@@ -16,7 +16,7 @@ export default function EachSpeech({
   outputLanguage,
   speechPreFav,
   setSpeechPreFav,
-  abortOperation,
+  cancelOperation,
 }) {
   // Decode object for it's flagCode
   let inputFlagCode, outputFlagCode, preOutputFlagCode;
@@ -34,7 +34,7 @@ export default function EachSpeech({
 
   // Will say again if the speech is clicked
   function handleSayAgain() {
-    abortOperation();
+    cancelOperation();
     const lang = voice.speechSettings(eachSpeech.outputLanguage);
     speak(eachSpeech.outputText, lang);
   }
@@ -64,7 +64,7 @@ export default function EachSpeech({
 
   // Delete speeches if object also in database
   async function handleDeleteSpeech() {
-    abortOperation();
+    cancelOperation();
     if (eachSpeech._id) {
       const deletedSpeech = await speechesAPI.deleteSpeech(eachSpeech);
       // Delete in state in favourite

@@ -50,6 +50,63 @@ function App() {
     setSpeech(sampleConvo);
   }
 
+  async function renderSpeeches() {
+    if (user) {
+      // Get all in database
+
+      const speeches = await speechesAPI.getSpeech();
+      // Only show the speeches that were never "cleared", both fav and not fav
+      const neverCleared = [...speechNonLoggedIn];
+      speeches.forEach((s) => {
+        if (!s.isCleared) {
+          neverCleared.push(s);
+        }
+      });
+
+      // Sort by time of entry
+      const sorted = neverCleared.sort(function (a, b) {
+        if (a.timeCreated > b.timeCreated) return 1;
+        if (a.timeCreated < b.timeCreated) return -1;
+        return 0;
+      });
+      setSpeech(sorted);
+    }
+    setNav('translate');
+    scrollToBottom();
+  }
+
+  async function renderFav(option) {
+    // To show favourites
+    setNav('fav');
+    // Save whatever including deleted
+    let speechCopy = [...speech];
+    // console.log('first render fa', speechCopy);
+    // Remove all aborted items
+    let removeAborted = [];
+    speechCopy.forEach(function (s) {
+      if (s.outputText) {
+        removeAborted.push(s);
+      }
+    });
+    setSpeechPreFav(removeAborted);
+    // From here, what I have is speech on screen
+    const speeches = await speechesAPI.getSpeech();
+    let favSpeech = [];
+    speeches.forEach(function (s) {
+      if (s.isStarred) {
+        favSpeech.push(s);
+      }
+    });
+    // Sort by time of entry
+    const sorted = favSpeech.sort(function (a, b) {
+      if (a.timeCreated > b.timeCreated) return 1;
+      if (a.timeCreated < b.timeCreated) return -1;
+      return 0;
+    });
+    setSpeech(sorted);
+    scrollToBottom(option);
+  }
+
   // If in favourites, need to also add new made speech to preFavSpeech
   function handleStart() {
     window.speechSynthesis.cancel();
@@ -125,14 +182,12 @@ function App() {
       } else {
         // If not logged in, only updates state
         newSpeechObj = newSpeech;
-
         setSpeechNonLoggedIn([...speechNonLoggedIn, newSpeech]);
       }
       // If in favorite page, also updates the main page
       if (nav == 'fav') {
         setSpeechPreFav([...speechPreFav, newSpeechObj]);
       }
-
       // Renders as fast as possible if person alreaady stopped, will give fastest response
       setSpeech([...speechCopy, newSpeechObj]);
       // Incase user pressed button before stops, will hard rerender the latest speech one more time after timeout
@@ -144,61 +199,27 @@ function App() {
     scrollToBottom('noTopRescroll');
   }
 
-  async function renderSpeeches() {
-    if (user) {
-      // Get all in database
-
-      const speeches = await speechesAPI.getSpeech();
-      // Only show the speeches that were never "cleared", both fav and not fav
-      const neverCleared = [...speechNonLoggedIn];
-      speeches.forEach((s) => {
-        if (!s.isCleared) {
-          neverCleared.push(s);
-        }
-      });
-
-      // Sort by time of entry
-      const sorted = neverCleared.sort(function (a, b) {
-        if (a.timeCreated > b.timeCreated) return 1;
-        if (a.timeCreated < b.timeCreated) return -1;
-        return 0;
-      });
-      setSpeech(sorted);
+  // For cancellation of voice recognition operation
+  function cancelOperation(option) {
+    window.speechSynthesis.cancel();
+    if (recognition) {
+      recognition.abort();
     }
-    setNav('translate');
-    scrollToBottom();
-  }
+    // Check to see if it is still a fresh speech, will pop it to remove it
+    if (speech[speech.length - 1] && speech[speech.length - 1].freshSpeech) {
+      let speechCopy = [...speech];
+      speechCopy.pop();
+      // Need delay after cancelling to properly remove aborted speech, and releasing the input language selector
 
-  async function renderFav(option) {
-    // To show favourites
-    setNav('fav');
-    // Save whatever including deleted
-    let speechCopy = [...speech];
-    // console.log('first render fa', speechCopy);
-    // Remove all aborted items
-    let removeAborted = [];
-    speechCopy.forEach(function (s) {
-      if (s.outputText) {
-        removeAborted.push(s);
+      if (option == 'quick') {
+        setSpeech(speechCopy);
+      } else if (option != 'logOut') {
+        setTimeout(function () {
+          setSpeech(speechCopy);
+        }, 1000);
       }
-    });
-    setSpeechPreFav(removeAborted);
-    // From here, what I have is speech on screen
-    const speeches = await speechesAPI.getSpeech();
-    let favSpeech = [];
-    speeches.forEach(function (s) {
-      if (s.isStarred) {
-        favSpeech.push(s);
-      }
-    });
-    // Sort by time of entry
-    const sorted = favSpeech.sort(function (a, b) {
-      if (a.timeCreated > b.timeCreated) return 1;
-      if (a.timeCreated < b.timeCreated) return -1;
-      return 0;
-    });
-    setSpeech(sorted);
-    scrollToBottom(option);
+    }
+    setButtonState(true);
   }
 
   async function deleteSpeechList(nav) {
@@ -255,28 +276,6 @@ function App() {
     }, 500);
   }
 
-  // For cancellation of voice recognition operation
-  function abortOperation(option) {
-    window.speechSynthesis.cancel();
-    if (recognition) {
-      recognition.abort();
-    }
-    if (speech[speech.length - 1] && speech[speech.length - 1].freshSpeech) {
-      let speechCopy = [...speech];
-      speechCopy.pop();
-      // Need delay after cancelling to properly remove aborted speech, and releasing the input language selector
-
-      if (option == 'quick') {
-        setSpeech(speechCopy);
-      } else if (option != 'logOut') {
-        setTimeout(function () {
-          setSpeech(speechCopy);
-        }, 1000);
-      }
-    }
-    setButtonState(true);
-  }
-
   return (
     <main className='App'>
       <div
@@ -296,7 +295,7 @@ function App() {
           renderSpeeches={renderSpeeches}
           deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
-          abortOperation={abortOperation}
+          cancelOperation={cancelOperation}
         />
 
         <Routes>
@@ -320,7 +319,7 @@ function App() {
                 outputLanguage={outputLanguage}
                 setOutputLanguage={setOutputLanguage}
                 buttonState={buttonState}
-                abortOperation={abortOperation}
+                cancelOperation={cancelOperation}
                 languageCodes={languageCodes}
                 speechPreFav={speechPreFav}
                 setSpeechPreFav={setSpeechPreFav}
