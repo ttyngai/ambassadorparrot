@@ -9,6 +9,7 @@ function NavBar({
   nav,
   setNav,
   setSpeech,
+  renderSpeeches,
   renderFav,
   deleteSpeechList,
   scrollToBottom,
@@ -36,11 +37,12 @@ function NavBar({
   function handleTranslateClick() {
     abortOperation('quick');
     if (nav == 'fav') {
-      renderFav();
+      renderSpeeches();
+      scrollToBottom();
     } else {
       scrollToBottom('noTopRescroll');
-      setNav('translate');
     }
+
     setConfirming(false);
   }
 

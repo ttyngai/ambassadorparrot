@@ -76,6 +76,9 @@ function App() {
       concat.timeCreated = new Date();
       // Add a new speech auto speak token
       concat.freshSpeech = true;
+      if (!user) {
+        concat.speechNonLoggedIn = true;
+      }
       // Add this new speech into the speech also in fav
       setSpeech([...speech, concat]);
       if (document.getElementById('dialogue')) {
@@ -124,6 +127,7 @@ function App() {
       if (nav == 'fav') {
         setSpeechPreFav([...speechPreFav, newSpeechObj]);
       }
+
       // Renders as fast as possible if person alreaady stopped, will give fastest response
       setSpeech([...speechCopy, newSpeechObj]);
 
@@ -137,11 +141,29 @@ function App() {
 
   async function renderSpeeches() {
     if (user) {
-      let speechCopy = [...speech];
+      let speechCopy;
+      if (nav == 'fav') {
+        speechCopy = [...speechPreFav];
+      } else {
+        speechCopy = [...speech];
+      }
+
+      // Add speech that was from non-login but not samples
+      // console.log('first render fa', speechCopy);
+      // console.log('prenav fa', speechPreFav);
       let speechNotSavedWithoutSamples = [];
+
       speechCopy.forEach(function (s) {
-        if (!s.sample) speechNotSavedWithoutSamples.push(s);
+        if (s.speechNonLoggedIn) speechNotSavedWithoutSamples.push(s);
       });
+      // Remove aborted
+      let removeAborted = [];
+      speechNotSavedWithoutSamples.forEach(function (s) {
+        if (s.outputText) {
+          removeAborted.push(s);
+        }
+      });
+
       const speeches = await speechesAPI.getSpeech();
       // Only show the speeches that were never "cleared", both fav and not fav
       const neverCleared = [];
@@ -150,52 +172,49 @@ function App() {
           neverCleared.push(s);
         }
       });
+
+      console.log('after sort, will add', removeAborted);
+
       // Sort by time of entry
       const sorted = neverCleared.sort(function (a, b) {
         if (a.timeCreated > b.timeCreated) return 1;
         if (a.timeCreated < b.timeCreated) return -1;
         return 0;
       });
-      setSpeech(sorted.concat(speechNotSavedWithoutSamples));
+      setSpeech(sorted.concat(removeAborted));
     }
+    setNav('translate');
   }
 
   async function renderFav(option) {
-    if (nav == 'fav') {
-      // nav == 'fav' mean we want to turn it off after view by pressing itself
-      setNav('translate');
-      setSpeech(speechPreFav);
-      setSpeechPreFav([]);
-    } else {
-      // To show favourites
-      setNav('fav');
-      // Save whatever including deleted
-      let speechCopy = [...speech];
-      // Remove all aborted items
-      let removeAborted = [];
-      speechCopy.forEach(function (s) {
-        if (s.outputText) {
-          removeAborted.push(s);
-        }
-      });
-
-      setSpeechPreFav(removeAborted);
-      // From here, what I have is speech on screen
-      const speeches = await speechesAPI.getSpeech();
-      let favSpeech = [];
-      speeches.forEach(function (s) {
-        if (s.isStarred) {
-          favSpeech.push(s);
-        }
-      });
-      // Sort by time of entry
-      const sorted = favSpeech.sort(function (a, b) {
-        if (a.timeCreated > b.timeCreated) return 1;
-        if (a.timeCreated < b.timeCreated) return -1;
-        return 0;
-      });
-      setSpeech(sorted);
-    }
+    // To show favourites
+    setNav('fav');
+    // Save whatever including deleted
+    let speechCopy = [...speech];
+    console.log('first render fa', speechCopy);
+    // Remove all aborted items
+    let removeAborted = [];
+    speechCopy.forEach(function (s) {
+      if (s.outputText) {
+        removeAborted.push(s);
+      }
+    });
+    setSpeechPreFav(removeAborted);
+    // From here, what I have is speech on screen
+    const speeches = await speechesAPI.getSpeech();
+    let favSpeech = [];
+    speeches.forEach(function (s) {
+      if (s.isStarred) {
+        favSpeech.push(s);
+      }
+    });
+    // Sort by time of entry
+    const sorted = favSpeech.sort(function (a, b) {
+      if (a.timeCreated > b.timeCreated) return 1;
+      if (a.timeCreated < b.timeCreated) return -1;
+      return 0;
+    });
+    setSpeech(sorted);
     scrollToBottom(option);
   }
 
@@ -267,7 +286,7 @@ function App() {
       } else {
         setTimeout(function () {
           setSpeech(speechCopy);
-        }, 500);
+        }, 1000);
       }
     }
 
@@ -289,6 +308,7 @@ function App() {
           setNav={setNav}
           setSpeech={setSpeech}
           renderFav={renderFav}
+          renderSpeeches={renderSpeeches}
           deleteSpeechList={deleteSpeechList}
           scrollToBottom={scrollToBottom}
           abortOperation={abortOperation}
