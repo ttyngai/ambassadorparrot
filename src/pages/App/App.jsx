@@ -68,8 +68,8 @@ function App() {
     scrollToBottom();
   }
 
+  // To show favourites
   async function renderFav(option) {
-    // To show favourites
     setNav('fav');
     // Save whatever including deleted
     let speechCopy = [...speech];
@@ -81,7 +81,6 @@ function App() {
       }
     });
     setSpeechPreFav(removeAborted);
-    // From here, what I have is speech on screen
     const speeches = await speechesAPI.getSpeech();
     let favSpeech = [];
     speeches.forEach(function (s) {
