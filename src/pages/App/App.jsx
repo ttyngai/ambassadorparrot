@@ -9,11 +9,6 @@ import NavBar from '../../components/NavBar/NavBar';
 import * as speechesAPI from '../../utilities/speeches-api';
 import * as voice from '../../utilities/speechSettings';
 
-// Todos:
-// record preferred languages for each user
-// find empty star logo
-// some &#39;
-
 function App() {
   const [user, setUser] = useState(getUser());
   const [nav, setNav] = useState('translate');
@@ -78,7 +73,6 @@ function App() {
     setNav('fav');
     // Save whatever including deleted
     let speechCopy = [...speech];
-    // console.log('first render fa', speechCopy);
     // Remove all aborted items
     let removeAborted = [];
     speechCopy.forEach(function (s) {
@@ -133,7 +127,7 @@ function App() {
       concat.timeCreated = new Date();
       concat.timeCreated = concat.timeCreated.toString();
       concat.sortStamp = new Date().getTime();
-      // Add a new speech auto speak token
+      // Add a new speech speech token
       concat.freshSpeech = true;
       if (!user) {
         concat.speechNonLoggedIn = true;
@@ -179,20 +173,15 @@ function App() {
         // If logged in, will update db
         newSpeechObj = await speechesAPI.create(newSpeech);
       } else {
-        // If not logged in, only updates state
+        // If not logged in records speech in NonLoggedIn state
         newSpeechObj = newSpeech;
         setSpeechNonLoggedIn([...speechNonLoggedIn, newSpeech]);
       }
-      // If in favorite page, also updates the main page
-      // if (nav == 'fav') {
-      //   setSpeechPreFav([...speechPreFav, newSpeechObj]);
-      // }
       // Renders as fast as possible if person alreaady stopped, will give fastest response
       setSpeech([...speechCopy, newSpeechObj]);
       // Incase user pressed button before stops, will hard rerender the latest speech one more time after timeout
       setTimeout(function () {
         setSpeech([...speechCopy, newSpeechObj]);
-        // console.log('accumulating non logged speech', speechNonLoggedIn);
       }, 500);
     }
     scrollToBottom('noTopRescroll');
